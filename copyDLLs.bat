@@ -1,0 +1,2 @@
+for /R C:\cygwin64\bin %%f in (*.dll) do copy %%f C:\Users\Urt\Documents\Projects\ArcTeam\ArcTeam\dist\Release\Cygwin-Windows
+copy "C:\cygwin64\bin\cygstdc++-6.dll" "C:\Users\Urt\Documents\Projects\ArcTeam\ArcTeam\dist\Release\Cygwin-Windows\cygstdc++-6.dll"

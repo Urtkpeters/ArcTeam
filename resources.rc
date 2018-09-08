@@ -1,0 +1,8 @@
+#include "resources.h"
+
+ICO_TITLEBAR ICON "C:\\Users\\Urt\\Documents\\Projects\\ArcTeam\\ArcTeam\\resources\\icons\\arc.ico"
+//BMP_OFFLINE BITMAP "C:\\Users\\Urt\\Documents\\Projects\\ArcTeam\\ArcTeam\\resources\\images\\offline.bmp"
+//BMP_HAPPY BITMAP "C:\\Users\\Urt\\Documents\\Projects\\ArcTeam\\ArcTeam\\resources\\images\\happy.bmp"
+//BMP_GOOD BITMAP "C:\\Users\\Urt\\Documents\\Projects\\ArcTeam\\ArcTeam\\resources\\images\\good.bmp"
+//BMP_SAD BITMAP "C:\\Users\\Urt\\Documents\\Projects\\ArcTeam\\ArcTeam\\resources\\images\\sad.bmp"
+//BMP_FINE BITMAP "C:\\Users\\Urt\\Documents\\Projects\\ArcTeam\\ArcTeam\\resources\\images\\fine.bmp"

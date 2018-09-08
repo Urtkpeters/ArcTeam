@@ -1,0 +1,24 @@
+#ifndef PERIODICHANDLER_H
+#define PERIODICHANDLER_H
+
+#include <nlohmann/json.hpp>
+#include <thread>
+#include <chrono>
+
+#include "PlayerHandler.h"
+
+using namespace std;
+using json = nlohmann::json;
+
+class PeriodicHandler
+{
+    public:
+        static void CreateThread();
+        static void KillThread();
+    private:
+        static bool stopThread;
+        
+        static void CheckStatus();
+};
+
+#endif

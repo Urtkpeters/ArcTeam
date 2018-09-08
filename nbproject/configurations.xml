@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="100">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <itemPath>ui/GenericWindow.h</itemPath>
+      <itemPath>ui/MainWindow.h</itemPath>
+      <itemPath>handler/PeriodicHandler.h</itemPath>
+      <itemPath>handler/Player/Player.h</itemPath>
+      <itemPath>handler/PlayerHandler.h</itemPath>
+      <itemPath>ui/PlayerWindow.h</itemPath>
+      <itemPath>handler/UserHandler.h</itemPath>
+      <itemPath>ui/UserWindow.h</itemPath>
+      <itemPath>handler/WebHandler.h</itemPath>
+      <itemPath>ui/WindowManager.h</itemPath>
+      <itemPath>resources.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <itemPath>ui/GenericWindow.cpp</itemPath>
+      <itemPath>ui/MainWindow.cpp</itemPath>
+      <itemPath>handler/PeriodicHandler.cpp</itemPath>
+      <itemPath>handler/Player/Player.cpp</itemPath>
+      <itemPath>handler/PlayerHandler.cpp</itemPath>
+      <itemPath>ui/PlayerWindow.cpp</itemPath>
+      <itemPath>handler/UserHandler.cpp</itemPath>
+      <itemPath>ui/UserWindow.cpp</itemPath>
+      <itemPath>handler/WebHandler.cpp</itemPath>
+      <itemPath>ui/WindowManager.cpp</itemPath>
+      <itemPath>main.cpp</itemPath>
+      <itemPath>resources.rc</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+    <itemPath>ChangeLog</itemPath>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <incDir>
+            <pElem>include</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <additionalDep>resources.o</additionalDep>
+          <linkerLibItems>
+            <linkerOptionItem>-lgdi32</linkerOptionItem>
+            <linkerOptionItem>-lcurl.dll</linkerOptionItem>
+            <linkerLibLibItem>shlwapi</linkerLibLibItem>
+            <linkerLibLibItem>GdiPlus</linkerLibLibItem>
+            <linkerOptionItem>resources.o</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="ChangeLog" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="handler/PeriodicHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="handler/PeriodicHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="handler/Player/Player.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="handler/Player/Player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="handler/PlayerHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="handler/PlayerHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="handler/UserHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="handler/UserHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="handler/WebHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="handler/WebHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="resources.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="resources.rc" ex="false" tool="3" flavor2="0">
+        <customTool>
+          <customToolCommandline>windres.exe resources.rc resources.o</customToolCommandline>
+          <customToolDescription>Compiling resources...</customToolDescription>
+          <customToolOutputs>resources.o</customToolOutputs>
+          <customToolAdditionalDep>resources.h</customToolAdditionalDep>
+        </customTool>
+      </item>
+      <item path="ui/GenericWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/GenericWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/MainWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/MainWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/PlayerWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/PlayerWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/UserWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/UserWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/WindowManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/WindowManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+          <standard>10</standard>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <standard>8</standard>
+          <incDir>
+            <pElem>include</pElem>
+          </incDir>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+        <linkerTool>
+          <linkerAddLib>
+            <pElem>C:/cygwin64/bin</pElem>
+          </linkerAddLib>
+          <additionalDep>resources.o</additionalDep>
+          <linkerLibItems>
+            <linkerOptionItem>-lgdi32</linkerOptionItem>
+            <linkerOptionItem>-lcurl.dll</linkerOptionItem>
+            <linkerLibLibItem>shlwapi</linkerLibLibItem>
+            <linkerLibLibItem>GdiPlus</linkerLibLibItem>
+            <linkerOptionItem>resources.o</linkerOptionItem>
+          </linkerLibItems>
+          <commandLine>-Wl,-subsystem,windows</commandLine>
+        </linkerTool>
+      </compileType>
+      <item path="ChangeLog" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="handler/PeriodicHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="handler/PeriodicHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="handler/Player/Player.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="handler/Player/Player.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="handler/PlayerHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="handler/PlayerHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="handler/UserHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="handler/UserHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="handler/WebHandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="handler/WebHandler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="resources.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="resources.rc" ex="false" tool="3" flavor2="0">
+        <customTool>
+          <customToolCommandline>windres.exe resources.rc resources.o</customToolCommandline>
+          <customToolDescription>Compiling resources...</customToolDescription>
+          <customToolOutputs>resources.o</customToolOutputs>
+          <customToolAdditionalDep>resources.h</customToolAdditionalDep>
+        </customTool>
+      </item>
+      <item path="ui/GenericWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/GenericWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/MainWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/MainWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/PlayerWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/PlayerWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/UserWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/UserWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/WindowManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/WindowManager.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
