@@ -9,10 +9,10 @@ MSG UserWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
     wc.lpfnWndProc = WindowProc;
     strClassName = "userWindow";
     windowTitle = "ArcTeam v" + applicationVersion;
-    windowStartX = 100;
-    windowStartY = 100;
     windowWidth = 400;
     windowHeight = 300;
+    windowStartX = (GetSystemMetrics(0) / 2) - (windowWidth / 2);
+    windowStartY = (GetSystemMetrics(1) / 2) - (windowHeight / 2);
     
     return GenericWindow::CreateNewWindow(Msg, hInstance, nCmdShow);
 }
