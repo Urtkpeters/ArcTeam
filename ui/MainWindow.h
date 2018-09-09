@@ -6,6 +6,7 @@
 #include <vector>
 #include <objidl.h>
 #include <gdiplus.h>
+#include <iostream>
 
 #include "GenericWindow.h"
 #include "../handler/WebHandler.h"

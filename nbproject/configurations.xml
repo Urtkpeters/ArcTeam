@@ -13,7 +13,7 @@
       <itemPath>ui/UserWindow.h</itemPath>
       <itemPath>handler/WebHandler.h</itemPath>
       <itemPath>ui/WindowManager.h</itemPath>
-      <itemPath>resources.h</itemPath>
+      <itemPath>resources/resources.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
                    displayName="Resource Files"
@@ -32,7 +32,7 @@
       <itemPath>handler/WebHandler.cpp</itemPath>
       <itemPath>ui/WindowManager.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
-      <itemPath>resources.rc</itemPath>
+      <itemPath>resources/resources.rc</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
                    displayName="Test Files"
@@ -62,13 +62,13 @@
           </incDir>
         </ccTool>
         <linkerTool>
-          <additionalDep>resources.o</additionalDep>
+          <additionalDep>resources/resources.o</additionalDep>
           <linkerLibItems>
             <linkerOptionItem>-lgdi32</linkerOptionItem>
             <linkerOptionItem>-lcurl.dll</linkerOptionItem>
             <linkerLibLibItem>shlwapi</linkerLibLibItem>
             <linkerLibLibItem>GdiPlus</linkerLibLibItem>
-            <linkerOptionItem>resources.o</linkerOptionItem>
+            <linkerOptionItem>resources/resources.o</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -96,14 +96,14 @@
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="resources.h" ex="false" tool="3" flavor2="0">
+      <item path="resources/resources.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="resources.rc" ex="false" tool="3" flavor2="0">
+      <item path="resources/resources.rc" ex="false" tool="3" flavor2="0">
         <customTool>
-          <customToolCommandline>windres.exe resources.rc resources.o</customToolCommandline>
+          <customToolCommandline>windres.exe resources/resources.rc resources/resources.o</customToolCommandline>
           <customToolDescription>Compiling resources...</customToolDescription>
-          <customToolOutputs>resources.o</customToolOutputs>
-          <customToolAdditionalDep>resources.h</customToolAdditionalDep>
+          <customToolOutputs>resources/resources.o</customToolOutputs>
+          <customToolAdditionalDep>resources/resources.h</customToolAdditionalDep>
         </customTool>
       </item>
       <item path="ui/GenericWindow.cpp" ex="false" tool="1" flavor2="0">
@@ -151,13 +151,13 @@
           <linkerAddLib>
             <pElem>C:/cygwin64/bin</pElem>
           </linkerAddLib>
-          <additionalDep>resources.o</additionalDep>
+          <additionalDep>resources/resources.o</additionalDep>
           <linkerLibItems>
             <linkerOptionItem>-lgdi32</linkerOptionItem>
             <linkerOptionItem>-lcurl.dll</linkerOptionItem>
             <linkerLibLibItem>shlwapi</linkerLibLibItem>
             <linkerLibLibItem>GdiPlus</linkerLibLibItem>
-            <linkerOptionItem>resources.o</linkerOptionItem>
+            <linkerOptionItem>resources/resources.o</linkerOptionItem>
           </linkerLibItems>
           <commandLine>-Wl,-subsystem,windows</commandLine>
         </linkerTool>
@@ -186,14 +186,14 @@
       </item>
       <item path="main.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="resources.h" ex="false" tool="3" flavor2="0">
+      <item path="resources/resources.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="resources.rc" ex="false" tool="3" flavor2="0">
+      <item path="resources/resources.rc" ex="false" tool="3" flavor2="0">
         <customTool>
-          <customToolCommandline>windres.exe resources.rc resources.o</customToolCommandline>
+          <customToolCommandline>windres.exe resources/resources.rc resources/resources.o</customToolCommandline>
           <customToolDescription>Compiling resources...</customToolDescription>
-          <customToolOutputs>resources.o</customToolOutputs>
-          <customToolAdditionalDep>resources.h</customToolAdditionalDep>
+          <customToolOutputs>resources/resources.o</customToolOutputs>
+          <customToolAdditionalDep>resources/resources.h</customToolAdditionalDep>
         </customTool>
       </item>
       <item path="ui/GenericWindow.cpp" ex="false" tool="1" flavor2="0">

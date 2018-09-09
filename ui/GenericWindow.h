@@ -4,7 +4,7 @@
 #include <string>
 #include <windows.h>
 
-#include "../resources.h"
+#include "../resources/resources.h"
 
 using namespace std;
 

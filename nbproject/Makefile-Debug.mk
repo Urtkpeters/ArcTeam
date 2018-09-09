@@ -61,13 +61,13 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lgdi32 -lcurl.dll -lshlwapi -lGdiPlus resources.o
+LDLIBSOPTIONS=-lgdi32 -lcurl.dll -lshlwapi -lGdiPlus resources/resources.o
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
 	"${MAKE}"  -f nbproject/Makefile-${CND_CONF}.mk ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/arcteam.exe
 
-${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/arcteam.exe: resources.o
+${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/arcteam.exe: resources/resources.o
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/arcteam.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
@@ -103,9 +103,10 @@ ${OBJECTDIR}/main.o: main.cpp
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
-resources.o: resources.rc resources.h
+resources/resources.o: resources/resources.rc resources/resources.h
+	${MKDIR} -p resources
 	@echo Compiling resources...
-	windres.exe resources.rc resources.o
+	windres.exe resources/resources.rc resources/resources.o
 
 ${OBJECTDIR}/ui/GenericWindow.o: ui/GenericWindow.cpp
 	${MKDIR} -p ${OBJECTDIR}/ui
@@ -133,7 +134,7 @@ ${OBJECTDIR}/ui/WindowManager.o: ui/WindowManager.cpp
 # Clean Targets
 .clean-conf: ${CLEAN_SUBPROJECTS}
 	${RM} -r ${CND_BUILDDIR}/${CND_CONF}
-	${RM} resources.o
+	${RM} resources/resources.o
 
 # Subprojects
 .clean-subprojects:

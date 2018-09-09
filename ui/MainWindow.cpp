@@ -26,11 +26,16 @@ MSG MainWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
     
     for(int i = 0; i < statuses.size(); i++)
     {
-        string filePath = statuses[i] + ".jpg";
-        wstring wImagePath = wstring(filePath.begin(), filePath.end());
+        TCHAR szPath[MAX_PATH];
+        GetModuleFileName( hInstance, szPath, MAX_PATH);
+        
+        string path = string(szPath);
+        path = path.substr(0, path.length() - 11) + "resources\\images\\" + statuses[i] + ".jpg";
+        
+        wstring wImagePath = wstring(path.begin(), path.end());
         const wchar_t* wcImagePath = wImagePath.c_str();
         Image image(wcImagePath);
-
+        
         images.push_back(image.GetThumbnailImage(715, 953, NULL, NULL));
     }
     
