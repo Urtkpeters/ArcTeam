@@ -26,7 +26,6 @@ class MainWindow: public GenericWindow
         static int userState;
         static int currentUserState;
         static bool firstLoad;
-        static vector<string> currentStatus;
         static vector<Image*> images;
         
         static void SetUsernames(vector<string> newUsernames);
@@ -38,8 +37,6 @@ class MainWindow: public GenericWindow
         static void WMCommand(HWND thisWindow, WPARAM wParam, LPARAM lParam);
         static void WMLeftMouseButtonUp(HWND thisWindow, WPARAM wParam, LPARAM lParam);
         static void WMPaint(HWND thisWindow, WPARAM wParam, LPARAM lParam);
-        
-        static const string imagePath;
     protected:
         void CreateComponents();
         

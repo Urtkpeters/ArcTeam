@@ -3,8 +3,6 @@
 int MainWindow::userState = 1;
 int MainWindow::currentUserState = 0;
 bool MainWindow::firstLoad = true;
-vector<string> MainWindow::currentStatus {"offline", "offline", "offline", "offline"};
-const string MainWindow::imagePath = "C:\\Users\\Urt\\Documents\\Projects\\ArcTeam\\ArcTeam\\resources\\images\\";
 vector<string> MainWindow::usernames;
 vector<Image*> MainWindow::images;
 RECT MainWindow::background;
@@ -122,14 +120,13 @@ void MainWindow::WMPaint(HWND thisWindow, WPARAM wParam, LPARAM lParam)
     Graphics graphics(mainHDC);
 
     vector<Player> players = PlayerHandler::GetPlayers();
-    vector<string> curStat = MainWindow::currentStatus;
     vector<string> buttonImages {"offline", "happy", "good", "sad", "fine"};
     
     for(int i = 0; i < players.size(); i++)
     {
         string newStatus = players[i].GetStatus();
         
-        if(newStatus != curStat[i] || MainWindow::firstLoad)
+        if(players[i].HasChange())
         {
             Image* thumbnail;
             
@@ -142,8 +139,6 @@ void MainWindow::WMPaint(HWND thisWindow, WPARAM wParam, LPARAM lParam)
             }
 
             graphics.DrawImage(thumbnail, 20 + (i * 130), 40, 100, 133);
-            
-            MainWindow::currentStatus[i] = newStatus;
         }
     }
     

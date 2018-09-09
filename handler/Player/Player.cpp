@@ -3,6 +3,7 @@
 Player::Player(string newUsername)
 {
     username = newUsername;
+    statusChanged = true;
 }
 
 void Player::SetStatus(int newStatusId)
@@ -29,12 +30,23 @@ void Player::SetStatus(int newStatusId)
                 status = "fine";
                 break;
         }
+        
+        statusChanged = true;
+    }
+    else
+    {
+        statusChanged = false;
     }
 }
 
 void Player::CreateLabel(HWND mainWindow, HINSTANCE hInstance, int labelId, int startX, int startY)
 {
     label = CreateWindow("static", username.c_str(), WS_CHILD | WS_VISIBLE, startX, startY, 100, 25, mainWindow, (HMENU)labelId, hInstance, NULL);
+}
+
+bool Player::HasChange()
+{
+    return statusChanged;
 }
 
 string Player::GetUsername()

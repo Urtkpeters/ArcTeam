@@ -12,11 +12,13 @@ class Player
         Player(string newUsername);
         void SetStatus(int newStatusId);
         void CreateLabel(HWND mainWindow, HINSTANCE hInstance, int labelId, int startX, int startY);
+        bool HasChange();
         string GetUsername();
         string GetStatus();
     private:
         HWND label;
         int statusId;
+        bool statusChanged;
         string username;
         string status = "offline";
 };
