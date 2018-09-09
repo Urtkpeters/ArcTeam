@@ -5,11 +5,6 @@ Player::Player(string newUsername)
     username = newUsername;
 }
 
-string Player::GetUsername()
-{
-    return username;
-}
-
 void Player::SetStatus(int newStatusId)
 {
     if(newStatusId != statusId)
@@ -37,8 +32,17 @@ void Player::SetStatus(int newStatusId)
     }
 }
 
+void Player::CreateLabel(HWND mainWindow, HINSTANCE hInstance, int labelId, int startX, int startY)
+{
+    label = CreateWindow("static", username.c_str(), WS_CHILD | WS_VISIBLE, startX, startY, 100, 25, mainWindow, (HMENU)labelId, hInstance, NULL);
+}
+
+string Player::GetUsername()
+{
+    return username;
+}
+
 string Player::GetStatus()
 {
     return status;
 }
-

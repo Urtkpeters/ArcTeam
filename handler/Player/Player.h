@@ -11,6 +11,7 @@ class Player
     public:
         Player(string newUsername);
         void SetStatus(int newStatusId);
+        void CreateLabel(HWND mainWindow, HINSTANCE hInstance, int labelId, int startX, int startY);
         string GetUsername();
         string GetStatus();
     private:

@@ -3,7 +3,6 @@
 int MainWindow::userState = 1;
 int MainWindow::currentUserState = 0;
 bool MainWindow::firstLoad = true;
-vector<PlayerWindow> MainWindow::playerWindows;
 vector<HWND> MainWindow::playerStatus;
 vector<string> MainWindow::currentStatus {"offline", "offline", "offline", "offline"};
 const string MainWindow::imagePath = "C:\\Users\\Urt\\Documents\\Projects\\ArcTeam\\ArcTeam\\resources\\images\\";
@@ -192,9 +191,11 @@ void MainWindow::WMPaint(HWND thisWindow, WPARAM wParam, LPARAM lParam)
 
 void MainWindow::CreateComponents()
 {
-    for(int i = 0; i < usernames.size(); i++)
+    vector<Player> players = PlayerHandler::GetPlayers();
+    
+    for(int i = 0; i < players.size(); i++)
     {
-        MainWindow::playerWindows.push_back(PlayerWindow(thisWindow, instance, usernames[i], LBL_ONE + i, 22 + (130 * i) + (2 * (14 - usernames[i].length())), 14));
+        players[i].CreateLabel(thisWindow, instance, LBL_ONE + i, 22 + (130 * i) + (2 * (14 - players[i].GetUsername().length())), 14);
         
         MainWindow::playerStatus.push_back(CreateWindow("static", "offline", WS_CHILD, 18 + (130 * i), 20, 100, 25, thisWindow, (HMENU)LBL_ONE + i + 8, instance, NULL));
     }
@@ -203,20 +204,6 @@ void MainWindow::CreateComponents()
 void MainWindow::SetUsernames(vector<string> newUsernames)
 {
     usernames = newUsernames;
-}
-
-void MainWindow::SetPlayerStatus(string changeUsername, string statusName)
-{
-    vector<PlayerWindow> playerWindows = MainWindow::playerWindows;
-    
-    for(int i = 0; i < playerWindows.size(); i++)
-    {
-        if(playerWindows[i].GetUsername() == changeUsername)
-        {
-            playerWindows[i].SetStatus(statusName);
-            break;
-        }
-    }
 }
 
 void MainWindow::ChangeState(int state, HWND thisWindow)

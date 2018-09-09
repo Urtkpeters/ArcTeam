@@ -9,7 +9,6 @@
       <itemPath>handler/PeriodicHandler.h</itemPath>
       <itemPath>handler/Player/Player.h</itemPath>
       <itemPath>handler/PlayerHandler.h</itemPath>
-      <itemPath>ui/PlayerWindow.h</itemPath>
       <itemPath>handler/UserHandler.h</itemPath>
       <itemPath>ui/UserWindow.h</itemPath>
       <itemPath>handler/WebHandler.h</itemPath>
@@ -28,7 +27,6 @@
       <itemPath>handler/PeriodicHandler.cpp</itemPath>
       <itemPath>handler/Player/Player.cpp</itemPath>
       <itemPath>handler/PlayerHandler.cpp</itemPath>
-      <itemPath>ui/PlayerWindow.cpp</itemPath>
       <itemPath>handler/UserHandler.cpp</itemPath>
       <itemPath>ui/UserWindow.cpp</itemPath>
       <itemPath>handler/WebHandler.cpp</itemPath>
@@ -115,10 +113,6 @@
       <item path="ui/MainWindow.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ui/MainWindow.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ui/PlayerWindow.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ui/PlayerWindow.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ui/UserWindow.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -209,10 +203,6 @@
       <item path="ui/MainWindow.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="ui/MainWindow.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="ui/PlayerWindow.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="ui/PlayerWindow.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="ui/UserWindow.cpp" ex="false" tool="1" flavor2="0">
       </item>

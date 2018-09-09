@@ -8,9 +8,9 @@
 #include <gdiplus.h>
 
 #include "GenericWindow.h"
-#include "PlayerWindow.h"
 #include "../handler/WebHandler.h"
 #include "../handler/UserHandler.h"
+#include "../handler/PlayerHandler.h"
 
 using namespace std;
 using namespace Gdiplus;
@@ -24,7 +24,6 @@ class MainWindow: public GenericWindow
         static int userState;
         static int currentUserState;
         static bool firstLoad;
-        static vector<PlayerWindow> playerWindows;
         static vector<HWND> playerStatus;
         static vector<string> currentStatus;
         static vector<Image*> images;

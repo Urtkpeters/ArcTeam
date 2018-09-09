@@ -43,7 +43,6 @@ OBJECTFILES= \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/ui/GenericWindow.o \
 	${OBJECTDIR}/ui/MainWindow.o \
-	${OBJECTDIR}/ui/PlayerWindow.o \
 	${OBJECTDIR}/ui/UserWindow.o \
 	${OBJECTDIR}/ui/WindowManager.o
 
@@ -117,11 +116,6 @@ ${OBJECTDIR}/ui/MainWindow.o: ui/MainWindow.cpp
 	${MKDIR} -p ${OBJECTDIR}/ui
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ui/MainWindow.o ui/MainWindow.cpp
-
-${OBJECTDIR}/ui/PlayerWindow.o: ui/PlayerWindow.cpp
-	${MKDIR} -p ${OBJECTDIR}/ui
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ui/PlayerWindow.o ui/PlayerWindow.cpp
 
 ${OBJECTDIR}/ui/UserWindow.o: ui/UserWindow.cpp
 	${MKDIR} -p ${OBJECTDIR}/ui

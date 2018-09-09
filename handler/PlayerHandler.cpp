@@ -55,16 +55,4 @@ void PlayerHandler::SetPlayerStatus(string username, int newStatusId)
 {
     Player player = GetPlayer(username);
     player.SetStatus(newStatusId);
-    
-    vector<PlayerWindow> pw = MainWindow::playerWindows;
-    vector<HWND> ps = MainWindow::playerStatus;
-    
-    for(int i = 0; i < pw.size(); i++)
-    {
-        if(pw[i].GetUsername() == username)
-        {
-            pw[i].SetStatus(player.GetStatus());
-            SetWindowTextA(ps[i], player.GetStatus().c_str());
-        }
-    }
 }
