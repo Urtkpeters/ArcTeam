@@ -5,6 +5,8 @@
 #include <string>
 #include <curl/curl.h>
 
+#include "../ui/MainWindow.h"
+
 using namespace std;
 using json = nlohmann::json;
 

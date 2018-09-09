@@ -49,7 +49,7 @@ json WebHandler::SendRequest(string url)
         
         if(responseCode != 200 || curlResponse == CURLE_ABORTED_BY_CALLBACK)
         {
-            // Throw error
+            MainWindow::DisplayError("Unable to connect to web server.");
         }
         else
         {
@@ -61,7 +61,7 @@ json WebHandler::SendRequest(string url)
     }
     else
     {
-        // Throw error
+        MainWindow::DisplayError("Unable to connect to the internet.");
     }
     
     return jsonResponse;
@@ -75,7 +75,7 @@ json WebHandler::PushStatus(int status, string username)
     
     if(jsonResponse.at("blnSuccess") != true)
     {
-        // Throw error
+        MainWindow::DisplayError("Web server response not valid.");
     }
     
     return jsonResponse;
