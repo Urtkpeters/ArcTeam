@@ -7,6 +7,7 @@ vector<string> MainWindow::usernames;
 vector<Image*> MainWindow::images;
 RECT MainWindow::background;
 HWND MainWindow::mainWindow;
+HWND MainWindow::errorLabel;
 
 MSG MainWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
 {
@@ -57,22 +58,10 @@ LRESULT CALLBACK MainWindow::WindowProc(HWND thisWindow, UINT message, WPARAM wP
 
 void MainWindow::WMCommand(HWND thisWindow, WPARAM wParam, LPARAM lParam)
 {
-    if(LOWORD(wParam) == BTN_ZERO)
-    {
-        MainWindow::ChangeState(0, thisWindow);
-    }
-    else if(LOWORD(wParam) == BTN_ONE)
-    {
-        MainWindow::ChangeState(1, thisWindow);
-    }
-    else if(LOWORD(wParam) == BTN_TWO)
-    {
-        MainWindow::ChangeState(2, thisWindow);
-    }
-    else if(LOWORD(wParam) == BTN_THREE)
-    {
-        MainWindow::ChangeState(3, thisWindow);
-    }
+//    if(LOWORD(wParam) == BTN_ZERO)
+//    {
+//        MainWindow::ChangeState(0, thisWindow);
+//    }
 }
 
 void MainWindow::WMLeftMouseButtonUp(HWND thisWindow, WPARAM wParam, LPARAM lParam)
@@ -109,6 +98,11 @@ void MainWindow::WMLeftMouseButtonUp(HWND thisWindow, WPARAM wParam, LPARAM lPar
             MainWindow::ChangeState(4, thisWindow);
         }
     }
+    
+//    if(mPosX > 0 && mPosX < 100 && mPosY > 0 && mPosY < 100)
+//    {
+//        
+//    }
 }
 
 void MainWindow::WMPaint(HWND thisWindow, WPARAM wParam, LPARAM lParam)
@@ -196,6 +190,8 @@ void MainWindow::CreateComponents()
         players[i].CreateLabel(thisWindow, instance, LBL_ONE + i, 22 + (130 * i) + (2 * (14 - players[i].GetUsername().length())), 14);
     }
     
+    errorLabel = CreateChildLabel("", 10, 685, thisWindow, LBL_ERROR);
+    
     MainWindow::mainWindow = thisWindow;
 }
 
@@ -215,4 +211,9 @@ void MainWindow::ChangeState(int state, HWND thisWindow)
 void MainWindow::RefreshWindow()
 {
     RedrawWindow(MainWindow::mainWindow, NULL, NULL, RDW_INVALIDATE);
+}
+
+void MainWindow::DisplayError(string errorMessage)
+{
+    SetWindowText(errorLabel, errorMessage.c_str());
 }
