@@ -4,6 +4,7 @@
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
+      <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.h</itemPath>
       <itemPath>ui/GenericWindow.h</itemPath>
       <itemPath>ui/MainWindow.h</itemPath>
       <itemPath>handler/PeriodicHandler.h</itemPath>
@@ -22,6 +23,7 @@
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
+      <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.cpp</itemPath>
       <itemPath>ui/GenericWindow.cpp</itemPath>
       <itemPath>ui/MainWindow.cpp</itemPath>
       <itemPath>handler/PeriodicHandler.cpp</itemPath>
@@ -72,6 +74,16 @@
           </linkerLibItems>
         </linkerTool>
       </compileType>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="ChangeLog" ex="false" tool="3" flavor2="0">
       </item>
       <item path="handler/PeriodicHandler.cpp" ex="false" tool="1" flavor2="0">
@@ -162,6 +174,16 @@
           <commandLine>-Wl,-subsystem,windows</commandLine>
         </linkerTool>
       </compileType>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
       <item path="ChangeLog" ex="false" tool="3" flavor2="0">
       </item>
       <item path="handler/PeriodicHandler.cpp" ex="false" tool="1" flavor2="0">

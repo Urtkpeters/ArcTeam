@@ -14,6 +14,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     ULONG_PTR token;
     GdiplusStartupInput input;
     GdiplusStartup(&token, &input, NULL);
+    ErrorHandler::Init(hInstance);
     
     Msg = WindowManager::CreateUI(Msg, hInstance, nCmdShow);
     

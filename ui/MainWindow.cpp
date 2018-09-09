@@ -101,7 +101,7 @@ void MainWindow::WMLeftMouseButtonUp(HWND thisWindow, WPARAM wParam, LPARAM lPar
     
 //    if(mPosX > 0 && mPosX < 100 && mPosY > 0 && mPosY < 100)
 //    {
-//        
+//        ErrorHandler::WriteError("this is error");
 //    }
 }
 
