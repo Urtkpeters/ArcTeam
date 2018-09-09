@@ -3,12 +3,12 @@
 int MainWindow::userState = 1;
 int MainWindow::currentUserState = 0;
 bool MainWindow::firstLoad = true;
-vector<HWND> MainWindow::playerStatus;
 vector<string> MainWindow::currentStatus {"offline", "offline", "offline", "offline"};
 const string MainWindow::imagePath = "C:\\Users\\Urt\\Documents\\Projects\\ArcTeam\\ArcTeam\\resources\\images\\";
 vector<string> MainWindow::usernames;
 vector<Image*> MainWindow::images;
 RECT MainWindow::background;
+HWND MainWindow::mainWindow;
 
 MSG MainWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
 {
@@ -116,23 +116,21 @@ void MainWindow::WMPaint(HWND thisWindow, WPARAM wParam, LPARAM lParam)
 
     Graphics graphics(mainHDC);
 
-    vector<HWND> playStat = MainWindow::playerStatus;
+    vector<Player> players = PlayerHandler::GetPlayers();
     vector<string> curStat = MainWindow::currentStatus;
     vector<string> buttonImages {"offline", "happy", "good", "sad", "fine"};
     
-    for(int i = 0; i < playStat.size(); i++)
+    for(int i = 0; i < players.size(); i++)
     {
-        int fieldLen = GetWindowTextLength(playStat[i]) + 1;
-        char* fieldValue = new char[fieldLen];
-        GetWindowText(playStat[i], &fieldValue[0], 8192);
+        string newStatus = players[i].GetStatus();
         
-        if(fieldValue != curStat[i] || MainWindow::firstLoad)
+        if(newStatus != curStat[i] || MainWindow::firstLoad)
         {
             Image* thumbnail;
             
             for(int j = 0; j < buttonImages.size(); j++)
             {
-                if(buttonImages[j] == string(fieldValue))
+                if(buttonImages[j] == newStatus)
                 {
                     thumbnail = images[j];
                 }
@@ -140,7 +138,7 @@ void MainWindow::WMPaint(HWND thisWindow, WPARAM wParam, LPARAM lParam)
 
             graphics.DrawImage(thumbnail, 20 + (i * 130), 40, 100, 133);
             
-            MainWindow::currentStatus[i] = string(fieldValue);
+            MainWindow::currentStatus[i] = newStatus;
         }
     }
     
@@ -196,9 +194,9 @@ void MainWindow::CreateComponents()
     for(int i = 0; i < players.size(); i++)
     {
         players[i].CreateLabel(thisWindow, instance, LBL_ONE + i, 22 + (130 * i) + (2 * (14 - players[i].GetUsername().length())), 14);
-        
-        MainWindow::playerStatus.push_back(CreateWindow("static", "offline", WS_CHILD, 18 + (130 * i), 20, 100, 25, thisWindow, (HMENU)LBL_ONE + i + 8, instance, NULL));
     }
+    
+    MainWindow::mainWindow = thisWindow;
 }
 
 void MainWindow::SetUsernames(vector<string> newUsernames)
@@ -212,4 +210,9 @@ void MainWindow::ChangeState(int state, HWND thisWindow)
     userState = state;
     
     RedrawWindow(thisWindow, NULL, NULL, RDW_INVALIDATE);
+}
+
+void MainWindow::RefreshWindow()
+{
+    RedrawWindow(MainWindow::mainWindow, NULL, NULL, RDW_INVALIDATE);
 }

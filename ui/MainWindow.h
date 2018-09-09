@@ -20,22 +20,23 @@ class MainWindow: public GenericWindow
     public:
         MSG CreateNewWindow(MSG Msg, HINSTANCE hInstance, int wCmdShow);
         
+        static HWND mainWindow;
         static RECT background;
         static int userState;
         static int currentUserState;
         static bool firstLoad;
-        static vector<HWND> playerStatus;
         static vector<string> currentStatus;
         static vector<Image*> images;
         
         static void SetUsernames(vector<string> newUsernames);
         static void SetPlayerStatus(string changeUsername, string statusName);
         static void ChangeState(int state, HWND thisWindow);
+        static void RefreshWindow();
         
+        static LRESULT CALLBACK WindowProc(HWND thisWindow, UINT message, WPARAM wParam, LPARAM lParam);
         static void WMCommand(HWND thisWindow, WPARAM wParam, LPARAM lParam);
         static void WMLeftMouseButtonUp(HWND thisWindow, WPARAM wParam, LPARAM lParam);
         static void WMPaint(HWND thisWindow, WPARAM wParam, LPARAM lParam);
-        static LRESULT CALLBACK WindowProc(HWND thisWindow, UINT message, WPARAM wParam, LPARAM lParam);
         
         static const string imagePath;
     protected:

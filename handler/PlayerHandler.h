@@ -19,8 +19,6 @@ class PlayerHandler
         static void SetPlayerStatus(string username, int newStatusId);
     private:
         static vector<Player> players;
-        
-        static Player GetPlayer(string username);
 };
 
 #endif

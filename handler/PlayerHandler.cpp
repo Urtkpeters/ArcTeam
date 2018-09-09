@@ -18,21 +18,6 @@ void PlayerHandler::Init()
     }
 }
 
-Player PlayerHandler::GetPlayer(string username)
-{
-    Player player("");
-    
-    for(int i = 0; i < players.size(); i++)
-    {
-        if(players[i].GetUsername() == username)
-        {
-            player = players[i];
-        }
-    }
-    
-    return player;
-}
-
 vector<Player> PlayerHandler::GetPlayers()
 {
     return players;
@@ -53,6 +38,13 @@ vector<string> PlayerHandler::GetUsernames()
 
 void PlayerHandler::SetPlayerStatus(string username, int newStatusId)
 {
-    Player player = GetPlayer(username);
-    player.SetStatus(newStatusId);
+    for(int i = 0; i < players.size(); i++)
+    {
+        if(players[i].GetUsername() == username)
+        {
+            players[i].SetStatus(newStatusId);
+        }
+    }
+    
+    MainWindow::RefreshWindow();
 }
