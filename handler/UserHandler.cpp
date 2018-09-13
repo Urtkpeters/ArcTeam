@@ -30,6 +30,8 @@ string UserHandler::GetUsername()
 
 int UserHandler::GetState()
 {
+    stateChange = false;
+    
     return state;
 }
 
