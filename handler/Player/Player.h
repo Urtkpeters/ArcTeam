@@ -3,13 +3,14 @@
 
 #include <windows.h>
 #include <string>
+#include <vector>
 
 using namespace std;
 
 class Player
 {
     public:
-        Player(string newUsername);
+        Player(string newUsername, vector<string> newStatuses);
         void SetStatus(int newStatusId);
         void CreateLabel(HWND mainWindow, HINSTANCE hInstance, int labelId, int startX, int startY);
         bool HasChange();
@@ -21,6 +22,7 @@ class Player
         bool statusChanged;
         string username;
         string status = "offline";
+        vector<string> statuses;
 };
 
 #endif

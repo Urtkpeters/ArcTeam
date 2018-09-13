@@ -18,7 +18,7 @@ MSG MainWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
     
     SetRect(&background, 0, 0, 550, 750);
     
-    vector<string> statuses = {"offline", "happy", "good", "sad", "fine"};
+    vector<string> statuses = PlayerHandler::GetStatuses();
     
     for(int i = 0; i < statuses.size(); i++)
     {
@@ -111,7 +111,7 @@ void MainWindow::WMPaint(HWND thisWindow, WPARAM wParam, LPARAM lParam)
     Graphics graphics(mainHDC);
 
     vector<Player> players = PlayerHandler::GetPlayers();
-    vector<string> buttonImages {"offline", "happy", "good", "sad", "fine"};
+    vector<string> statuses = PlayerHandler::GetStatuses();
     
     for(int i = 0; i < players.size(); i++)
     {
@@ -121,9 +121,9 @@ void MainWindow::WMPaint(HWND thisWindow, WPARAM wParam, LPARAM lParam)
         {
             Image* thumbnail;
             
-            for(int j = 0; j < buttonImages.size(); j++)
+            for(int j = 0; j < statuses.size(); j++)
             {
-                if(buttonImages[j] == newStatus)
+                if(statuses[j] == newStatus)
                 {
                     thumbnail = images[j];
                 }
@@ -135,7 +135,7 @@ void MainWindow::WMPaint(HWND thisWindow, WPARAM wParam, LPARAM lParam)
     
     if(UserHandler::GetStateChange())
     {
-        for(int i = 1; i < buttonImages.size(); i++)
+        for(int i = 1; i < statuses.size(); i++)
         {
             int state = UserHandler::GetState();
             int lastState = UserHandler::GetLastState();

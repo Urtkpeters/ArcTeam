@@ -1,9 +1,10 @@
 #include "Player.h"
 
-Player::Player(string newUsername)
+Player::Player(string newUsername, vector<string> newStatuses)
 {
     username = newUsername;
     statusChanged = true;
+    statuses = newStatuses;
 }
 
 void Player::SetStatus(int newStatusId)
@@ -12,24 +13,7 @@ void Player::SetStatus(int newStatusId)
     {
         statusId = newStatusId;
         
-        switch(statusId)
-        {
-            case 0:
-                status = "offline";
-                break;
-            case 1:
-                status = "happy";
-                break;
-            case 2:
-                status = "good";
-                break;
-            case 3:
-                status = "sad";
-                break;
-            case 4:
-                status = "fine";
-                break;
-        }
+        status = statuses[statusId];
         
         statusChanged = true;
     }

@@ -17,8 +17,11 @@ class PlayerHandler
         static vector<Player> GetPlayers();
         static vector<string> GetUsernames();
         static void SetPlayerStatus(string username, int newStatusId);
+        static vector<string> GetStatuses();
     private:
         static vector<Player> players;
+        
+        static const vector<string> statuses;
 };
 
 #endif

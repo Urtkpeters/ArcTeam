@@ -2,6 +2,8 @@
 
 vector<Player> PlayerHandler::players;
 
+const vector<string> PlayerHandler::statuses = {"offline", "happy", "good", "sad", "fine"};
+
 void PlayerHandler::Init()
 {
     string username = UserHandler::GetUsername();
@@ -13,7 +15,7 @@ void PlayerHandler::Init()
         if(users[i] != username)
         {
             // 100 used to be referenced to a global constant
-            players.push_back(Player(users[i]));
+            players.push_back(Player(users[i], statuses));
         }
     }
 }
@@ -47,4 +49,9 @@ void PlayerHandler::SetPlayerStatus(string username, int newStatusId)
     }
     
     MainWindow::RefreshWindow();
+}
+
+vector<string> PlayerHandler::GetStatuses()
+{
+    return statuses;
 }
