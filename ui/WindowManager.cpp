@@ -17,8 +17,7 @@ MSG WindowManager::CreateUI(MSG Msg, HINSTANCE hInstance, int nCmdShow)
         {
             window = "close";
             
-            WebHandler::PushStatus(1, UserHandler::GetUsername());
-            
+            UserHandler::SetState(1);
             PlayerHandler::Init();
             
             MainWindow::SetUsernames(PlayerHandler::GetUsernames());
@@ -29,8 +28,7 @@ MSG WindowManager::CreateUI(MSG Msg, HINSTANCE hInstance, int nCmdShow)
             mainWindow.CreateNewWindow(Msg, hInstance, nCmdShow);
             
             PeriodicHandler::KillThread();
-            
-            WebHandler::PushStatus(0, UserHandler::GetUsername());
+            UserHandler::SetState(0);
         }
         else
         {
