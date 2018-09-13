@@ -8,7 +8,6 @@
 #include <gdiplus.h>
 
 #include "GenericWindow.h"
-#include "../handler/WebHandler.h"
 #include "../handler/UserHandler.h"
 #include "../handler/PlayerHandler.h"
 
@@ -22,9 +21,6 @@ class MainWindow: public GenericWindow
         
         static HWND mainWindow;
         static RECT background;
-        static int userState;
-        static int currentUserState;
-        static bool firstLoad;
         static vector<Image*> images;
         
         static void SetUsernames(vector<string> newUsernames);

@@ -1,8 +1,5 @@
 #include "MainWindow.h"
 
-int MainWindow::userState = 1;
-int MainWindow::currentUserState = 0;
-bool MainWindow::firstLoad = true;
 vector<string> MainWindow::usernames;
 vector<Image*> MainWindow::images;
 RECT MainWindow::background;
@@ -136,11 +133,14 @@ void MainWindow::WMPaint(HWND thisWindow, WPARAM wParam, LPARAM lParam)
         }
     }
     
-    if(MainWindow::userState != MainWindow::currentUserState)
+    if(UserHandler::GetStateChange())
     {
         for(int i = 1; i < buttonImages.size(); i++)
         {
-            if(i == MainWindow::userState || i == MainWindow::currentUserState || MainWindow::firstLoad)
+            int state = UserHandler::GetState();
+            int lastState = UserHandler::GetLastState();
+            
+            if(i == state || i == lastState || lastState == 0)
             {
                 int xPos = 90;
                 int yPos = 210;
@@ -158,7 +158,7 @@ void MainWindow::WMPaint(HWND thisWindow, WPARAM wParam, LPARAM lParam)
                 RECT bknd;
                 HBRUSH brush = CreateSolidBrush(RGB(240, 240, 240));
 
-                if(MainWindow::userState == i)
+                if(state == i)
                 {
                     brush = CreateSolidBrush(RGB(198, 0, 0));
                 }
@@ -170,11 +170,7 @@ void MainWindow::WMPaint(HWND thisWindow, WPARAM wParam, LPARAM lParam)
                 graphics.DrawImage(images[i], xPos, yPos, 150, 200);
             }
         }
-        
-        MainWindow::currentUserState = MainWindow::userState;
     }
-    
-    MainWindow::firstLoad = false;
 
     EndPaint(thisWindow, &ps);
     
@@ -202,10 +198,12 @@ void MainWindow::SetUsernames(vector<string> newUsernames)
 
 void MainWindow::ChangeState(int state, HWND thisWindow)
 {
-    WebHandler::PushStatus(state, UserHandler::GetUsername());
-    userState = state;
+    UserHandler::SetState(state);
     
-    RedrawWindow(thisWindow, NULL, NULL, RDW_INVALIDATE);
+    if(UserHandler::GetStateChange())
+    {
+        RedrawWindow(thisWindow, NULL, NULL, RDW_INVALIDATE);
+    }
 }
 
 void MainWindow::RefreshWindow()
