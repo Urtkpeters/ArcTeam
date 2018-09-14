@@ -15,8 +15,10 @@ class PeriodicHandler
     public:
         static void CreateThread();
         static void KillThread();
+        static bool GetThreadStatus();
     private:
         static bool stopThread;
+        static bool threadRunning;
         
         static void CheckStatus();
 };

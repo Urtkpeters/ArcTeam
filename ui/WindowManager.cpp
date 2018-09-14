@@ -28,7 +28,15 @@ MSG WindowManager::CreateUI(MSG Msg, HINSTANCE hInstance, int nCmdShow)
             mainWindow.CreateNewWindow(Msg, hInstance, nCmdShow);
             
             PeriodicHandler::KillThread();
+    
+            while(PeriodicHandler::GetThreadStatus())
+            {
+                this_thread::sleep_for(chrono::milliseconds(500));
+            }
+            
             UserHandler::SetState(0);
+            
+            this_thread::sleep_for(chrono::milliseconds(2000));
         }
         else
         {

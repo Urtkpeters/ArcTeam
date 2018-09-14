@@ -1,16 +1,23 @@
 #include "PeriodicHandler.h"
 
 bool PeriodicHandler::stopThread = false;
+bool PeriodicHandler::threadRunning = false;
 
 void PeriodicHandler::CreateThread()
 {
     thread periodicThread(CheckStatus);
+    threadRunning = true;
     periodicThread.detach();
 }
 
 void PeriodicHandler::KillThread()
 {
     stopThread = true;
+}
+
+bool PeriodicHandler::GetThreadStatus()
+{
+    return threadRunning;
 }
 
 void PeriodicHandler::CheckStatus()
@@ -33,5 +40,9 @@ void PeriodicHandler::CheckStatus()
     if(!stopThread)
     {
         CheckStatus();
+    }
+    else
+    {
+        threadRunning = false;
     }
 }
