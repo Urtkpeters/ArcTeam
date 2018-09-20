@@ -1,6 +1,6 @@
 #include "GenericWindow.h"
 
-const string GenericWindow::applicationVersion = "1.0.0";
+const string GenericWindow::applicationVersion = "1.2.0";
 const int GenericWindow::IMG_TITLEBAR = ICO_TITLEBAR;
 
 MSG GenericWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)

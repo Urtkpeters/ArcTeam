@@ -9,8 +9,6 @@ void ErrorHandler::Init(HINSTANCE instance)
 
     path = string(szPath);
     path = path.substr(0, path.length() - 11) + "errorLog.txt";
-    
-    
 }
 
 void ErrorHandler::WriteError(string errorMessage)
