@@ -36,6 +36,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/_ext/4ccc2a23/ErrorHandler.o \
+	${OBJECTDIR}/_ext/7f5b181b/FooterPanel.o \
+	${OBJECTDIR}/_ext/7f5b181b/PlayersPanel.o \
+	${OBJECTDIR}/_ext/7f5b181b/SwapPanel.o \
 	${OBJECTDIR}/handler/PeriodicHandler.o \
 	${OBJECTDIR}/handler/Player/Player.o \
 	${OBJECTDIR}/handler/PlayerHandler.o \
@@ -62,7 +65,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lgdi32 -lcurl.dll -lshlwapi -lGdiPlus resources/resources.o
+LDLIBSOPTIONS=-lgdi32 -lcurl.dll -lshlwapi -lGdiPlus resources/resources.o -lcomctl32
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -78,6 +81,21 @@ ${OBJECTDIR}/_ext/4ccc2a23/ErrorHandler.o: /cygdrive/C/Users/Urt/Documents/Proje
 	${MKDIR} -p ${OBJECTDIR}/_ext/4ccc2a23
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4ccc2a23/ErrorHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.cpp
+
+${OBJECTDIR}/_ext/7f5b181b/FooterPanel.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/FooterPanel.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/7f5b181b
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/7f5b181b/FooterPanel.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/FooterPanel.cpp
+
+${OBJECTDIR}/_ext/7f5b181b/PlayersPanel.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/PlayersPanel.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/7f5b181b
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/7f5b181b/PlayersPanel.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/PlayersPanel.cpp
+
+${OBJECTDIR}/_ext/7f5b181b/SwapPanel.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/SwapPanel.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/7f5b181b
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/7f5b181b/SwapPanel.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/SwapPanel.cpp
 
 ${OBJECTDIR}/handler/PeriodicHandler.o: handler/PeriodicHandler.cpp
 	${MKDIR} -p ${OBJECTDIR}/handler
