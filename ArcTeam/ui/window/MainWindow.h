@@ -22,25 +22,29 @@ class MainWindow: public GenericWindow
         MSG CreateNewWindow(MSG Msg, HINSTANCE hInstance, int wCmdShow);
         
         static HWND mainWindow;
-        static RECT background;
         
-        static void SetUsernames(vector<string> newUsernames);
-        static void SetPlayerStatus(string changeUsername, string statusName);
-        static void RefreshWindow();
         static void DisplayError(string errorMessage);
         
         static LRESULT CALLBACK WindowProc(HWND thisWindow, UINT message, WPARAM wParam, LPARAM lParam);
         static LRESULT WMCtlColorStatic(WPARAM wParam);
         static void WMPaint(HWND thisWindow);
-        static void WMLeftMouseButtonUp(HWND thisPanel, LPARAM lParam);
+        static void WMLeftMouseButtonUp(HWND thisWindow, LPARAM lParam);
+        static void WMMouseMove(HWND thisWindow);
+        static void WMMouseHover(HWND thisWindow, LPARAM lParam);
+        static void WMMouseLeave(HWND thisWindow);
+        static void WMTimer(HWND thisWindow);
         static LRESULT NCHitTest(HWND thisWindow, LPARAM lParam);
     protected:
         void CreateComponents();
         
         static HWND errorLabel;
         static HWND titleLabel;
-        static vector<string> usernames;
+        static RECT background;
         static vector<Image*> images;
+        static RECT closeButton;
+        static RECT grabBar;
+        static int buttonHover;
+        static int currentButtonHover;
         
         static const vector<string> imageNames;
         static const int mainWindowWidth;

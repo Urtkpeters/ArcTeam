@@ -1,11 +1,14 @@
 #include "MainWindow.h"
 
-vector<string> MainWindow::usernames;
 RECT MainWindow::background;
 HWND MainWindow::mainWindow;
 HWND MainWindow::errorLabel;
 HWND MainWindow::titleLabel;
 vector<Image*> MainWindow::images;
+RECT MainWindow::closeButton;
+RECT MainWindow::grabBar;
+int MainWindow::buttonHover;
+int MainWindow::currentButtonHover;
 
 const vector<string> MainWindow::imageNames {"close", "close_hover"};
 const int MainWindow::mainWindowWidth = 1000;
@@ -20,8 +23,12 @@ MSG MainWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
     windowStartY = 100;
     windowWidth = mainWindowWidth;
     windowHeight = mainWindowHeight;
+    buttonHover = 0;
+    currentButtonHover = -1;
     
-    SetRect(&background, 0, 0, mainWindowWidth, mainWindowHeight);
+    SetRect(&background, 0, 0, mainWindowWidth, 20);
+    SetRect(&closeButton, mainWindowWidth - 20, 0, mainWindowWidth, 20);
+    SetRect(&grabBar, 0, 0, mainWindowWidth - 20, mainWindowHeight);
     
     TCHAR szPath[MAX_PATH];
     GetModuleFileName(instance, szPath, MAX_PATH);
@@ -50,6 +57,10 @@ LRESULT CALLBACK MainWindow::WindowProc(HWND thisWindow, UINT message, WPARAM wP
         case WM_CTLCOLORSTATIC: return WMCtlColorStatic(wParam);
         case WM_PAINT: WMPaint(thisWindow); break;
         case WM_LBUTTONUP: WMLeftMouseButtonUp(thisWindow, lParam); break;
+        case WM_MOUSEMOVE: WMMouseMove(thisWindow); break;
+        case WM_MOUSEHOVER: WMMouseHover(thisWindow, lParam); break;
+        case WM_MOUSELEAVE: WMMouseLeave(thisWindow); break;
+        case WM_TIMER: WMTimer(thisWindow); break;
         case WM_NCHITTEST: return NCHitTest(thisWindow, lParam);
         case WM_CLOSE: DestroyWindow(thisWindow); break;
         case WM_DESTROY: PostQuitMessage(0); break;
@@ -87,7 +98,7 @@ void MainWindow::WMPaint(HWND thisWindow)
     
     Graphics graphics(bufferHDC);
     
-    graphics.DrawImage(images[0], mainWindowWidth-20, 0, 20, 20);
+    graphics.DrawImage(images[buttonHover], mainWindowWidth-20, 0, 20, 20);
     
     BitBlt(mainHDC, 0, 0, mainWindowWidth, mainWindowHeight, bufferHDC, 0, 0, SRCCOPY);
     
@@ -110,17 +121,75 @@ void MainWindow::WMLeftMouseButtonUp(HWND thisWindow, LPARAM lParam)
     }
 }
 
+void MainWindow::WMMouseMove(HWND thisWindow)
+{
+    SetTimer(thisWindow, 10, 10, NULL);
+    
+    TRACKMOUSEEVENT tme;
+    tme.cbSize = sizeof(TRACKMOUSEEVENT);
+    tme.dwFlags = TME_HOVER;
+    tme.dwHoverTime = 10;
+    tme.hwndTrack = thisWindow;
+    TrackMouseEvent(&tme);
+}
+
+void MainWindow::WMMouseHover(HWND thisWindow, LPARAM lParam)
+{
+    POINT mousePoint;
+    mousePoint.x = LOWORD(lParam);
+    mousePoint.y = HIWORD(lParam);
+    
+    if(PtInRect(&closeButton, mousePoint))
+    {
+        buttonHover = 1;
+    }
+    else
+    {
+        buttonHover = 0;
+    }
+    
+    if(buttonHover != currentButtonHover)
+    {
+        RedrawWindow(thisWindow, NULL, NULL, RDW_INVALIDATE);
+        
+        currentButtonHover = buttonHover;
+    }
+}
+
+void MainWindow::WMMouseLeave(HWND thisWindow)
+{
+    if(buttonHover != 0)
+    {
+        buttonHover = 0;
+        RedrawWindow(thisWindow, NULL, NULL, RDW_INVALIDATE);
+        currentButtonHover = 0;
+    }
+}
+
+void MainWindow::WMTimer(HWND thisWindow)
+{
+    KillTimer(thisWindow, 100);
+    
+    RECT rc;
+    POINT pt;
+    
+    GetWindowRect(thisWindow,&rc);
+    GetCursorPos(&pt);
+
+    if(!PtInRect(&rc,pt)) PostMessage(thisWindow, WM_MOUSELEAVE, 0, 0L);
+}
+
 LRESULT MainWindow::NCHitTest(HWND thisWindow, LPARAM lParam)
 {
     LRESULT hit = HTCLIENT;
-    POINT point;
+    POINT mousePoint;
 
-    point.x = LOWORD(lParam);
-    point.y = HIWORD(lParam);
+    mousePoint.x = LOWORD(lParam);
+    mousePoint.y = HIWORD(lParam);
 
-    ScreenToClient(thisWindow, &point);
+    ScreenToClient(thisWindow, &mousePoint);
 
-    if(point.x < 500 && point.y < 20)
+    if(PtInRect(&grabBar, mousePoint))
     {
         hit = HTCAPTION;
     }
@@ -134,20 +203,10 @@ void MainWindow::CreateComponents()
     SetWindowSubclass(PlayersPanel::Init(thisWindow, instance), (SUBCLASSPROC) PlayersPanel::WindowProc, 0, 1);
     SetWindowSubclass(SwapPanel::Init(thisWindow, instance), (SUBCLASSPROC) SwapPanel::WindowProc, 0, 1);
     
-    titleLabel = CreateChildLabel("ArcTeam v" + applicationVersion, 5, 3, thisWindow, LBL_TITLE);
+    titleLabel = CreateChildLabel("ArcTeam", 5, 3, thisWindow, LBL_TITLE);
     errorLabel = CreateChildLabel("", 10, 685, thisWindow, LBL_ERROR);
     
     MainWindow::mainWindow = thisWindow;
-}
-
-void MainWindow::SetUsernames(vector<string> newUsernames)
-{
-    usernames = newUsernames;
-}
-
-void MainWindow::RefreshWindow()
-{
-    RedrawWindow(MainWindow::mainWindow, NULL, NULL, RDW_INVALIDATE);
 }
 
 void MainWindow::DisplayError(string errorMessage)

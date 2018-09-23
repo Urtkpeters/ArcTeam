@@ -20,8 +20,6 @@ MSG WindowManager::CreateUI(MSG Msg, HINSTANCE hInstance, int nCmdShow)
             UserHandler::SetState(1);
             PlayerHandler::Init();
             
-            MainWindow::SetUsernames(PlayerHandler::GetUsernames());
-            
             PeriodicHandler::CreateThread();
             
             MainWindow mainWindow;

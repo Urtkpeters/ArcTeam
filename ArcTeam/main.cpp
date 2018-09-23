@@ -1,6 +1,7 @@
-// Check to see if there is a way to remove the reference to main window in the panels
-// Fix the flickering. Probably through adding a "title bar"
-// Close window button hover swap
+// Close window button hover swap - sets it the first time but can't detect when the hover is ending because you would have to leave the whole window.
+//    Need to detect if you have left just the rect of the close button
+// Display error label
+// Make the user select look appropriate
 
 #include <windows.h>
 #include <objidl.h>
