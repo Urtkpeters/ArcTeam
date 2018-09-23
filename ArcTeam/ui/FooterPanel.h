@@ -15,7 +15,7 @@ class FooterPanel
         static HWND Init(HWND parentWindow, HINSTANCE newInstance);
         
         static LRESULT CALLBACK WindowProc(HWND thisPanel, UINT message, WPARAM wParam, LPARAM lParam);
-        static void WMPaint(HWND thisPanel, HDC hdc, HDC hdcBuffer, PAINTSTRUCT ps);
+        static void WMPaint(HWND thisPanel, HDC hdc, HDC hdcBuffer, HDC hdcMask, HDC hdcMaskTwo, PAINTSTRUCT ps);
         static void WMMouseMove(HWND thisPanel);
         static void WMMouseHover(HWND thisPanel, LPARAM lParam);
         static void WMMouseLeave();
@@ -26,6 +26,7 @@ class FooterPanel
         static vector<Image*> images;
         static int displayImage;
         static int oldDisplayImage;
+        static RECT background;
         static RECT dotaRect;
         static RECT heroesRect;
         static RECT positionsRect;

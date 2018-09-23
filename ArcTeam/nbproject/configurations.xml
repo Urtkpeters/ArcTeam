@@ -12,6 +12,7 @@
       <itemPath>handler/Player/Player.h</itemPath>
       <itemPath>handler/PlayerHandler.h</itemPath>
       <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/PlayersPanel.h</itemPath>
+      <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/StatusPanel.h</itemPath>
       <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/SwapPanel.h</itemPath>
       <itemPath>handler/UserHandler.h</itemPath>
       <itemPath>ui/UserWindow.h</itemPath>
@@ -34,6 +35,7 @@
       <itemPath>handler/Player/Player.cpp</itemPath>
       <itemPath>handler/PlayerHandler.cpp</itemPath>
       <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/PlayersPanel.cpp</itemPath>
+      <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/StatusPanel.cpp</itemPath>
       <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/SwapPanel.cpp</itemPath>
       <itemPath>handler/UserHandler.cpp</itemPath>
       <itemPath>ui/UserWindow.cpp</itemPath>
@@ -78,6 +80,7 @@
             <linkerLibLibItem>GdiPlus</linkerLibLibItem>
             <linkerOptionItem>resources/resources.o</linkerOptionItem>
             <linkerLibLibItem>comctl32</linkerLibLibItem>
+            <linkerLibLibItem>msimg32</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -107,6 +110,16 @@
             flavor2="0">
       </item>
       <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/PlayersPanel.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/StatusPanel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/StatusPanel.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -208,6 +221,7 @@
             <linkerLibLibItem>GdiPlus</linkerLibLibItem>
             <linkerOptionItem>resources/resources.o</linkerOptionItem>
             <linkerLibLibItem>comctl32</linkerLibLibItem>
+            <linkerLibLibItem>msimg32</linkerLibLibItem>
           </linkerLibItems>
           <commandLine>-Wl,-subsystem,windows</commandLine>
         </linkerTool>
@@ -238,6 +252,16 @@
             flavor2="0">
       </item>
       <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/PlayersPanel.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/StatusPanel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/StatusPanel.h"
             ex="false"
             tool="3"
             flavor2="0">

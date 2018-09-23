@@ -1,6 +1,7 @@
 #include "PlayerHandler.h"
 
 vector<Player> PlayerHandler::players;
+bool PlayerHandler::statusChange;
 
 const vector<string> PlayerHandler::statuses = {"offline", "happy", "good", "sad", "fine"};
 
@@ -18,6 +19,8 @@ void PlayerHandler::Init()
             players.push_back(Player(users[i], statuses));
         }
     }
+    
+    statusChange = true;
 }
 
 vector<Player> PlayerHandler::GetPlayers()
@@ -44,11 +47,21 @@ void PlayerHandler::SetPlayerStatus(string username, int newStatusId)
     {
         if(players[i].GetUsername() == username)
         {
-            players[i].SetStatus(newStatusId);
+            if(players[i].SetStatus(newStatusId))
+            {
+                statusChange = true;
+            }
         }
     }
+}
+
+bool PlayerHandler::GetStatusChange()
+{
+    bool origValue = statusChange;
     
-    MainWindow::RefreshWindow();
+    statusChange = false;
+    
+    return origValue;
 }
 
 vector<string> PlayerHandler::GetStatuses()

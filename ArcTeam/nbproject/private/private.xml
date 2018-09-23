@@ -7,15 +7,23 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/GenericWindow.cpp</file>
-            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/PlayersPanel.cpp</file>
-            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/PlayersPanel.h</file>
+            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/PeriodicHandler.cpp</file>
+            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/StatusPanel.cpp</file>
+            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/Player/Player.cpp</file>
             <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/SwapPanel.cpp</file>
-            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/main.cpp</file>
-            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/SwapPanel.h</file>
             <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/MainWindow.cpp</file>
             <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/MainWindow.h</file>
-            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/GenericWindow.h</file>
+            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/PlayerHandler.h</file>
+            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/PlayersPanel.cpp</file>
+            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/PlayerHandler.cpp</file>
+            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/StatusPanel.h</file>
+            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/PlayersPanel.h</file>
+            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/FooterPanel.h</file>
+            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/main.cpp</file>
+            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/SwapPanel.h</file>
+            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/FooterPanel.cpp</file>
+            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/PeriodicHandler.h</file>
+            <file>file:/C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/Player/Player.h</file>
         </group>
     </open-files>
 </project-private>

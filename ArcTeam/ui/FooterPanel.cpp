@@ -7,6 +7,7 @@ vector<Image*> FooterPanel::images;
 int FooterPanel::displayImage;
 int FooterPanel::oldDisplayImage;
 bool FooterPanel::mouseOver;
+RECT FooterPanel::background;
 RECT FooterPanel::dotaRect;
 RECT FooterPanel::heroesRect;
 RECT FooterPanel::positionsRect;
@@ -19,7 +20,8 @@ const vector<string> FooterPanel::imageNames {"Default", "Dota", "Heroes", "Posi
 HWND FooterPanel::Init(HWND parentWindow, HINSTANCE newInstance)
 {
     instance = newInstance;
-    thisPanel = CreateWindowEx(WS_EX_LEFT, "STATIC", NULL, WS_VISIBLE | WS_CHILD, 0, 515, panelWidth, panelHeight, parentWindow, (HMENU) 106, NULL, NULL);
+    thisPanel = CreateWindowEx(WS_EX_LEFT, "STATIC", NULL, WS_VISIBLE | WS_CHILD, 0, 675, panelWidth, panelHeight, parentWindow, (HMENU) 106, NULL, NULL);
+    SetRect(&background, 0, 0, panelWidth, panelHeight);
     
     TCHAR szPath[MAX_PATH];
     GetModuleFileName(instance, szPath, MAX_PATH);
@@ -42,9 +44,9 @@ HWND FooterPanel::Init(HWND parentWindow, HINSTANCE newInstance)
     oldDisplayImage = -1;
     
     SetRect(&dotaRect, 45, 0, 170, 75);
-    SetRect(&heroesRect, 170, 20, 320, 65);
-    SetRect(&positionsRect, 320, 20, 560, 65);
-    SetRect(&modesRect, 560, 20, 750, 65);
+    SetRect(&heroesRect, 170, 20, 320, 75);
+    SetRect(&positionsRect, 320, 20, 560, 75);
+    SetRect(&modesRect, 560, 20, 750, 75);
     
     return thisPanel;
 }
@@ -53,34 +55,40 @@ LRESULT CALLBACK FooterPanel::WindowProc(HWND thisPanel, UINT message, WPARAM wP
 {
     static HDC hdc;
     static HDC hdcBuffer;
+    static HDC hdcMask;
+    static HDC hdcMaskTwo;
     static PAINTSTRUCT ps;
     
     switch(message)
     {
-        case WM_ERASEBKGND: return true;
-        case WM_TIMER: WMTimer(thisPanel); break;
-        case WM_PAINT: WMPaint(thisPanel, hdc, hdcBuffer, ps); return false;
+        case WM_PAINT: WMPaint(thisPanel, hdc, hdcBuffer, hdcMask, hdcMaskTwo, ps); return false;
         case WM_MOUSEMOVE: WMMouseMove(thisPanel); break;
         case WM_MOUSEHOVER: WMMouseHover(thisPanel, lParam); break;
         case WM_MOUSELEAVE: WMMouseLeave(); break;
+        case WM_TIMER: WMTimer(thisPanel); break;
         default: return DefWindowProc(thisPanel, message, wParam, lParam);
     }
     
     return MainWindow::WindowProc(thisPanel, message, wParam, lParam);
 }
 
-void FooterPanel::WMPaint(HWND thisPanel, HDC hdc, HDC hdcBuffer, PAINTSTRUCT ps)
+void FooterPanel::WMPaint(HWND thisPanel, HDC hdc, HDC hdcBuffer, HDC hdcMask, HDC hdcMaskTwo, PAINTSTRUCT ps)
 {
     hdc = BeginPaint(thisPanel, &ps);
     hdcBuffer = CreateCompatibleDC(hdc);
     HBITMAP hbm = CreateCompatibleBitmap(hdc, panelWidth, panelHeight);
+    
     SelectObject(hdcBuffer, hbm);
+    
+    HBRUSH brush = CreateSolidBrush(RGB(44, 47, 51));
+    
+    FillRect(hdcBuffer, &background, brush);
     
     Graphics graphics(hdcBuffer);
     
     graphics.DrawImage(images[displayImage], 0, 0, panelWidth, panelHeight);
     
-    BitBlt(hdc, 0, 0, panelWidth, panelHeight, hdcBuffer, 0, 0, SRCCOPY);
+    TransparentBlt(hdc, 0, 0, panelWidth, panelHeight, hdcBuffer, 0, 0, panelWidth, panelHeight, RGB(0,0,0));
     
     DeleteObject(hbm);
     DeleteDC(hdcBuffer);

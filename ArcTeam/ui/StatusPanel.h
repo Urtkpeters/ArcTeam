@@ -1,5 +1,5 @@
-#ifndef PLAYERSPANEL_H
-#define PLAYERSPANEL_H
+#ifndef STATUSPANEL_H
+#define STATUSPANEL_H
 
 #include <windows.h>
 #include <vector>
@@ -7,18 +7,19 @@
 #include <iostream>
 
 #include "../handler/PlayerHandler.h"
-#include "StatusPanel.h"
+#include "../handler/UserHandler.h"
 
 using namespace std;
 using namespace Gdiplus;
 
-class PlayersPanel
+class StatusPanel
 {
     public:
         static HWND Init(HWND parentWindow, HINSTANCE newInstance);
+        static vector<Image*> GetImages();
         
         static LRESULT CALLBACK WindowProc(HWND thisPanel, UINT message, WPARAM wParam, LPARAM lParam);
-        static LRESULT WMCtlColorStatic(HWND thisWindow, WPARAM wParam, LPARAM lParam, HDC hdc);
+        static void WMLeftMouseButtonUp(HWND thisPanel, WPARAM wParam, LPARAM lParam);
         static void WMPaint(HWND thisPanel, HDC hdc, HDC hdcBuffer, PAINTSTRUCT ps);
     private:
         static HWND thisPanel;
@@ -29,11 +30,8 @@ class PlayersPanel
         
         static const int panelWidth;
         static const int panelHeight;
-        static const int PNL_ONE = 100;
-        static const int LBL_ONE = 101;
-        static const int LBL_TWO = 102;
-        static const int LBL_THREE = 103;
-        static const int LBL_FOUR = 104;
+        
+        static void ChangeState(int state);
 };
 
 #endif
