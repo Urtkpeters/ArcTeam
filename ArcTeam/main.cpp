@@ -1,15 +1,13 @@
-// Check to see if the "Refresh Window" can be sent to the Panel instead, which will help the redraw speed alot
+// Check to see if there is a way to remove the reference to main window in the panels
 // Fix the flickering. Probably through adding a "title bar"
-// Check to see if panels can be merged into a generic
-// Reorganize the UI files into two directories. Windows and Panels.
-// Username orientation
+// Close window button hover swap
 
 #include <windows.h>
 #include <objidl.h>
 #include <gdiplus.h>
 #include <string>
 
-#include "ui/WindowManager.h"
+#include "ui/window/WindowManager.h"
 
 using namespace std;
 using namespace Gdiplus;

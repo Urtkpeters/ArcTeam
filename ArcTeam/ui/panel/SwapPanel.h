@@ -15,8 +15,8 @@ class SwapPanel
         static HWND Init(HWND parentWindow, HINSTANCE newInstance);
         
         static LRESULT CALLBACK WindowProc(HWND thisPanel, UINT message, WPARAM wParam, LPARAM lParam);
-        static LRESULT WMCtlColorStatic(HWND thisWindow, WPARAM wParam, LPARAM lParam, HDC hdc);
-        static void WMPaint(HWND thisPanel, HDC hdc, HDC hdcBuffer, PAINTSTRUCT ps);
+        static LRESULT WMCtlColorStatic(WPARAM wParam);
+        static void WMPaint(HWND thisPanel);
         static void WMLeftMouseButtonUp(LPARAM lParam);
         static void WMMouseMove(HWND thisPanel);
         static void WMMouseHover(LPARAM lParam);

@@ -6,8 +6,8 @@
 #include <gdiplus.h>
 #include <iostream>
 
-#include "../handler/PlayerHandler.h"
-#include "../handler/UserHandler.h"
+#include "../../handler/PlayerHandler.h"
+#include "../../handler/UserHandler.h"
 
 using namespace std;
 using namespace Gdiplus;
@@ -19,8 +19,8 @@ class StatusPanel
         static vector<Image*> GetImages();
         
         static LRESULT CALLBACK WindowProc(HWND thisPanel, UINT message, WPARAM wParam, LPARAM lParam);
-        static void WMLeftMouseButtonUp(HWND thisPanel, WPARAM wParam, LPARAM lParam);
-        static void WMPaint(HWND thisPanel, HDC hdc, HDC hdcBuffer, PAINTSTRUCT ps);
+        static void WMLeftMouseButtonUp(HWND thisPanel, LPARAM lParam);
+        static void WMPaint(HWND thisPanel);
     private:
         static HWND thisPanel;
         static HINSTANCE instance;
@@ -37,7 +37,7 @@ class StatusPanel
         static const int panelWidth;
         static const int panelHeight;
         
-        static void ChangeState(int state);
+        static void ChangeState(HWND thisPanel, int state);
 };
 
 #endif

@@ -36,7 +36,7 @@ void PeriodicHandler::CheckStatus()
     
     if(PlayerHandler::GetStatusChange())
     {
-        MainWindow::RefreshWindow();
+        PlayersPanel::RefreshPanel();
     }
     
     // This should be made a setting

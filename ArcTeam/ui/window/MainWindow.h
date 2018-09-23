@@ -9,10 +9,9 @@
 #include <gdiplus.h>
 
 #include "GenericWindow.h"
-#include "../handler/UserHandler.h"
-#include "PlayersPanel.h"
-#include "SwapPanel.h"
-#include "FooterPanel.h"
+#include "../../handler/UserHandler.h"
+#include "../panel/PlayersPanel.h"
+#include "../panel/SwapPanel.h"
 
 using namespace std;
 using namespace Gdiplus;
@@ -31,10 +30,10 @@ class MainWindow: public GenericWindow
         static void DisplayError(string errorMessage);
         
         static LRESULT CALLBACK WindowProc(HWND thisWindow, UINT message, WPARAM wParam, LPARAM lParam);
-        static LRESULT WMCtlColorStatic(HWND thisWindow, WPARAM wParam, LPARAM lParam, HDC hdc);
-        static void WMPaint(HWND thisWindow, WPARAM wParam, LPARAM lParam);
-        static void WMLeftMouseButtonUp(HWND thisPanel, WPARAM wParam, LPARAM lParam);
-        static LRESULT NCHitTest(HWND thisWindow, WPARAM wParam, LPARAM lParam);
+        static LRESULT WMCtlColorStatic(WPARAM wParam);
+        static void WMPaint(HWND thisWindow);
+        static void WMLeftMouseButtonUp(HWND thisPanel, LPARAM lParam);
+        static LRESULT NCHitTest(HWND thisWindow, LPARAM lParam);
     protected:
         void CreateComponents();
         

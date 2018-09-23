@@ -3,10 +3,10 @@
 
 #include "UserWindow.h"
 #include "MainWindow.h"
-#include "../handler/PeriodicHandler.h"
-#include "../handler/PlayerHandler.h"
-#include "../handler/WebHandler.h"
-#include "../handler/UserHandler.h"
+#include "../../handler/PeriodicHandler.h"
+#include "../../handler/PlayerHandler.h"
+#include "../../handler/WebHandler.h"
+#include "../../handler/UserHandler.h"
 
 class WindowManager
 {

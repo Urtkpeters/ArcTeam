@@ -5,7 +5,7 @@
 #include <string>
 
 #include "Player/Player.h"
-#include "../ui/MainWindow.h"
+#include "../ui/window/MainWindow.h"
 #include "UserHandler.h"
 
 using namespace std;

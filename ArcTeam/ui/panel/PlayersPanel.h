@@ -6,7 +6,7 @@
 #include <gdiplus.h>
 #include <iostream>
 
-#include "../handler/PlayerHandler.h"
+#include "../../handler/PlayerHandler.h"
 #include "StatusPanel.h"
 
 using namespace std;
@@ -18,8 +18,9 @@ class PlayersPanel
         static HWND Init(HWND parentWindow, HINSTANCE newInstance);
         
         static LRESULT CALLBACK WindowProc(HWND thisPanel, UINT message, WPARAM wParam, LPARAM lParam);
-        static LRESULT WMCtlColorStatic(HWND thisWindow, WPARAM wParam, LPARAM lParam, HDC hdc);
-        static void WMPaint(HWND thisPanel, HDC hdc, HDC hdcBuffer, PAINTSTRUCT ps);
+        static LRESULT WMCtlColorStatic(WPARAM wParam);
+        static void WMPaint(HWND thisPanel);
+        static void RefreshPanel();
     private:
         static HWND thisPanel;
         static HINSTANCE instance;

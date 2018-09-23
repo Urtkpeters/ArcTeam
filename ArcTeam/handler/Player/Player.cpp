@@ -24,7 +24,7 @@ bool Player::SetStatus(int newStatusId)
 
 void Player::CreateLabel(HWND mainWindow, HINSTANCE hInstance, int labelId, int startX, int startY)
 {
-    label = CreateWindow("static", username.c_str(), WS_CHILD | WS_VISIBLE, startX, startY, 100, 25, mainWindow, (HMENU)labelId, hInstance, NULL);
+    label = CreateWindow("static", username.c_str(), WS_CHILD | WS_VISIBLE | SS_CENTER, startX, startY, 100, 25, mainWindow, (HMENU)labelId, hInstance, NULL);
 }
 
 string Player::GetUsername()

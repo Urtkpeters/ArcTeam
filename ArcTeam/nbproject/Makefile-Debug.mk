@@ -36,20 +36,19 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/_ext/4ccc2a23/ErrorHandler.o \
-	${OBJECTDIR}/_ext/7f5b181b/FooterPanel.o \
-	${OBJECTDIR}/_ext/7f5b181b/PlayersPanel.o \
-	${OBJECTDIR}/_ext/7f5b181b/StatusPanel.o \
-	${OBJECTDIR}/_ext/7f5b181b/SwapPanel.o \
-	${OBJECTDIR}/handler/PeriodicHandler.o \
-	${OBJECTDIR}/handler/Player/Player.o \
-	${OBJECTDIR}/handler/PlayerHandler.o \
-	${OBJECTDIR}/handler/UserHandler.o \
-	${OBJECTDIR}/handler/WebHandler.o \
-	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/ui/GenericWindow.o \
-	${OBJECTDIR}/ui/MainWindow.o \
-	${OBJECTDIR}/ui/UserWindow.o \
-	${OBJECTDIR}/ui/WindowManager.o
+	${OBJECTDIR}/_ext/4ccc2a23/PeriodicHandler.o \
+	${OBJECTDIR}/_ext/5fc2206d/Player.o \
+	${OBJECTDIR}/_ext/4ccc2a23/PlayerHandler.o \
+	${OBJECTDIR}/_ext/4ccc2a23/UserHandler.o \
+	${OBJECTDIR}/_ext/4ccc2a23/WebHandler.o \
+	${OBJECTDIR}/_ext/1271fde8/main.o \
+	${OBJECTDIR}/_ext/cf7d2710/PlayersPanel.o \
+	${OBJECTDIR}/_ext/cf7d2710/StatusPanel.o \
+	${OBJECTDIR}/_ext/cf7d2710/SwapPanel.o \
+	${OBJECTDIR}/_ext/2c8a6064/GenericWindow.o \
+	${OBJECTDIR}/_ext/2c8a6064/MainWindow.o \
+	${OBJECTDIR}/_ext/2c8a6064/UserWindow.o \
+	${OBJECTDIR}/_ext/2c8a6064/WindowManager.o
 
 
 # C Compiler Flags
@@ -83,80 +82,75 @@ ${OBJECTDIR}/_ext/4ccc2a23/ErrorHandler.o: /cygdrive/C/Users/Urt/Documents/Proje
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4ccc2a23/ErrorHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.cpp
 
-${OBJECTDIR}/_ext/7f5b181b/FooterPanel.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/FooterPanel.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/7f5b181b
+${OBJECTDIR}/_ext/4ccc2a23/PeriodicHandler.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/PeriodicHandler.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/4ccc2a23
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/7f5b181b/FooterPanel.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/FooterPanel.cpp
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4ccc2a23/PeriodicHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/PeriodicHandler.cpp
 
-${OBJECTDIR}/_ext/7f5b181b/PlayersPanel.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/PlayersPanel.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/7f5b181b
+${OBJECTDIR}/_ext/5fc2206d/Player.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/Player/Player.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/5fc2206d
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/7f5b181b/PlayersPanel.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/PlayersPanel.cpp
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5fc2206d/Player.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/Player/Player.cpp
 
-${OBJECTDIR}/_ext/7f5b181b/StatusPanel.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/StatusPanel.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/7f5b181b
+${OBJECTDIR}/_ext/4ccc2a23/PlayerHandler.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/PlayerHandler.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/4ccc2a23
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/7f5b181b/StatusPanel.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/StatusPanel.cpp
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4ccc2a23/PlayerHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/PlayerHandler.cpp
 
-${OBJECTDIR}/_ext/7f5b181b/SwapPanel.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/SwapPanel.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/7f5b181b
+${OBJECTDIR}/_ext/4ccc2a23/UserHandler.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/UserHandler.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/4ccc2a23
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/7f5b181b/SwapPanel.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/SwapPanel.cpp
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4ccc2a23/UserHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/UserHandler.cpp
 
-${OBJECTDIR}/handler/PeriodicHandler.o: handler/PeriodicHandler.cpp
-	${MKDIR} -p ${OBJECTDIR}/handler
+${OBJECTDIR}/_ext/4ccc2a23/WebHandler.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/WebHandler.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/4ccc2a23
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/handler/PeriodicHandler.o handler/PeriodicHandler.cpp
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4ccc2a23/WebHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/WebHandler.cpp
 
-${OBJECTDIR}/handler/Player/Player.o: handler/Player/Player.cpp
-	${MKDIR} -p ${OBJECTDIR}/handler/Player
+${OBJECTDIR}/_ext/1271fde8/main.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/main.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/1271fde8
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/handler/Player/Player.o handler/Player/Player.cpp
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1271fde8/main.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/main.cpp
 
-${OBJECTDIR}/handler/PlayerHandler.o: handler/PlayerHandler.cpp
-	${MKDIR} -p ${OBJECTDIR}/handler
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/handler/PlayerHandler.o handler/PlayerHandler.cpp
-
-${OBJECTDIR}/handler/UserHandler.o: handler/UserHandler.cpp
-	${MKDIR} -p ${OBJECTDIR}/handler
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/handler/UserHandler.o handler/UserHandler.cpp
-
-${OBJECTDIR}/handler/WebHandler.o: handler/WebHandler.cpp
-	${MKDIR} -p ${OBJECTDIR}/handler
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/handler/WebHandler.o handler/WebHandler.cpp
-
-${OBJECTDIR}/main.o: main.cpp
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
-
-resources/resources.o: resources/resources.rc resources/resources.h
+resources/resources.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/resources/resources.rc resources/resources.h
 	${MKDIR} -p resources
 	@echo Compiling resources...
 	windres.exe resources/resources.rc resources/resources.o
 
-${OBJECTDIR}/ui/GenericWindow.o: ui/GenericWindow.cpp
-	${MKDIR} -p ${OBJECTDIR}/ui
+${OBJECTDIR}/_ext/cf7d2710/PlayersPanel.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PlayersPanel.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/cf7d2710
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ui/GenericWindow.o ui/GenericWindow.cpp
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/cf7d2710/PlayersPanel.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PlayersPanel.cpp
 
-${OBJECTDIR}/ui/MainWindow.o: ui/MainWindow.cpp
-	${MKDIR} -p ${OBJECTDIR}/ui
+${OBJECTDIR}/_ext/cf7d2710/StatusPanel.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/StatusPanel.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/cf7d2710
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ui/MainWindow.o ui/MainWindow.cpp
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/cf7d2710/StatusPanel.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/StatusPanel.cpp
 
-${OBJECTDIR}/ui/UserWindow.o: ui/UserWindow.cpp
-	${MKDIR} -p ${OBJECTDIR}/ui
+${OBJECTDIR}/_ext/cf7d2710/SwapPanel.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/SwapPanel.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/cf7d2710
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ui/UserWindow.o ui/UserWindow.cpp
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/cf7d2710/SwapPanel.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/SwapPanel.cpp
 
-${OBJECTDIR}/ui/WindowManager.o: ui/WindowManager.cpp
-	${MKDIR} -p ${OBJECTDIR}/ui
+${OBJECTDIR}/_ext/2c8a6064/GenericWindow.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/GenericWindow.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/2c8a6064
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ui/WindowManager.o ui/WindowManager.cpp
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/2c8a6064/GenericWindow.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/GenericWindow.cpp
+
+${OBJECTDIR}/_ext/2c8a6064/MainWindow.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/MainWindow.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/2c8a6064
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/2c8a6064/MainWindow.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/MainWindow.cpp
+
+${OBJECTDIR}/_ext/2c8a6064/UserWindow.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/UserWindow.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/2c8a6064
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/2c8a6064/UserWindow.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/UserWindow.cpp
+
+${OBJECTDIR}/_ext/2c8a6064/WindowManager.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/WindowManager.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/2c8a6064
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/2c8a6064/WindowManager.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/WindowManager.cpp
 
 # Subprojects
 .build-subprojects:

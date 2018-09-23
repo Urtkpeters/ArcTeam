@@ -1,5 +1,5 @@
 #include "PlayersPanel.h"
-#include "MainWindow.h"
+#include "../window/MainWindow.h"
 
 HWND PlayersPanel::thisPanel;
 HINSTANCE PlayersPanel::instance;
@@ -50,34 +50,31 @@ HWND PlayersPanel::Init(HWND parentWindow, HINSTANCE newInstance)
 
 LRESULT CALLBACK PlayersPanel::WindowProc(HWND thisPanel, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    static HDC hdc;
-    static HDC hdcBuffer;
-    static PAINTSTRUCT ps;
-    
     switch(message)
     {
-        case WM_CTLCOLORSTATIC: return WMCtlColorStatic(thisPanel, wParam, lParam, hdc);
-        case WM_PAINT: WMPaint(thisPanel, hdc, hdcBuffer, ps); return false;
+        case WM_CTLCOLORSTATIC: return WMCtlColorStatic(wParam);
+        case WM_PAINT: WMPaint(thisPanel); return false;
         default: return DefWindowProc(thisPanel, message, wParam, lParam);
     }
     
     return MainWindow::WindowProc(thisPanel, message, wParam, lParam);
 }
 
-LRESULT PlayersPanel::WMCtlColorStatic(HWND thisWindow, WPARAM wParam, LPARAM lParam, HDC hdc)
+LRESULT PlayersPanel::WMCtlColorStatic(WPARAM wParam)
 {
-    hdc = (HDC) wParam;
+    HDC hdc = (HDC) wParam;
     SetTextColor(hdc, RGB(255,255,255));
     SetBkMode(hdc, TRANSPARENT);
     return (LRESULT)GetStockObject(NULL_BRUSH);
 }
 
-void PlayersPanel::WMPaint(HWND thisPanel, HDC hdc, HDC hdcBuffer, PAINTSTRUCT ps)
+void PlayersPanel::WMPaint(HWND thisPanel)
 {
     vector<Player> players = PlayerHandler::GetPlayers();
     
-    hdc = BeginPaint(thisPanel, &ps);
-    hdcBuffer = CreateCompatibleDC(hdc);
+    PAINTSTRUCT ps;
+    HDC hdc = BeginPaint(thisPanel, &ps);
+    HDC hdcBuffer = CreateCompatibleDC(hdc);
     HBITMAP hbm = CreateCompatibleBitmap(hdc, panelWidth, panelHeight);
     SelectObject(hdcBuffer, hbm);
 
@@ -119,4 +116,9 @@ void PlayersPanel::WMPaint(HWND thisPanel, HDC hdc, HDC hdcBuffer, PAINTSTRUCT p
     DeleteDC(hdc);
 
     EndPaint(thisPanel, &ps);
+}
+
+void PlayersPanel::RefreshPanel()
+{
+    RedrawWindow(thisPanel, NULL, NULL, RDW_INVALIDATE);
 }

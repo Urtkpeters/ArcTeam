@@ -1,5 +1,5 @@
 #include "StatusPanel.h"
-#include "MainWindow.h"
+#include "../window/MainWindow.h"
 
 HWND StatusPanel::thisPanel;
 HINSTANCE StatusPanel::instance;
@@ -47,24 +47,21 @@ HWND StatusPanel::Init(HWND parentWindow, HINSTANCE newInstance)
 
 LRESULT CALLBACK StatusPanel::WindowProc(HWND thisPanel, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    static HDC hdc;
-    static HDC hdcBuffer;
-    static PAINTSTRUCT ps;
-    
     switch(message)
     {
-        case WM_PAINT: WMPaint(thisPanel, hdc, hdcBuffer, ps); return false;
-        case WM_LBUTTONUP: WMLeftMouseButtonUp(thisPanel, wParam, lParam); break;
+        case WM_PAINT: WMPaint(thisPanel); return false;
+        case WM_LBUTTONUP: WMLeftMouseButtonUp(thisPanel, lParam); break;
         default: return DefWindowProc(thisPanel, message, wParam, lParam);
     }
     
     return MainWindow::WindowProc(thisPanel, message, wParam, lParam);
 }
 
-void StatusPanel::WMPaint(HWND thisPanel, HDC hdc, HDC hdcBuffer, PAINTSTRUCT ps)
+void StatusPanel::WMPaint(HWND thisPanel)
 {
-    hdc = BeginPaint(thisPanel, &ps);
-    hdcBuffer = CreateCompatibleDC(hdc);
+    PAINTSTRUCT ps;
+    HDC hdc = BeginPaint(thisPanel, &ps);
+    HDC hdcBuffer = CreateCompatibleDC(hdc);
     HBITMAP hbm = CreateCompatibleBitmap(hdc, panelWidth, panelHeight);
     SelectObject(hdcBuffer, hbm);
 
@@ -114,7 +111,7 @@ void StatusPanel::WMPaint(HWND thisPanel, HDC hdc, HDC hdcBuffer, PAINTSTRUCT ps
     DeleteDC(hdc);
 }
 
-void StatusPanel::WMLeftMouseButtonUp(HWND thisPanel, WPARAM wParam, LPARAM lParam)
+void StatusPanel::WMLeftMouseButtonUp(HWND thisPanel, LPARAM lParam)
 {
     POINT mousePoint;
     mousePoint.x = LOWORD(lParam);
@@ -122,23 +119,23 @@ void StatusPanel::WMLeftMouseButtonUp(HWND thisPanel, WPARAM wParam, LPARAM lPar
     
     if(PtInRect(&happyButton, mousePoint))
     {
-        ChangeState(1);
+        ChangeState(thisPanel, 1);
     }
     else if(PtInRect(&goodButton, mousePoint))
     {
-        ChangeState(2);
+        ChangeState(thisPanel, 2);
     }
     else if(PtInRect(&sadButton, mousePoint))
     {
-        ChangeState(3);
+        ChangeState(thisPanel, 3);
     }
     else if(PtInRect(&fineButton, mousePoint))
     {
-        ChangeState(4);
+        ChangeState(thisPanel, 4);
     }
 }
 
-void StatusPanel::ChangeState(int state)
+void StatusPanel::ChangeState(HWND thisPanel, int state)
 {
     selectedButton = state;
     
@@ -146,7 +143,7 @@ void StatusPanel::ChangeState(int state)
     
     if(UserHandler::GetStateChange())
     {
-        MainWindow::RefreshWindow();
+        RedrawWindow(thisPanel, NULL, NULL, RDW_INVALIDATE);
     }
 }
 

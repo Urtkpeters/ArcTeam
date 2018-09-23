@@ -6,6 +6,7 @@
 #include <chrono>
 
 #include "PlayerHandler.h"
+#include "../ui/panel/PlayersPanel.h"
 
 using namespace std;
 using json = nlohmann::json;

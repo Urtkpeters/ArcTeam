@@ -45,14 +45,12 @@ MSG MainWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
 
 LRESULT CALLBACK MainWindow::WindowProc(HWND thisWindow, UINT message, WPARAM wParam, LPARAM lParam)
 {
-    static HDC hdc;
-    
     switch(message)
     {
-        case WM_CTLCOLORSTATIC: return WMCtlColorStatic(thisWindow, wParam, lParam, hdc);
-        case WM_PAINT: WMPaint(thisWindow, wParam, lParam); break;
-        case WM_LBUTTONUP: WMLeftMouseButtonUp(thisWindow, wParam, lParam); break;
-        case WM_NCHITTEST: return NCHitTest(thisWindow, wParam, lParam);
+        case WM_CTLCOLORSTATIC: return WMCtlColorStatic(wParam);
+        case WM_PAINT: WMPaint(thisWindow); break;
+        case WM_LBUTTONUP: WMLeftMouseButtonUp(thisWindow, lParam); break;
+        case WM_NCHITTEST: return NCHitTest(thisWindow, lParam);
         case WM_CLOSE: DestroyWindow(thisWindow); break;
         case WM_DESTROY: PostQuitMessage(0); break;
         default: return DefWindowProc(thisWindow, message, wParam, lParam);
@@ -61,15 +59,15 @@ LRESULT CALLBACK MainWindow::WindowProc(HWND thisWindow, UINT message, WPARAM wP
     return 0;
 }
 
-LRESULT MainWindow::WMCtlColorStatic(HWND thisWindow, WPARAM wParam, LPARAM lParam, HDC hdc)
+LRESULT MainWindow::WMCtlColorStatic(WPARAM wParam)
 {
-    hdc = (HDC) wParam;
+    HDC hdc = (HDC) wParam;
     SetTextColor(hdc, RGB(255,255,255));
     SetBkMode(hdc, TRANSPARENT);
     return (LRESULT)GetStockObject(NULL_BRUSH);
 }
 
-void MainWindow::WMPaint(HWND thisWindow, WPARAM wParam, LPARAM lParam)
+void MainWindow::WMPaint(HWND thisWindow)
 {
     PAINTSTRUCT ps;
     HDC mainHDC;
@@ -101,7 +99,7 @@ void MainWindow::WMPaint(HWND thisWindow, WPARAM wParam, LPARAM lParam)
     EndPaint(thisWindow, &ps);
 }
 
-void MainWindow::WMLeftMouseButtonUp(HWND thisWindow, WPARAM wParam, LPARAM lParam)
+void MainWindow::WMLeftMouseButtonUp(HWND thisWindow, LPARAM lParam)
 {
     int mPosX = LOWORD(lParam);
     int mPosY = HIWORD(lParam);
@@ -112,7 +110,7 @@ void MainWindow::WMLeftMouseButtonUp(HWND thisWindow, WPARAM wParam, LPARAM lPar
     }
 }
 
-LRESULT MainWindow::NCHitTest(HWND thisWindow, WPARAM wParam, LPARAM lParam)
+LRESULT MainWindow::NCHitTest(HWND thisWindow, LPARAM lParam)
 {
     LRESULT hit = HTCLIENT;
     POINT point;
@@ -135,7 +133,6 @@ void MainWindow::CreateComponents()
     SetWindowSubclass(StatusPanel::Init(thisWindow, instance), (SUBCLASSPROC) StatusPanel::WindowProc, 0, 1);
     SetWindowSubclass(PlayersPanel::Init(thisWindow, instance), (SUBCLASSPROC) PlayersPanel::WindowProc, 0, 1);
     SetWindowSubclass(SwapPanel::Init(thisWindow, instance), (SUBCLASSPROC) SwapPanel::WindowProc, 0, 1);
-//    SetWindowSubclass(FooterPanel::Init(thisWindow, instance), (SUBCLASSPROC) FooterPanel::WindowProc, 0, 1);
     
     titleLabel = CreateChildLabel("ArcTeam v" + applicationVersion, 5, 3, thisWindow, LBL_TITLE);
     errorLabel = CreateChildLabel("", 10, 685, thisWindow, LBL_ERROR);
