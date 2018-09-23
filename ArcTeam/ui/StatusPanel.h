@@ -25,8 +25,14 @@ class StatusPanel
         static HWND thisPanel;
         static HINSTANCE instance;
         static RECT background;
+        static RECT happyButton;
+        static RECT goodButton;
+        static RECT sadButton;
+        static RECT fineButton;
         static vector<Image*> images;
         static vector<string> statuses;
+        static int selectedButton;
+        static int currentSelectedButton;
         
         static const int panelWidth;
         static const int panelHeight;
