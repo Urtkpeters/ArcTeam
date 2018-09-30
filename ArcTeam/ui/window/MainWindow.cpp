@@ -175,6 +175,9 @@ void MainWindow::WMTimer(HWND thisWindow)
     
     GetWindowRect(thisWindow,&rc);
     GetCursorPos(&pt);
+    
+    rc.left = rc.left + mainWindowWidth - 20;
+    rc.bottom = rc.bottom - mainWindowHeight + 20;
 
     if(!PtInRect(&rc,pt)) PostMessage(thisWindow, WM_MOUSELEAVE, 0, 0L);
 }

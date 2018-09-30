@@ -1,7 +1,14 @@
-// Close window button hover swap - sets it the first time but can't detect when the hover is ending because you would have to leave the whole window.
-//    Need to detect if you have left just the rect of the close button
+// Swap bar selection is bugged and only changing the color of the > symbol red
+// Swap bar is flickering a lot
 // Display error label
-// Make the user select look appropriate
+// Make both the main and user title bar name look a little more official
+// Swap the main panel out when a selection is made
+//      The other pages should just hold placeholder images for now, pick something funny
+
+// Need to make the close button not make the page flicker
+// Really need to fix the way the inheritance is being done on the windows. 
+
+
 
 #include <windows.h>
 #include <objidl.h>
