@@ -1,6 +1,5 @@
 #include "WebHandler.h"
 
-// TODO: Both of these requests should be secure but causes a run-time CURL error
 string WebHandler::getUrl = "http://www.odinary.net/event/arcGetVersion";
 string WebHandler::dlUrl = "http://www.odinary.net/ArcTeam/";
 
