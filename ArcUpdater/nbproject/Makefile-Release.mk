@@ -39,9 +39,8 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/ceaacb99/ErrorHandler.o \
 	${OBJECTDIR}/_ext/ceaacb99/FileHandler.o \
 	${OBJECTDIR}/_ext/ceaacb99/WebHandler.o \
-	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/ui/GenericWindow.o \
-	${OBJECTDIR}/ui/UpdaterWindow.o
+	${OBJECTDIR}/_ext/eaee4e5/UpdaterWindow.o \
+	${OBJECTDIR}/main.o
 
 
 # C Compiler Flags
@@ -58,7 +57,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lcurl.dll -lshlwapi resources/resources.o
+LDLIBSOPTIONS=-L/cygdrive/C/cygwin64/bin -lcurl.dll -lshlwapi resources/resources.o
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -68,42 +67,37 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/arcupdater.exe: resources/resources.o
 
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/arcupdater.exe: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
-	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/arcupdater ${OBJECTFILES} ${LDLIBSOPTIONS}
+	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/arcupdater ${OBJECTFILES} ${LDLIBSOPTIONS} -Wl,-subsystem,windows
 
 ${OBJECTDIR}/_ext/ceaacb99/DownloadHandler.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcUpdater/handler/DownloadHandler.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/ceaacb99
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ceaacb99/DownloadHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcUpdater/handler/DownloadHandler.cpp
+	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ceaacb99/DownloadHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcUpdater/handler/DownloadHandler.cpp
 
 ${OBJECTDIR}/_ext/ceaacb99/ErrorHandler.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcUpdater/handler/ErrorHandler.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/ceaacb99
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ceaacb99/ErrorHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcUpdater/handler/ErrorHandler.cpp
+	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ceaacb99/ErrorHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcUpdater/handler/ErrorHandler.cpp
 
 ${OBJECTDIR}/_ext/ceaacb99/FileHandler.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcUpdater/handler/FileHandler.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/ceaacb99
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ceaacb99/FileHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcUpdater/handler/FileHandler.cpp
+	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ceaacb99/FileHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcUpdater/handler/FileHandler.cpp
 
 ${OBJECTDIR}/_ext/ceaacb99/WebHandler.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcUpdater/handler/WebHandler.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/ceaacb99
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ceaacb99/WebHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcUpdater/handler/WebHandler.cpp
+	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ceaacb99/WebHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcUpdater/handler/WebHandler.cpp
+
+${OBJECTDIR}/_ext/eaee4e5/UpdaterWindow.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcUpdater/ui/UpdaterWindow.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/eaee4e5
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/eaee4e5/UpdaterWindow.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcUpdater/ui/UpdaterWindow.cpp
 
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
-
-${OBJECTDIR}/ui/GenericWindow.o: ui/GenericWindow.cpp
-	${MKDIR} -p ${OBJECTDIR}/ui
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ui/GenericWindow.o ui/GenericWindow.cpp
-
-${OBJECTDIR}/ui/UpdaterWindow.o: ui/UpdaterWindow.cpp
-	${MKDIR} -p ${OBJECTDIR}/ui
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ui/UpdaterWindow.o ui/UpdaterWindow.cpp
+	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 # Subprojects
 .build-subprojects:

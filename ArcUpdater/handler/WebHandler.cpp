@@ -1,8 +1,8 @@
 #include "WebHandler.h"
 
-string WebHandler::getUrl = "https://www.odinary.net/event/arcGetVersion";
-// TODO: I should move the location of this zip if I can
-string WebHandler::dlUrl = "https://www.odinary.net/ArcTeam/";
+// TODO: Both of these requests should be secure but causes a run-time CURL error
+string WebHandler::getUrl = "http://www.odinary.net/event/arcGetVersion";
+string WebHandler::dlUrl = "http://www.odinary.net/ArcTeam/";
 
 size_t WebHandler::curlWriteResponse(void *contents, size_t size, size_t nmemb, string *s)
 {
@@ -47,7 +47,6 @@ json WebHandler::SendRequest(string url)
         curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
         
         curl_easy_cleanup(curl);
-        
         if(responseCode != 200 || curlResponse == CURLE_ABORTED_BY_CALLBACK)
         {
             ErrorHandler::WriteError("Unable to connect to web server.");

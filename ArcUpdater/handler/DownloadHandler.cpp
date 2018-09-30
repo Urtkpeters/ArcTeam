@@ -59,19 +59,22 @@ void DownloadHandler::CheckVersion()
         }
     }
     
-    UpdaterWindow::SetLabel("Checking files...");
-    FileHandler::CheckDownloadDirectory();
-    
-    UpdaterWindow::SetLabel("Downloading...");
-    
-    // Version is split into three segments x.x.x and this compares each segment one at a time for the current version and the version reported on the site
-    for(int i = 0; i < files.size(); i++)
+    if(counter > 0)
     {
-        WebHandler::DownloadFile(files[i]);
+        UpdaterWindow::SetLabel("Checking files...");
+        FileHandler::CheckDownloadDirectory();
+
+        UpdaterWindow::SetLabel("Downloading...");
+
+        // Version is split into three segments x.x.x and this compares each segment one at a time for the current version and the version reported on the site
+        for(int i = 0; i < files.size(); i++)
+        {
+            WebHandler::DownloadFile(files[i]);
+        }
+
+        UpdaterWindow::SetLabel("Unpacking...");
+        FileHandler::UnpackDownload();
     }
-    
-    UpdaterWindow::SetLabel("Unpacking...");
-    FileHandler::UnpackDownload();
     
     UpdaterWindow::UpdateComplete();
 }
