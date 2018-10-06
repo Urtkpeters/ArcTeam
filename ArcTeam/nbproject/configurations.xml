@@ -5,15 +5,18 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.h</itemPath>
-      <itemPath>ui/GenericWindow.h</itemPath>
-      <itemPath>ui/MainWindow.h</itemPath>
+      <itemPath>ui/window/GenericWindow.h</itemPath>
+      <itemPath>ui/window/MainWindow.h</itemPath>
       <itemPath>handler/PeriodicHandler.h</itemPath>
       <itemPath>handler/Player/Player.h</itemPath>
       <itemPath>handler/PlayerHandler.h</itemPath>
+      <itemPath>ui/panel/PlayersPanel.h</itemPath>
+      <itemPath>ui/panel/StatusPanel.h</itemPath>
+      <itemPath>ui/panel/SwapPanel.h</itemPath>
       <itemPath>handler/UserHandler.h</itemPath>
-      <itemPath>ui/UserWindow.h</itemPath>
+      <itemPath>ui/window/UserWindow.h</itemPath>
       <itemPath>handler/WebHandler.h</itemPath>
-      <itemPath>ui/WindowManager.h</itemPath>
+      <itemPath>ui/window/WindowManager.h</itemPath>
       <itemPath>resources/resources.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -24,15 +27,18 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.cpp</itemPath>
-      <itemPath>ui/GenericWindow.cpp</itemPath>
-      <itemPath>ui/MainWindow.cpp</itemPath>
+      <itemPath>ui/window/GenericWindow.cpp</itemPath>
+      <itemPath>ui/window/MainWindow.cpp</itemPath>
       <itemPath>handler/PeriodicHandler.cpp</itemPath>
       <itemPath>handler/Player/Player.cpp</itemPath>
       <itemPath>handler/PlayerHandler.cpp</itemPath>
+      <itemPath>ui/panel/PlayersPanel.cpp</itemPath>
+      <itemPath>ui/panel/StatusPanel.cpp</itemPath>
+      <itemPath>ui/panel/SwapPanel.cpp</itemPath>
       <itemPath>handler/UserHandler.cpp</itemPath>
-      <itemPath>ui/UserWindow.cpp</itemPath>
+      <itemPath>ui/window/UserWindow.cpp</itemPath>
       <itemPath>handler/WebHandler.cpp</itemPath>
-      <itemPath>ui/WindowManager.cpp</itemPath>
+      <itemPath>ui/window/WindowManager.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
       <itemPath>resources/resources.rc</itemPath>
     </logicalFolder>

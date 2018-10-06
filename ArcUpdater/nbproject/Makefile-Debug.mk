@@ -39,9 +39,9 @@ OBJECTFILES= \
 	${OBJECTDIR}/_ext/ceaacb99/ErrorHandler.o \
 	${OBJECTDIR}/_ext/ceaacb99/FileHandler.o \
 	${OBJECTDIR}/_ext/ceaacb99/WebHandler.o \
-	${OBJECTDIR}/_ext/eaee4e5/UpdaterWindow.o \
 	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/ui/GenericWindow.o
+	${OBJECTDIR}/ui/GenericWindow.o \
+	${OBJECTDIR}/ui/UpdaterWindow.o
 
 
 # C Compiler Flags
@@ -90,11 +90,6 @@ ${OBJECTDIR}/_ext/ceaacb99/WebHandler.o: /cygdrive/C/Users/Urt/Documents/Project
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/ceaacb99/WebHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcUpdater/handler/WebHandler.cpp
 
-${OBJECTDIR}/_ext/eaee4e5/UpdaterWindow.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcUpdater/ui/UpdaterWindow.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/eaee4e5
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/eaee4e5/UpdaterWindow.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcUpdater/ui/UpdaterWindow.cpp
-
 ${OBJECTDIR}/main.o: main.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -104,6 +99,11 @@ ${OBJECTDIR}/ui/GenericWindow.o: ui/GenericWindow.cpp
 	${MKDIR} -p ${OBJECTDIR}/ui
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ui/GenericWindow.o ui/GenericWindow.cpp
+
+${OBJECTDIR}/ui/UpdaterWindow.o: ui/UpdaterWindow.cpp
+	${MKDIR} -p ${OBJECTDIR}/ui
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ui/UpdaterWindow.o ui/UpdaterWindow.cpp
 
 # Subprojects
 .build-subprojects:

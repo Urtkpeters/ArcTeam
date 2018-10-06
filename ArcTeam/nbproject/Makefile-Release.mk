@@ -36,19 +36,19 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/_ext/4ccc2a23/ErrorHandler.o \
-	${OBJECTDIR}/_ext/cf7d2710/PlayersPanel.o \
-	${OBJECTDIR}/_ext/cf7d2710/StatusPanel.o \
-	${OBJECTDIR}/_ext/cf7d2710/SwapPanel.o \
-	${OBJECTDIR}/_ext/2c8a6064/GenericWindow.o \
-	${OBJECTDIR}/_ext/2c8a6064/MainWindow.o \
-	${OBJECTDIR}/_ext/2c8a6064/UserWindow.o \
-	${OBJECTDIR}/_ext/2c8a6064/WindowManager.o \
 	${OBJECTDIR}/handler/PeriodicHandler.o \
 	${OBJECTDIR}/handler/Player/Player.o \
 	${OBJECTDIR}/handler/PlayerHandler.o \
 	${OBJECTDIR}/handler/UserHandler.o \
 	${OBJECTDIR}/handler/WebHandler.o \
-	${OBJECTDIR}/main.o
+	${OBJECTDIR}/main.o \
+	${OBJECTDIR}/ui/panel/PlayersPanel.o \
+	${OBJECTDIR}/ui/panel/StatusPanel.o \
+	${OBJECTDIR}/ui/panel/SwapPanel.o \
+	${OBJECTDIR}/ui/window/GenericWindow.o \
+	${OBJECTDIR}/ui/window/MainWindow.o \
+	${OBJECTDIR}/ui/window/UserWindow.o \
+	${OBJECTDIR}/ui/window/WindowManager.o
 
 
 # C Compiler Flags
@@ -81,41 +81,6 @@ ${OBJECTDIR}/_ext/4ccc2a23/ErrorHandler.o: /cygdrive/C/Users/Urt/Documents/Proje
 	${MKDIR} -p ${OBJECTDIR}/_ext/4ccc2a23
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4ccc2a23/ErrorHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.cpp
-
-${OBJECTDIR}/_ext/cf7d2710/PlayersPanel.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PlayersPanel.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/cf7d2710
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/cf7d2710/PlayersPanel.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PlayersPanel.cpp
-
-${OBJECTDIR}/_ext/cf7d2710/StatusPanel.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/StatusPanel.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/cf7d2710
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/cf7d2710/StatusPanel.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/StatusPanel.cpp
-
-${OBJECTDIR}/_ext/cf7d2710/SwapPanel.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/SwapPanel.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/cf7d2710
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/cf7d2710/SwapPanel.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/SwapPanel.cpp
-
-${OBJECTDIR}/_ext/2c8a6064/GenericWindow.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/GenericWindow.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/2c8a6064
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/2c8a6064/GenericWindow.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/GenericWindow.cpp
-
-${OBJECTDIR}/_ext/2c8a6064/MainWindow.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/MainWindow.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/2c8a6064
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/2c8a6064/MainWindow.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/MainWindow.cpp
-
-${OBJECTDIR}/_ext/2c8a6064/UserWindow.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/UserWindow.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/2c8a6064
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/2c8a6064/UserWindow.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/UserWindow.cpp
-
-${OBJECTDIR}/_ext/2c8a6064/WindowManager.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/WindowManager.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/2c8a6064
-	${RM} "$@.d"
-	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/2c8a6064/WindowManager.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/WindowManager.cpp
 
 ${OBJECTDIR}/handler/PeriodicHandler.o: handler/PeriodicHandler.cpp
 	${MKDIR} -p ${OBJECTDIR}/handler
@@ -151,6 +116,41 @@ resources/resources.o: resources/resources.rc resources/resources.h
 	${MKDIR} -p resources
 	@echo Compiling resources...
 	windres.exe resources/resources.rc resources/resources.o
+
+${OBJECTDIR}/ui/panel/PlayersPanel.o: ui/panel/PlayersPanel.cpp
+	${MKDIR} -p ${OBJECTDIR}/ui/panel
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ui/panel/PlayersPanel.o ui/panel/PlayersPanel.cpp
+
+${OBJECTDIR}/ui/panel/StatusPanel.o: ui/panel/StatusPanel.cpp
+	${MKDIR} -p ${OBJECTDIR}/ui/panel
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ui/panel/StatusPanel.o ui/panel/StatusPanel.cpp
+
+${OBJECTDIR}/ui/panel/SwapPanel.o: ui/panel/SwapPanel.cpp
+	${MKDIR} -p ${OBJECTDIR}/ui/panel
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ui/panel/SwapPanel.o ui/panel/SwapPanel.cpp
+
+${OBJECTDIR}/ui/window/GenericWindow.o: ui/window/GenericWindow.cpp
+	${MKDIR} -p ${OBJECTDIR}/ui/window
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ui/window/GenericWindow.o ui/window/GenericWindow.cpp
+
+${OBJECTDIR}/ui/window/MainWindow.o: ui/window/MainWindow.cpp
+	${MKDIR} -p ${OBJECTDIR}/ui/window
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ui/window/MainWindow.o ui/window/MainWindow.cpp
+
+${OBJECTDIR}/ui/window/UserWindow.o: ui/window/UserWindow.cpp
+	${MKDIR} -p ${OBJECTDIR}/ui/window
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ui/window/UserWindow.o ui/window/UserWindow.cpp
+
+${OBJECTDIR}/ui/window/WindowManager.o: ui/window/WindowManager.cpp
+	${MKDIR} -p ${OBJECTDIR}/ui/window
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/ui/window/WindowManager.o ui/window/WindowManager.cpp
 
 # Subprojects
 .build-subprojects:
