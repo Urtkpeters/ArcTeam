@@ -6,11 +6,13 @@ HWND MainWindow::errorLabel;
 HWND MainWindow::titleLabel;
 vector<Image*> MainWindow::images;
 RECT MainWindow::closeButton;
+RECT MainWindow::minimizeButton;
 RECT MainWindow::grabBar;
 int MainWindow::buttonHover;
 int MainWindow::currentButtonHover;
 
-const vector<string> MainWindow::imageNames {"close", "close_hover"};
+
+const vector<string> MainWindow::imageNames {"close", "close_hover", "minimize", "minimize_hover"};
 const int MainWindow::mainWindowWidth = 1000;
 const int MainWindow::mainWindowHeight = 570;
 
@@ -27,8 +29,9 @@ MSG MainWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
     currentButtonHover = -1;
     
     SetRect(&background, 0, 0, mainWindowWidth, 20);
-    SetRect(&closeButton, mainWindowWidth - 20, 0, mainWindowWidth, 20);
-    SetRect(&grabBar, 0, 0, mainWindowWidth - 20, mainWindowHeight);
+    SetRect(&closeButton, mainWindowWidth - 40, 0, mainWindowWidth, 20);
+    SetRect(&minimizeButton, mainWindowWidth - 80, 0, mainWindowWidth - 40, 20);
+    SetRect(&grabBar, 0, 0, mainWindowWidth - 80, mainWindowHeight);
     
     TCHAR szPath[MAX_PATH];
     GetModuleFileName(instance, szPath, MAX_PATH);
@@ -84,6 +87,17 @@ void MainWindow::WMPaint(HWND thisWindow)
     HDC mainHDC;
     HDC bufferHDC;
     HBITMAP hbm;
+    int closeImage = 0;
+    int minimizeImage = 2;
+    
+    if(buttonHover == 1)
+    {
+        closeImage = 1;
+    }
+    else if(buttonHover == 2)
+    {
+        minimizeImage = 3;
+    }
     
     mainHDC = BeginPaint(thisWindow, &ps);
     bufferHDC = CreateCompatibleDC(mainHDC);
@@ -98,7 +112,8 @@ void MainWindow::WMPaint(HWND thisWindow)
     
     Graphics graphics(bufferHDC);
     
-    graphics.DrawImage(images[buttonHover], mainWindowWidth-20, 0, 20, 20);
+    graphics.DrawImage(images[closeImage], mainWindowWidth-30, 0, 20, 20);
+    graphics.DrawImage(images[minimizeImage], mainWindowWidth-70, 0, 20, 20);
     
     BitBlt(mainHDC, 0, 0, mainWindowWidth, mainWindowHeight, bufferHDC, 0, 0, SRCCOPY);
     
@@ -112,12 +127,18 @@ void MainWindow::WMPaint(HWND thisWindow)
 
 void MainWindow::WMLeftMouseButtonUp(HWND thisWindow, LPARAM lParam)
 {
-    int mPosX = LOWORD(lParam);
-    int mPosY = HIWORD(lParam);
+    POINT mousePoint;
+    mousePoint.x = LOWORD(lParam);
+    mousePoint.y = HIWORD(lParam);
     
-    if(mPosX > mainWindowWidth - 20 && mPosY < 20)
+    if(PtInRect(&closeButton, mousePoint))
     {
-        PostMessage(thisWindow, WM_CLOSE, 0, 0);
+        PostMessage(thisWindow, WM_SYSCOMMAND, SC_CLOSE, 0);
+
+    }
+    else if(PtInRect(&minimizeButton, mousePoint))
+    {
+        PostMessage(thisWindow, WM_SYSCOMMAND, SC_MINIMIZE, 0);
     }
 }
 
@@ -143,6 +164,10 @@ void MainWindow::WMMouseHover(HWND thisWindow, LPARAM lParam)
     {
         buttonHover = 1;
     }
+    else if(PtInRect(&minimizeButton, mousePoint))
+    {
+        buttonHover = 2;
+    }
     else
     {
         buttonHover = 0;
@@ -150,9 +175,8 @@ void MainWindow::WMMouseHover(HWND thisWindow, LPARAM lParam)
     
     if(buttonHover != currentButtonHover)
     {
-        RedrawWindow(thisWindow, NULL, NULL, RDW_INVALIDATE);
-        
         currentButtonHover = buttonHover;
+        RedrawWindow(thisWindow, NULL, NULL, RDW_INVALIDATE);
     }
 }
 
@@ -161,8 +185,8 @@ void MainWindow::WMMouseLeave(HWND thisWindow)
     if(buttonHover != 0)
     {
         buttonHover = 0;
-        RedrawWindow(thisWindow, NULL, NULL, RDW_INVALIDATE);
         currentButtonHover = 0;
+        RedrawWindow(thisWindow, NULL, NULL, RDW_INVALIDATE);
     }
 }
 
@@ -170,16 +194,24 @@ void MainWindow::WMTimer(HWND thisWindow)
 {
     KillTimer(thisWindow, 100);
     
-    RECT rc;
-    POINT pt;
+    RECT windowRect;
+    RECT closeRect;
+    RECT minimizeRect;
+    POINT mousePoint;
     
-    GetWindowRect(thisWindow,&rc);
-    GetCursorPos(&pt);
+    GetCursorPos(&mousePoint);
+    GetWindowRect(thisWindow,&windowRect);
+    closeRect = windowRect;
+    minimizeRect = windowRect;
     
-    rc.left = rc.left + mainWindowWidth - 20;
-    rc.bottom = rc.bottom - mainWindowHeight + 20;
+    closeRect.left = closeRect.left + mainWindowWidth - 40;
+    closeRect.bottom = closeRect.bottom - mainWindowHeight + 20;
+    
+    minimizeRect.left = minimizeRect.left + mainWindowWidth - 80;
+    minimizeRect.right = minimizeRect.right  - 40;
+    minimizeRect.bottom = minimizeRect.bottom - mainWindowHeight + 20;
 
-    if(!PtInRect(&rc,pt)) PostMessage(thisWindow, WM_MOUSELEAVE, 0, 0L);
+    if(!PtInRect(&closeRect,mousePoint) && !PtInRect(&minimizeRect,mousePoint)) PostMessage(thisWindow, WM_MOUSELEAVE, 0, 0L);
 }
 
 LRESULT MainWindow::NCHitTest(HWND thisWindow, LPARAM lParam)

@@ -2,7 +2,9 @@
 #include "WindowManager.h"
 
 RECT UserWindow::titleBar;
+RECT UserWindow::grabBar;
 RECT UserWindow::closeButton;
+RECT UserWindow::minimizeButton;
 RECT UserWindow::oneButton;
 RECT UserWindow::twoButton;
 RECT UserWindow::threeButton;
@@ -15,7 +17,7 @@ int UserWindow::currentButtonHover;
 int UserWindow::playerButtonHover = 0;
 int UserWindow::currentPlayerHover = 0;
 
-const vector<string> UserWindow::imageNames {"close", "close_hover", "avatar1", "avatar2", "avatar3", "avatar4", "avatar5"};
+const vector<string> UserWindow::imageNames {"close", "close_hover", "minimize", "minimize_hover", "avatar1", "avatar2", "avatar3", "avatar4", "avatar5"};
 const int UserWindow::userWindowWidth = 600;
 const int UserWindow::userWindowHeight = 300;
 
@@ -32,7 +34,9 @@ MSG UserWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
     currentButtonHover = -1;
     
     SetRect(&titleBar, 0, 0, windowWidth, 20);
-    SetRect(&closeButton, windowWidth - 20, 0, windowWidth, 20);
+    SetRect(&grabBar, 0, 0, windowWidth - 80, 20);
+    SetRect(&closeButton, windowWidth - 40, 0, windowWidth, 20);
+    SetRect(&minimizeButton, windowWidth - 80, 0, windowWidth - 40, 20);
     SetRect(&background, 0, 20, windowWidth, windowHeight);
     SetRect(&oneButton, 5, 100, 105, 220);
     SetRect(&twoButton, 127, 100, 227, 220);
@@ -103,6 +107,17 @@ void UserWindow::WMPaint(HWND thisWindow)
     HDC mainHDC;
     HDC bufferHDC;
     HBITMAP hbm;
+    int closeImage = 0;
+    int minimizeImage = 2;
+    
+    if(buttonHover == 1)
+    {
+        closeImage = 1;
+    }
+    else if(buttonHover == 2)
+    {
+        minimizeImage = 3;
+    }
     
     mainHDC = BeginPaint(thisWindow, &ps);
     bufferHDC = CreateCompatibleDC(mainHDC);
@@ -140,11 +155,12 @@ void UserWindow::WMPaint(HWND thisWindow)
     
     Graphics graphics(bufferHDC);
     
-    graphics.DrawImage(images[buttonHover], userWindowWidth-20, 0, 20, 20);
+    graphics.DrawImage(images[closeImage], userWindowWidth-30, 0, 20, 20);
+    graphics.DrawImage(images[minimizeImage], userWindowWidth-70, 0, 20, 20);
     
-    for(int i = 2; i < images.size(); i++)
+    for(int i = 4; i < images.size(); i++)
     {
-        graphics.DrawImage(images[i], 30 + ((i - 2) * 122), 120, 50, 50);
+        graphics.DrawImage(images[i], 30 + ((i - 4) * 122), 120, 50, 50);
     }
     
     BitBlt(mainHDC, 0, 0, userWindowWidth, userWindowHeight, bufferHDC, 0, 0, SRCCOPY);
@@ -165,7 +181,13 @@ void UserWindow::WMLeftMouseButtonUp(HWND thisWindow, LPARAM lParam)
     
     if(PtInRect(&closeButton, mousePoint))
     {
-        PostMessage(thisWindow, WM_CLOSE, 0, 0);
+        PostMessage(thisWindow, WM_SYSCOMMAND, SC_CLOSE, 0);
+        return;
+    }
+    
+    if(PtInRect(&minimizeButton, mousePoint))
+    {
+        PostMessage(thisWindow, WM_SYSCOMMAND, SC_MINIMIZE, 0);
         return;
     }
     
@@ -205,6 +227,10 @@ void UserWindow::WMMouseHover(HWND thisWindow, LPARAM lParam)
     if(PtInRect(&closeButton, mousePoint))
     {
         buttonHover = 1;
+    }
+    else if(PtInRect(&minimizeButton, mousePoint))
+    {
+        buttonHover = 2;
     }
     else
     {
@@ -274,6 +300,7 @@ void UserWindow::WMTimer(HWND thisWindow)
     
     RECT windowRect;
     RECT closeRect;
+    RECT minimizeRect;
     RECT oneRect;
     RECT twoRect;
     RECT threeRect;
@@ -286,10 +313,16 @@ void UserWindow::WMTimer(HWND thisWindow)
     
     closeRect = windowRect;
     
-    closeRect.left = closeRect.left + userWindowWidth - 20;
+    closeRect.left = closeRect.left + userWindowWidth - 40;
     closeRect.bottom = closeRect.bottom - userWindowHeight + 20;
 
-    if(!PtInRect(&closeRect, mousePoint)) PostMessage(thisWindow, WM_MOUSELEAVE, 0, 0L); return;
+    minimizeRect = windowRect;
+    
+    minimizeRect.left = minimizeRect.left + userWindowWidth - 80;
+    minimizeRect.right = minimizeRect.right - 40;
+    minimizeRect.bottom = minimizeRect.bottom - userWindowHeight + 20;
+
+    if(!PtInRect(&closeRect, mousePoint) && !PtInRect(&minimizeRect, mousePoint)) PostMessage(thisWindow, WM_MOUSELEAVE, 0, 0L); return;
     
     oneRect = windowRect;
     
@@ -347,7 +380,7 @@ LRESULT UserWindow::NCHitTest(HWND thisWindow, LPARAM lParam)
 
     ScreenToClient(thisWindow, &mousePoint);
 
-    if(PtInRect(&titleBar, mousePoint) && mousePoint.x < titleBar.right - 20)
+    if(PtInRect(&grabBar, mousePoint))
     {
         hit = HTCAPTION;
     }

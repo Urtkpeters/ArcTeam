@@ -28,8 +28,10 @@ class UserWindow: public GenericWindow
         void CreateComponents();
         
         static RECT titleBar;
+        static RECT grabBar;
         static RECT background;
         static RECT closeButton;
+        static RECT minimizeButton;
         static RECT oneButton;
         static RECT twoButton;
         static RECT threeButton;

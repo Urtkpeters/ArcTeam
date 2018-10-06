@@ -36,19 +36,19 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/_ext/4ccc2a23/ErrorHandler.o \
-	${OBJECTDIR}/_ext/4ccc2a23/PeriodicHandler.o \
-	${OBJECTDIR}/_ext/5fc2206d/Player.o \
-	${OBJECTDIR}/_ext/4ccc2a23/PlayerHandler.o \
-	${OBJECTDIR}/_ext/4ccc2a23/UserHandler.o \
-	${OBJECTDIR}/_ext/4ccc2a23/WebHandler.o \
-	${OBJECTDIR}/_ext/1271fde8/main.o \
 	${OBJECTDIR}/_ext/cf7d2710/PlayersPanel.o \
 	${OBJECTDIR}/_ext/cf7d2710/StatusPanel.o \
 	${OBJECTDIR}/_ext/cf7d2710/SwapPanel.o \
 	${OBJECTDIR}/_ext/2c8a6064/GenericWindow.o \
 	${OBJECTDIR}/_ext/2c8a6064/MainWindow.o \
 	${OBJECTDIR}/_ext/2c8a6064/UserWindow.o \
-	${OBJECTDIR}/_ext/2c8a6064/WindowManager.o
+	${OBJECTDIR}/_ext/2c8a6064/WindowManager.o \
+	${OBJECTDIR}/handler/PeriodicHandler.o \
+	${OBJECTDIR}/handler/Player/Player.o \
+	${OBJECTDIR}/handler/PlayerHandler.o \
+	${OBJECTDIR}/handler/UserHandler.o \
+	${OBJECTDIR}/handler/WebHandler.o \
+	${OBJECTDIR}/main.o
 
 
 # C Compiler Flags
@@ -81,41 +81,6 @@ ${OBJECTDIR}/_ext/4ccc2a23/ErrorHandler.o: /cygdrive/C/Users/Urt/Documents/Proje
 	${MKDIR} -p ${OBJECTDIR}/_ext/4ccc2a23
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4ccc2a23/ErrorHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.cpp
-
-${OBJECTDIR}/_ext/4ccc2a23/PeriodicHandler.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/PeriodicHandler.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/4ccc2a23
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4ccc2a23/PeriodicHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/PeriodicHandler.cpp
-
-${OBJECTDIR}/_ext/5fc2206d/Player.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/Player/Player.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/5fc2206d
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/5fc2206d/Player.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/Player/Player.cpp
-
-${OBJECTDIR}/_ext/4ccc2a23/PlayerHandler.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/PlayerHandler.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/4ccc2a23
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4ccc2a23/PlayerHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/PlayerHandler.cpp
-
-${OBJECTDIR}/_ext/4ccc2a23/UserHandler.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/UserHandler.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/4ccc2a23
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4ccc2a23/UserHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/UserHandler.cpp
-
-${OBJECTDIR}/_ext/4ccc2a23/WebHandler.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/WebHandler.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/4ccc2a23
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4ccc2a23/WebHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/WebHandler.cpp
-
-${OBJECTDIR}/_ext/1271fde8/main.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/main.cpp
-	${MKDIR} -p ${OBJECTDIR}/_ext/1271fde8
-	${RM} "$@.d"
-	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/1271fde8/main.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/main.cpp
-
-resources/resources.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/resources/resources.rc resources/resources.h
-	${MKDIR} -p resources
-	@echo Compiling resources...
-	windres.exe resources/resources.rc resources/resources.o
 
 ${OBJECTDIR}/_ext/cf7d2710/PlayersPanel.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PlayersPanel.cpp
 	${MKDIR} -p ${OBJECTDIR}/_ext/cf7d2710
@@ -151,6 +116,41 @@ ${OBJECTDIR}/_ext/2c8a6064/WindowManager.o: /cygdrive/C/Users/Urt/Documents/Proj
 	${MKDIR} -p ${OBJECTDIR}/_ext/2c8a6064
 	${RM} "$@.d"
 	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/2c8a6064/WindowManager.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/WindowManager.cpp
+
+${OBJECTDIR}/handler/PeriodicHandler.o: handler/PeriodicHandler.cpp
+	${MKDIR} -p ${OBJECTDIR}/handler
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/handler/PeriodicHandler.o handler/PeriodicHandler.cpp
+
+${OBJECTDIR}/handler/Player/Player.o: handler/Player/Player.cpp
+	${MKDIR} -p ${OBJECTDIR}/handler/Player
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/handler/Player/Player.o handler/Player/Player.cpp
+
+${OBJECTDIR}/handler/PlayerHandler.o: handler/PlayerHandler.cpp
+	${MKDIR} -p ${OBJECTDIR}/handler
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/handler/PlayerHandler.o handler/PlayerHandler.cpp
+
+${OBJECTDIR}/handler/UserHandler.o: handler/UserHandler.cpp
+	${MKDIR} -p ${OBJECTDIR}/handler
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/handler/UserHandler.o handler/UserHandler.cpp
+
+${OBJECTDIR}/handler/WebHandler.o: handler/WebHandler.cpp
+	${MKDIR} -p ${OBJECTDIR}/handler
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/handler/WebHandler.o handler/WebHandler.cpp
+
+${OBJECTDIR}/main.o: main.cpp
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.cc) -g -Iinclude -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+
+resources/resources.o: resources/resources.rc resources/resources.h
+	${MKDIR} -p resources
+	@echo Compiling resources...
+	windres.exe resources/resources.rc resources/resources.o
 
 # Subprojects
 .build-subprojects:

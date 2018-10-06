@@ -42,6 +42,7 @@ class MainWindow: public GenericWindow
         static RECT background;
         static vector<Image*> images;
         static RECT closeButton;
+        static RECT minimizeButton;
         static RECT grabBar;
         static int buttonHover;
         static int currentButtonHover;
