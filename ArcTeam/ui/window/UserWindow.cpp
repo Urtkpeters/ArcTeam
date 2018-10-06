@@ -19,6 +19,9 @@ int UserWindow::playerButtonHover = 0;
 int UserWindow::currentPlayerHover = 0;
 int UserWindow::mouseTimer;
 
+HCURSOR UserWindow::hand = LoadCursor(NULL, IDC_HAND);
+HCURSOR UserWindow::arrow = LoadCursor(NULL, IDC_ARROW);
+
 const vector<string> UserWindow::imageNames {"logo", "close", "close_hover", "minimize", "minimize_hover", "avatar1", "avatar2", "avatar3", "avatar4", "avatar5"};
 const int UserWindow::userWindowWidth = 600;
 const int UserWindow::userWindowHeight = 300;
@@ -87,6 +90,7 @@ LRESULT CALLBACK UserWindow::WindowProc(HWND thisWindow, UINT message, WPARAM wP
     {
         case WM_CTLCOLORSTATIC: return WMCtlColorStatic(wParam);
         case WM_PAINT: WMPaint(thisWindow); break;
+        case WM_SETCURSOR: return true;
         case WM_LBUTTONUP: WMLeftMouseButtonUp(thisWindow, lParam); break;
         case WM_MOUSEMOVE: WMMouseMove(thisWindow); break;
         case WM_MOUSEHOVER: WMMouseHover(thisWindow, lParam); break;
@@ -248,26 +252,32 @@ void UserWindow::WMMouseHover(HWND thisWindow, LPARAM lParam)
     if(PtInRect(&oneButton, mousePoint))
     {
         playerButtonHover = 1;
+        SetCursor(hand);
     }
     else if(PtInRect(&twoButton, mousePoint))
     {
         playerButtonHover = 2;
+        SetCursor(hand);
     }
     else if(PtInRect(&threeButton, mousePoint))
     {
         playerButtonHover = 3;
+        SetCursor(hand);
     }
     else if(PtInRect(&fourButton, mousePoint))
     {
         playerButtonHover = 4;
+        SetCursor(hand);
     }
     else if(PtInRect(&fiveButton, mousePoint))
     {
         playerButtonHover = 5;
+        SetCursor(hand);
     }
     else
     {
         playerButtonHover = 0;
+        SetCursor(arrow);
     }
     
     if(buttonHover != currentButtonHover)

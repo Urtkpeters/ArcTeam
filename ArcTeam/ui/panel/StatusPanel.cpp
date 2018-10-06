@@ -15,6 +15,9 @@ int StatusPanel::buttonHover;
 int StatusPanel::currentButtonHover;
 int StatusPanel::mouseTimer;
 
+HCURSOR StatusPanel::hand = LoadCursor(NULL, IDC_HAND);
+HCURSOR StatusPanel::arrow = LoadCursor(NULL, IDC_ARROW);
+
 const int StatusPanel::panelWidth = 100;
 const int StatusPanel::panelHeight = 550;
 
@@ -78,6 +81,7 @@ LRESULT CALLBACK StatusPanel::WindowProc(HWND thisPanel, UINT message, WPARAM wP
     switch(message)
     {
         case WM_PAINT: WMPaint(thisPanel); return false;
+        case WM_SETCURSOR: return true;
         case WM_LBUTTONUP: WMLeftMouseButtonUp(thisPanel, lParam); break;
         case WM_MOUSEMOVE: WMMouseMove(thisPanel); break;
         case WM_MOUSEHOVER: WMMouseHover(lParam); break;
@@ -196,11 +200,31 @@ void StatusPanel::WMMouseHover(LPARAM lParam)
     mousePoint.x = LOWORD(lParam);
     mousePoint.y = HIWORD(lParam);
     
-    if(PtInRect(&happyButton, mousePoint) && selectedButton != 1) buttonHover = 1;
-    else if(PtInRect(&goodButton, mousePoint) && selectedButton != 2) buttonHover = 2;
-    else if(PtInRect(&sadButton, mousePoint) && selectedButton != 3) buttonHover = 3;
-    else if(PtInRect(&fineButton, mousePoint) && selectedButton != 4) buttonHover = 4;
-    else buttonHover = 0;
+    if(PtInRect(&happyButton, mousePoint) && selectedButton != 1)
+    {
+        buttonHover = 1;
+        SetCursor(hand);
+    }
+    else if(PtInRect(&goodButton, mousePoint) && selectedButton != 2)
+    {
+        buttonHover = 2;
+        SetCursor(hand);
+    }
+    else if(PtInRect(&sadButton, mousePoint) && selectedButton != 3)
+    {
+        buttonHover = 3;
+        SetCursor(hand);
+    }
+    else if(PtInRect(&fineButton, mousePoint) && selectedButton != 4)
+    {
+        buttonHover = 4;
+        SetCursor(hand);
+    }
+    else
+    {
+        buttonHover = 0;
+        SetCursor(arrow);
+    }
     
     if(buttonHover != currentButtonHover)
     {

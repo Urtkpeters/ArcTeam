@@ -39,6 +39,8 @@ class SwapPanel
         static HWND positionsHover;
         static HWND modesHover;
         static int mouseTimer;
+        static HCURSOR hand;
+        static HCURSOR arrow;
         
         static const int panelWidth;
         static const int panelHeight;

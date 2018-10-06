@@ -45,6 +45,8 @@ class UserWindow: public GenericWindow
         static int playerButtonHover;
         static int currentPlayerHover;
         static int mouseTimer;
+        static HCURSOR hand;
+        static HCURSOR arrow;
         
         static const vector<string> imageNames;
         static const int userWindowWidth;

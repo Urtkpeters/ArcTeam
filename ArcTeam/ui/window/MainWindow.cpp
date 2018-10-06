@@ -166,7 +166,7 @@ void MainWindow::WMLeftMouseButtonUp(HWND thisWindow, LPARAM lParam)
     }
     else if(PtInRect(&errorButton, mousePoint))
     {
-        cout << "erorr" << endl;
+        // For displaying the errors
     }
 }
 

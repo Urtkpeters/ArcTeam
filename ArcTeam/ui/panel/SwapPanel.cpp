@@ -16,6 +16,8 @@ HWND SwapPanel::heroesHover;
 HWND SwapPanel::positionsHover;
 HWND SwapPanel::modesHover;
 int SwapPanel::mouseTimer;
+HCURSOR SwapPanel::hand = LoadCursor(NULL, IDC_HAND);
+HCURSOR SwapPanel::arrow = LoadCursor(NULL, IDC_ARROW);
 
 const int SwapPanel::panelWidth = 100;
 const int SwapPanel::panelHeight = 530;
@@ -58,6 +60,7 @@ LRESULT CALLBACK SwapPanel::WindowProc(HWND thisPanel, UINT message, WPARAM wPar
     {
         case WM_CTLCOLORSTATIC: return WMCtlColorStatic(wParam);
         case WM_PAINT: WMPaint(thisPanel); return false;
+        case WM_SETCURSOR: return true;
         case WM_LBUTTONUP: WMLeftMouseButtonUp(lParam); break;
         case WM_MOUSEMOVE: WMMouseMove(thisPanel); break;
         case WM_MOUSEHOVER: WMMouseHover(lParam); break;
@@ -172,25 +175,30 @@ void SwapPanel::WMMouseHover(LPARAM lParam)
     {
         buttonHover = 1;
         ShowWindow(statusHover, SW_SHOW);
+        SetCursor(hand);
     }
     else if(PtInRect(&heroesButton, mousePoint) && selectedButton != 1)
     {
         buttonHover = 2;
         ShowWindow(heroesHover, SW_SHOW);
+        SetCursor(hand);
     }
     else if(PtInRect(&positionsButton, mousePoint) && selectedButton != 2)
     {
         buttonHover = 3;
         ShowWindow(positionsHover, SW_SHOW);
+        SetCursor(hand);
     }
     else if(PtInRect(&modesButton, mousePoint) && selectedButton != 3)
     {
         buttonHover = 4;
         ShowWindow(modesHover, SW_SHOW);
+        SetCursor(hand);
     }
     else
     {
         buttonHover = 0;
+        SetCursor(arrow);
     }
     
     if(buttonHover != currentButtonHover)

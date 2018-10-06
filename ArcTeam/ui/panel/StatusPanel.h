@@ -40,6 +40,8 @@ class StatusPanel
         static int buttonHover;
         static int currentButtonHover;
         static int mouseTimer;
+        static HCURSOR hand;
+        static HCURSOR arrow;
         
         static const int panelWidth;
         static const int panelHeight;
