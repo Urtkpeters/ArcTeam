@@ -9,6 +9,7 @@ RECT MainWindow::minimizeButton;
 RECT MainWindow::grabBar;
 int MainWindow::buttonHover;
 int MainWindow::currentButtonHover;
+int MainWindow::mouseTimer;
 
 
 const vector<string> MainWindow::imageNames {"logo", "close", "close_hover", "minimize", "minimize_hover"};
@@ -26,6 +27,7 @@ MSG MainWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
     windowHeight = mainWindowHeight;
     buttonHover = 0;
     currentButtonHover = -1;
+    mouseTimer = 0;
     
     SetRect(&background, 0, 0, mainWindowWidth, 20);
     SetRect(&closeButton, mainWindowWidth - 40, 0, mainWindowWidth, 20);
@@ -70,7 +72,6 @@ LRESULT CALLBACK MainWindow::WindowProc(HWND thisWindow, UINT message, WPARAM wP
         case WM_LBUTTONUP: WMLeftMouseButtonUp(thisWindow, lParam); break;
         case WM_MOUSEMOVE: WMMouseMove(thisWindow); break;
         case WM_MOUSEHOVER: WMMouseHover(thisWindow, lParam); break;
-        case WM_MOUSELEAVE: WMMouseLeave(thisWindow); break;
         case WM_TIMER: WMTimer(thisWindow); break;
         case WM_NCHITTEST: return NCHitTest(thisWindow, lParam);
         case WM_CLOSE: DestroyWindow(thisWindow); break;
@@ -153,7 +154,7 @@ void MainWindow::WMLeftMouseButtonUp(HWND thisWindow, LPARAM lParam)
 
 void MainWindow::WMMouseMove(HWND thisWindow)
 {
-    SetTimer(thisWindow, 10, 10, NULL);
+    mouseTimer = SetTimer(thisWindow, 10, 10, NULL);
     
     TRACKMOUSEEVENT tme;
     tme.cbSize = sizeof(TRACKMOUSEEVENT);
@@ -189,16 +190,6 @@ void MainWindow::WMMouseHover(HWND thisWindow, LPARAM lParam)
     }
 }
 
-void MainWindow::WMMouseLeave(HWND thisWindow)
-{
-    if(buttonHover != 0)
-    {
-        buttonHover = 0;
-        currentButtonHover = 0;
-        RedrawWindow(thisWindow, NULL, NULL, RDW_INVALIDATE);
-    }
-}
-
 void MainWindow::WMTimer(HWND thisWindow)
 {
     KillTimer(thisWindow, 100);
@@ -220,7 +211,16 @@ void MainWindow::WMTimer(HWND thisWindow)
     minimizeRect.right = minimizeRect.right  - 40;
     minimizeRect.bottom = minimizeRect.bottom - mainWindowHeight + 20;
 
-    if(!PtInRect(&closeRect,mousePoint) && !PtInRect(&minimizeRect,mousePoint)) PostMessage(thisWindow, WM_MOUSELEAVE, 0, 0L);
+    if(!PtInRect(&closeRect,mousePoint) && !PtInRect(&minimizeRect,mousePoint))
+    {
+        HoverCheck();
+        
+        if(mouseTimer != 0)
+        {
+            KillTimer(thisWindow, mouseTimer);
+            mouseTimer = 0;
+        }
+    }
 }
 
 LRESULT MainWindow::NCHitTest(HWND thisWindow, LPARAM lParam)
@@ -239,6 +239,16 @@ LRESULT MainWindow::NCHitTest(HWND thisWindow, LPARAM lParam)
     }
 
     return hit;
+}
+
+void MainWindow::HoverCheck()
+{
+    if(buttonHover != 0)
+    {
+        buttonHover = 0;
+        currentButtonHover = 0;
+        RedrawWindow(mainWindow, NULL, NULL, RDW_INVALIDATE);
+    }
 }
 
 void MainWindow::CreateComponents()

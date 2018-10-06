@@ -1,6 +1,7 @@
 #include "UserWindow.h"
 #include "WindowManager.h"
 
+HWND UserWindow::userWindow;
 RECT UserWindow::titleBar;
 RECT UserWindow::grabBar;
 RECT UserWindow::closeButton;
@@ -16,6 +17,7 @@ int UserWindow::buttonHover;
 int UserWindow::currentButtonHover;
 int UserWindow::playerButtonHover = 0;
 int UserWindow::currentPlayerHover = 0;
+int UserWindow::mouseTimer;
 
 const vector<string> UserWindow::imageNames {"logo", "close", "close_hover", "minimize", "minimize_hover", "avatar1", "avatar2", "avatar3", "avatar4", "avatar5"};
 const int UserWindow::userWindowWidth = 600;
@@ -32,6 +34,7 @@ MSG UserWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
     windowStartY = (GetSystemMetrics(1) / 2) - (windowHeight / 2);
     buttonHover = 0;
     currentButtonHover = -1;
+    mouseTimer = 0;
     
     SetRect(&titleBar, 0, 0, windowWidth, 20);
     SetRect(&grabBar, 0, 0, windowWidth - 80, 20);
@@ -87,7 +90,6 @@ LRESULT CALLBACK UserWindow::WindowProc(HWND thisWindow, UINT message, WPARAM wP
         case WM_LBUTTONUP: WMLeftMouseButtonUp(thisWindow, lParam); break;
         case WM_MOUSEMOVE: WMMouseMove(thisWindow); break;
         case WM_MOUSEHOVER: WMMouseHover(thisWindow, lParam); break;
-        case WM_MOUSELEAVE: WMMouseLeave(thisWindow, wParam); break;
         case WM_TIMER: WMTimer(thisWindow); break;
         case WM_NCHITTEST: return NCHitTest(thisWindow, lParam);
         case WM_CLOSE: DestroyWindow(thisWindow); break;
@@ -214,7 +216,7 @@ void UserWindow::WMLeftMouseButtonUp(HWND thisWindow, LPARAM lParam)
 
 void UserWindow::WMMouseMove(HWND thisWindow)
 {
-    SetTimer(thisWindow, 10, 10, NULL);
+    mouseTimer = SetTimer(thisWindow, 10, 10, NULL);
     
     TRACKMOUSEEVENT tme;
     tme.cbSize = sizeof(TRACKMOUSEEVENT);
@@ -283,23 +285,6 @@ void UserWindow::WMMouseHover(HWND thisWindow, LPARAM lParam)
     }
 }
 
-void UserWindow::WMMouseLeave(HWND thisWindow, WPARAM wParam)
-{
-    if(buttonHover != 0 && wParam == 0)
-    {
-        buttonHover = 0;
-        RedrawWindow(thisWindow, NULL, NULL, RDW_INVALIDATE);
-        currentButtonHover = 0;
-    }
-    
-    if(playerButtonHover != 0 && wParam == 1)
-    {
-        playerButtonHover = 0;
-        RedrawWindow(thisWindow, NULL, NULL, RDW_INVALIDATE);
-        currentPlayerHover = 0;
-    }
-}
-
 void UserWindow::WMTimer(HWND thisWindow)
 {
     KillTimer(thisWindow, 100);
@@ -328,52 +313,60 @@ void UserWindow::WMTimer(HWND thisWindow)
     minimizeRect.right = minimizeRect.right - 40;
     minimizeRect.bottom = minimizeRect.bottom - userWindowHeight + 20;
 
-    if(!PtInRect(&closeRect, mousePoint) && !PtInRect(&minimizeRect, mousePoint)) PostMessage(thisWindow, WM_MOUSELEAVE, 0, 0L); return;
+    if(!PtInRect(&closeRect, mousePoint) && !PtInRect(&minimizeRect, mousePoint))
+    {
+        HoverCheck(0);
+        
+        if(mouseTimer != 0)
+        {
+            KillTimer(thisWindow, mouseTimer);
+            mouseTimer = 0;
+        }
+        
+        return;
+    }
     
     oneRect = windowRect;
+    twoRect = windowRect;
+    threeRect = windowRect;
+    fourRect = windowRect;
+    fiveRect = windowRect;
     
     oneRect.left = oneRect.left + oneButton.left;
     oneRect.top = oneRect.top + oneButton.top;
     oneRect.right = (oneRect.right - userWindowWidth) + oneButton.right;
     oneRect.bottom = (oneRect.bottom - userWindowHeight) + oneButton.bottom;
     
-    if(!PtInRect(&oneRect, mousePoint)) PostMessage(thisWindow, WM_MOUSELEAVE, 1, 0L); return;
-    
-    twoRect = windowRect;
-    
     twoRect.left = twoRect.left + twoButton.left;
     twoRect.top = twoRect.top + twoButton.top;
     twoRect.right = (twoRect.right - userWindowWidth) + twoButton.right;
     twoRect.bottom = (twoRect.bottom - userWindowHeight) + twoButton.bottom;
-    
-    if(!PtInRect(&twoRect, mousePoint)) PostMessage(thisWindow, WM_MOUSELEAVE, 1, 0L); return;
-    
-    threeRect = windowRect;
     
     threeRect.left = threeRect.left + threeButton.left;
     threeRect.top = threeRect.top + threeButton.top;
     threeRect.right = (threeRect.right - userWindowWidth) + threeButton.right;
     threeRect.bottom = (threeRect.bottom - userWindowHeight) + threeButton.bottom;
     
-    if(!PtInRect(&threeRect, mousePoint)) PostMessage(thisWindow, WM_MOUSELEAVE, 1, 0L); return;
-    
-    fourRect = windowRect;
-    
     fourRect.left = fourRect.left + fourButton.left;
     fourRect.top = fourRect.top + fourButton.top;
     fourRect.right = (fourRect.right - userWindowWidth) + fourButton.right;
     fourRect.bottom = (fourRect.bottom - userWindowHeight) + fourButton.bottom;
-    
-    if(!PtInRect(&fourRect, mousePoint)) PostMessage(thisWindow, WM_MOUSELEAVE, 1, 0L); return;
-    
-    fiveRect = windowRect;
     
     fiveRect.left = fiveRect.left + fiveButton.left;
     fiveRect.top = fiveRect.top + fiveButton.top;
     fiveRect.right = (fiveRect.right - userWindowWidth) + fiveButton.right;
     fiveRect.bottom = (fiveRect.bottom - userWindowHeight) + fiveButton.bottom;
     
-    if(!PtInRect(&fiveRect, mousePoint)) PostMessage(thisWindow, WM_MOUSELEAVE, 1, 0L); return;
+    if(!PtInRect(&oneRect, mousePoint) && !PtInRect(&twoRect, mousePoint) && !PtInRect(&threeRect, mousePoint) && !PtInRect(&fourRect, mousePoint) && !PtInRect(&fiveRect, mousePoint))
+    {
+        HoverCheck(1);
+        
+        if(mouseTimer != 0)
+        {
+            KillTimer(thisWindow, mouseTimer);
+            mouseTimer = 0;
+        }
+    }
 }
 
 LRESULT UserWindow::NCHitTest(HWND thisWindow, LPARAM lParam)
@@ -394,8 +387,27 @@ LRESULT UserWindow::NCHitTest(HWND thisWindow, LPARAM lParam)
     return hit;
 }
 
+void UserWindow::HoverCheck(int whichButtons)
+{
+    if(buttonHover != 0 && whichButtons == 0)
+    {
+        buttonHover = 0;
+        RedrawWindow(userWindow, NULL, NULL, RDW_INVALIDATE);
+        currentButtonHover = 0;
+    }
+    
+    if(playerButtonHover != 0 && whichButtons == 1)
+    {
+        playerButtonHover = 0;
+        RedrawWindow(userWindow, NULL, NULL, RDW_INVALIDATE);
+        currentPlayerHover = 0;
+    }
+}
+
 void UserWindow::CreateComponents()
 {
+    userWindow = thisWindow;
+    
     CreateWindow("static", "Choose User", WS_CHILD | WS_VISIBLE | SS_CENTER, (userWindowWidth / 2) - 50, 75, 100, 25, thisWindow, (HMENU)LBL_USR, instance, NULL);
     
     vector<string> usernames = UserHandler::GetUsers();

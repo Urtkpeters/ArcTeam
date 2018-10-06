@@ -15,15 +15,17 @@ class UserWindow: public GenericWindow
     public:
         MSG CreateNewWindow(MSG Msg, HINSTANCE hInstance, int wCmdShow);
         
+        static HWND userWindow;
+        
         static LRESULT CALLBACK WindowProc(HWND thisWindow, UINT message, WPARAM wParam, LPARAM lParam);
         static LRESULT WMCtlColorStatic(WPARAM wParam);
         static void WMPaint(HWND thisWindow);
         static void WMLeftMouseButtonUp(HWND thisWindow, LPARAM lParam);
         static void WMMouseMove(HWND thisWindow);
         static void WMMouseHover(HWND thisWindow, LPARAM lParam);
-        static void WMMouseLeave(HWND thisWindow, WPARAM wParam);
         static void WMTimer(HWND thisWindow);
         static LRESULT NCHitTest(HWND thisWindow, LPARAM lParam);
+        static void HoverCheck(int whichButtons);
     protected:
         void CreateComponents();
         
@@ -42,6 +44,7 @@ class UserWindow: public GenericWindow
         static int currentButtonHover;
         static int playerButtonHover;
         static int currentPlayerHover;
+        static int mouseTimer;
         
         static const vector<string> imageNames;
         static const int userWindowWidth;

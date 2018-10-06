@@ -31,9 +31,9 @@ class MainWindow: public GenericWindow
         static void WMLeftMouseButtonUp(HWND thisWindow, LPARAM lParam);
         static void WMMouseMove(HWND thisWindow);
         static void WMMouseHover(HWND thisWindow, LPARAM lParam);
-        static void WMMouseLeave(HWND thisWindow);
         static void WMTimer(HWND thisWindow);
         static LRESULT NCHitTest(HWND thisWindow, LPARAM lParam);
+        static void HoverCheck();
     protected:
         void CreateComponents();
         
@@ -45,6 +45,7 @@ class MainWindow: public GenericWindow
         static RECT grabBar;
         static int buttonHover;
         static int currentButtonHover;
+        static int mouseTimer;
         
         static const vector<string> imageNames;
         static const int mainWindowWidth;

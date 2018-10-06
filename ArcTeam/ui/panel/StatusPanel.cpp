@@ -180,7 +180,7 @@ void StatusPanel::WMLeftMouseButtonUp(HWND thisPanel, LPARAM lParam)
 
 void StatusPanel::WMMouseMove(HWND thisPanel)
 {
-    SetTimer(thisPanel, 10, 10, NULL);
+    mouseTimer = SetTimer(thisPanel, 10, 10, NULL);
     
     TRACKMOUSEEVENT tme;
     tme.cbSize = sizeof(TRACKMOUSEEVENT);
