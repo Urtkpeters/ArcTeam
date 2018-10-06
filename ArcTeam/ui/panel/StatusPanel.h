@@ -19,8 +19,12 @@ class StatusPanel
         static vector<Image*> GetImages();
         
         static LRESULT CALLBACK WindowProc(HWND thisPanel, UINT message, WPARAM wParam, LPARAM lParam);
-        static void WMLeftMouseButtonUp(HWND thisPanel, LPARAM lParam);
         static void WMPaint(HWND thisPanel);
+        static void WMLeftMouseButtonUp(HWND thisPanel, LPARAM lParam);
+        static void WMMouseMove(HWND thisPanel);
+        static void WMMouseHover(LPARAM lParam);
+        static void WMTimer(HWND thisPanel);
+        static void HoverCheck();
     private:
         static HWND thisPanel;
         static HINSTANCE instance;
@@ -33,6 +37,9 @@ class StatusPanel
         static vector<string> statuses;
         static int selectedButton;
         static int currentSelectedButton;
+        static int buttonHover;
+        static int currentButtonHover;
+        static int mouseTimer;
         
         static const int panelWidth;
         static const int panelHeight;

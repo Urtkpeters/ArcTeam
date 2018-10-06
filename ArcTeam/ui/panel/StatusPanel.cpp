@@ -11,6 +11,9 @@ RECT StatusPanel::fineButton;
 vector<Image*> StatusPanel::images;
 vector<string> StatusPanel::statuses;
 int StatusPanel::selectedButton;
+int StatusPanel::buttonHover;
+int StatusPanel::currentButtonHover;
+int StatusPanel::mouseTimer;
 
 const int StatusPanel::panelWidth = 100;
 const int StatusPanel::panelHeight = 550;
@@ -26,6 +29,8 @@ HWND StatusPanel::Init(HWND parentWindow, HINSTANCE newInstance)
     SetRect(&fineButton, 0, 285, panelWidth, 380);
     statuses = PlayerHandler::GetStatuses();
     selectedButton = 1;
+    buttonHover = 0;
+    currentButtonHover = 0;
     
     TCHAR szPath[MAX_PATH];
     GetModuleFileName(instance, szPath, MAX_PATH);
@@ -43,6 +48,17 @@ HWND StatusPanel::Init(HWND parentWindow, HINSTANCE newInstance)
         images.push_back(image.GetThumbnailImage(80, 80, NULL, NULL));
     }
     
+    for(int i = 0; i < statuses.size(); i++)
+    {
+        string path = baseDirectory + "resources\\images\\" + statuses[i] + "_hover.png";
+        
+        wstring wImagePath = wstring(path.begin(), path.end());
+        const wchar_t* wcImagePath = wImagePath.c_str();
+        Image image(wcImagePath);
+        
+        images.push_back(image.GetThumbnailImage(80, 80, NULL, NULL));
+    }
+    
     for(int i = 1; i < statuses.size(); i++)
     {
         string path = baseDirectory + "resources\\images\\" + statuses[i] + "_selected.png";
@@ -50,7 +66,7 @@ HWND StatusPanel::Init(HWND parentWindow, HINSTANCE newInstance)
         wstring wImagePath = wstring(path.begin(), path.end());
         const wchar_t* wcImagePath = wImagePath.c_str();
         Image image(wcImagePath);
-        cout << path << endl;
+        
         images.push_back(image.GetThumbnailImage(80, 80, NULL, NULL));
     }
     
@@ -63,6 +79,9 @@ LRESULT CALLBACK StatusPanel::WindowProc(HWND thisPanel, UINT message, WPARAM wP
     {
         case WM_PAINT: WMPaint(thisPanel); return false;
         case WM_LBUTTONUP: WMLeftMouseButtonUp(thisPanel, lParam); break;
+        case WM_MOUSEMOVE: WMMouseMove(thisPanel); break;
+        case WM_MOUSEHOVER: WMMouseHover(lParam); break;
+        case WM_TIMER: WMTimer(thisPanel); break;
         default: return DefWindowProc(thisPanel, message, wParam, lParam);
     }
     
@@ -87,9 +106,18 @@ void StatusPanel::WMPaint(HWND thisPanel)
     {
         int selectedOption = i;
         
-        if(selectedButton == i)
+        if(selectedButton == i || buttonHover == i)
         {
-            brush = CreateSolidBrush(RGB(255, 255, 255));
+            if(selectedButton == i)
+            {
+                brush = CreateSolidBrush(RGB(255, 255, 255));
+                selectedOption += 9;
+            }
+            else if(buttonHover == i && selectedButton != buttonHover)
+            {
+                brush = CreateSolidBrush(RGB(100, 0, 0));
+                selectedOption += 5;
+            }
             
             RECT selectedRect;
             
@@ -110,8 +138,6 @@ void StatusPanel::WMPaint(HWND thisPanel)
             }
             
             FillRect(hdcBuffer, &selectedRect, brush);
-            
-            selectedOption += 4;
         }
         
         graphics.DrawImage(images[selectedOption], 10, 7 + ((i - 1) * 95), 80, 80);
@@ -149,6 +175,70 @@ void StatusPanel::WMLeftMouseButtonUp(HWND thisPanel, LPARAM lParam)
     else if(PtInRect(&fineButton, mousePoint))
     {
         ChangeState(thisPanel, 4);
+    }
+}
+
+void StatusPanel::WMMouseMove(HWND thisPanel)
+{
+    SetTimer(thisPanel, 10, 10, NULL);
+    
+    TRACKMOUSEEVENT tme;
+    tme.cbSize = sizeof(TRACKMOUSEEVENT);
+    tme.dwFlags = TME_HOVER;
+    tme.dwHoverTime = 10;
+    tme.hwndTrack = thisPanel;
+    TrackMouseEvent(&tme);
+}
+
+void StatusPanel::WMMouseHover(LPARAM lParam)
+{
+    POINT mousePoint;
+    mousePoint.x = LOWORD(lParam);
+    mousePoint.y = HIWORD(lParam);
+    
+    if(PtInRect(&happyButton, mousePoint) && selectedButton != 1) buttonHover = 1;
+    else if(PtInRect(&goodButton, mousePoint) && selectedButton != 2) buttonHover = 2;
+    else if(PtInRect(&sadButton, mousePoint) && selectedButton != 3) buttonHover = 3;
+    else if(PtInRect(&fineButton, mousePoint) && selectedButton != 4) buttonHover = 4;
+    else buttonHover = 0;
+    
+    if(buttonHover != currentButtonHover)
+    {
+        RedrawWindow(thisPanel, NULL, NULL, RDW_INVALIDATE);
+        
+        currentButtonHover = buttonHover;
+    }
+}
+
+void StatusPanel::WMTimer(HWND thisPanel)
+{
+    KillTimer(thisPanel, 100);
+    
+    RECT panelRect;
+    POINT mousePoint;
+    
+    GetWindowRect(thisPanel, &panelRect);
+    GetCursorPos(&mousePoint);
+    
+    if(!PtInRect(&panelRect, mousePoint))
+    {
+        HoverCheck();
+        
+        if(mouseTimer != 0)
+        {
+            KillTimer(thisPanel, mouseTimer);
+            mouseTimer = 0;
+        }
+    }
+}
+
+void StatusPanel::HoverCheck()
+{
+    if(buttonHover != 0)
+    {
+        buttonHover = 0;
+        RedrawWindow(thisPanel, NULL, NULL, RDW_INVALIDATE);
+        currentButtonHover = 0;
     }
 }
 

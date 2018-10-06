@@ -11,11 +11,11 @@ RECT SwapPanel::modesButton;
 int SwapPanel::selectedButton;
 int SwapPanel::buttonHover;
 int SwapPanel::currentButtonHover;
-bool SwapPanel::mouseOver;
 HWND SwapPanel::statusHover;
 HWND SwapPanel::heroesHover;
 HWND SwapPanel::positionsHover;
 HWND SwapPanel::modesHover;
+int SwapPanel::mouseTimer;
 
 const int SwapPanel::panelWidth = 100;
 const int SwapPanel::panelHeight = 550;
@@ -26,6 +26,7 @@ HWND SwapPanel::Init(HWND parentWindow, HINSTANCE newInstance)
     thisPanel = CreateWindowEx(WS_EX_LEFT, "STATIC", NULL, WS_VISIBLE | WS_CHILD, 0, 20, panelWidth, panelHeight, parentWindow, (HMENU) 106, NULL, NULL);
     selectedButton = 0;
     buttonHover = 0;
+    mouseTimer = 0;
     
     SetRect(&background, 0, 0, panelWidth, panelHeight);
     SetRect(&statusButton, 0, 0, panelWidth, 50);
@@ -60,7 +61,6 @@ LRESULT CALLBACK SwapPanel::WindowProc(HWND thisPanel, UINT message, WPARAM wPar
         case WM_LBUTTONUP: WMLeftMouseButtonUp(lParam); break;
         case WM_MOUSEMOVE: WMMouseMove(thisPanel); break;
         case WM_MOUSEHOVER: WMMouseHover(lParam); break;
-        case WM_MOUSELEAVE: WMMouseLeave(); break;
         case WM_TIMER: WMTimer(thisPanel); break;
         default: return DefWindowProc(thisPanel, message, wParam, lParam);
     }
@@ -146,7 +146,7 @@ void SwapPanel::WMLeftMouseButtonUp(LPARAM lParam)
 
 void SwapPanel::WMMouseMove(HWND thisPanel)
 {
-    SetTimer(thisPanel, 10, 10, NULL);
+    mouseTimer = SetTimer(thisPanel, 10, 10, NULL);
     
     TRACKMOUSEEVENT tme;
     tme.cbSize = sizeof(TRACKMOUSEEVENT);
@@ -200,7 +200,27 @@ void SwapPanel::WMMouseHover(LPARAM lParam)
     }
 }
 
-void SwapPanel::WMMouseLeave()
+void SwapPanel::WMTimer(HWND thisPanel)
+{
+    RECT rc;
+    POINT pt;
+    
+    GetWindowRect(thisPanel,&rc);
+    GetCursorPos(&pt);
+
+    if(!PtInRect(&rc,pt))
+    {
+        HoverCheck();
+        
+        if(mouseTimer != 0)
+        {
+            KillTimer(thisPanel, mouseTimer);
+            mouseTimer = 0;
+        }
+    }
+}
+
+void SwapPanel::HoverCheck()
 {
     if(buttonHover != 0)
     {
@@ -208,21 +228,6 @@ void SwapPanel::WMMouseLeave()
         RedrawWindow(thisPanel, NULL, NULL, RDW_INVALIDATE);
         currentButtonHover = 0;
     }
-}
-
-void SwapPanel::WMTimer(HWND thisPanel)
-{
-    KillTimer(thisPanel, 100);
-    
-    RECT rc;
-    POINT pt;
-    
-    GetWindowRect(thisPanel,&rc);
-    GetCursorPos(&pt);
-
-    mouseOver = PtInRect(&rc,pt);
-    
-    if(!mouseOver) PostMessage(thisPanel, WM_MOUSELEAVE, 0, 0L);
 }
 
 int SwapPanel::GetSelectedButton()

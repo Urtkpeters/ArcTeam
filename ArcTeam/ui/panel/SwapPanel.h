@@ -20,8 +20,8 @@ class SwapPanel
         static void WMLeftMouseButtonUp(LPARAM lParam);
         static void WMMouseMove(HWND thisPanel);
         static void WMMouseHover(LPARAM lParam);
-        static void WMMouseLeave();
         static void WMTimer(HWND thisPanel);
+        static void HoverCheck();
         static int GetSelectedButton();
     private:
         static HWND thisPanel;
@@ -34,11 +34,11 @@ class SwapPanel
         static int selectedButton;
         static int buttonHover;
         static int currentButtonHover;
-        static bool mouseOver;
         static HWND statusHover;
         static HWND heroesHover;
         static HWND positionsHover;
         static HWND modesHover;
+        static int mouseTimer;
         
         static const int panelWidth;
         static const int panelHeight;
