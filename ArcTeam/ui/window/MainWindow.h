@@ -23,7 +23,7 @@ class MainWindow: public GenericWindow
         
         static HWND mainWindow;
         
-        static void DisplayError(string errorMessage);
+        static void DisplayError();
         
         static LRESULT CALLBACK WindowProc(HWND thisWindow, UINT message, WPARAM wParam, LPARAM lParam);
         static LRESULT WMCtlColorStatic(WPARAM wParam);
@@ -42,10 +42,12 @@ class MainWindow: public GenericWindow
         static vector<Image*> images;
         static RECT closeButton;
         static RECT minimizeButton;
+        static RECT errorButton;
         static RECT grabBar;
         static int buttonHover;
         static int currentButtonHover;
         static int mouseTimer;
+        static bool displayError;
         
         static const vector<string> imageNames;
         static const int mainWindowWidth;

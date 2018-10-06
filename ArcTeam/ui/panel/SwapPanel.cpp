@@ -18,7 +18,7 @@ HWND SwapPanel::modesHover;
 int SwapPanel::mouseTimer;
 
 const int SwapPanel::panelWidth = 100;
-const int SwapPanel::panelHeight = 550;
+const int SwapPanel::panelHeight = 530;
 
 HWND SwapPanel::Init(HWND parentWindow, HINSTANCE newInstance)
 {
@@ -133,6 +133,7 @@ void SwapPanel::WMLeftMouseButtonUp(LPARAM lParam)
     else if(PtInRect(&heroesButton, mousePoint))
     {
         selectedButton = 1;
+        MainWindow::DisplayError();
     }
     else if(PtInRect(&positionsButton, mousePoint))
     {
