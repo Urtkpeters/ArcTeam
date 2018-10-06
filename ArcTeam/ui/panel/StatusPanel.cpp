@@ -20,26 +20,38 @@ HWND StatusPanel::Init(HWND parentWindow, HINSTANCE newInstance)
     instance = newInstance;
     thisPanel = CreateWindowEx(WS_EX_LEFT, "STATIC", NULL, WS_VISIBLE | WS_CHILD, 100, 20, panelWidth, panelHeight, parentWindow, (HMENU) 106, NULL, NULL);
     SetRect(&background, 0, 0, panelWidth, panelHeight);
-    SetRect(&happyButton, 0, 0, panelWidth, 120);
-    SetRect(&goodButton, 0, 120, panelWidth, 240);
-    SetRect(&sadButton, 0, 240, panelWidth, 360);
-    SetRect(&fineButton, 0, 360, panelWidth, 480);
+    SetRect(&happyButton, 0, 0, panelWidth, 95);
+    SetRect(&goodButton, 0, 95, panelWidth, 190);
+    SetRect(&sadButton, 0, 190, panelWidth, 285);
+    SetRect(&fineButton, 0, 285, panelWidth, 380);
     statuses = PlayerHandler::GetStatuses();
     selectedButton = 1;
     
     TCHAR szPath[MAX_PATH];
     GetModuleFileName(instance, szPath, MAX_PATH);
     string basePath = string(szPath);
+    string baseDirectory = basePath.substr(0, basePath.length() - 11);
     
     for(int i = 0; i < statuses.size(); i++)
     {
-        string path = basePath.substr(0, basePath.length() - 11) + "resources\\images\\" + statuses[i] + ".jpg";
+        string path = baseDirectory + "resources\\images\\" + statuses[i] + ".png";
         
         wstring wImagePath = wstring(path.begin(), path.end());
         const wchar_t* wcImagePath = wImagePath.c_str();
         Image image(wcImagePath);
         
-        images.push_back(image.GetThumbnailImage(715, 953, NULL, NULL));
+        images.push_back(image.GetThumbnailImage(80, 80, NULL, NULL));
+    }
+    
+    for(int i = 1; i < statuses.size(); i++)
+    {
+        string path = baseDirectory + "resources\\images\\" + statuses[i] + "_selected.png";
+        
+        wstring wImagePath = wstring(path.begin(), path.end());
+        const wchar_t* wcImagePath = wImagePath.c_str();
+        Image image(wcImagePath);
+        cout << path << endl;
+        images.push_back(image.GetThumbnailImage(80, 80, NULL, NULL));
     }
     
     return thisPanel;
@@ -73,6 +85,8 @@ void StatusPanel::WMPaint(HWND thisPanel)
 
     for(int i = 1; i < statuses.size(); i++)
     {
+        int selectedOption = i;
+        
         if(selectedButton == i)
         {
             brush = CreateSolidBrush(RGB(255, 255, 255));
@@ -96,12 +110,15 @@ void StatusPanel::WMPaint(HWND thisPanel)
             }
             
             FillRect(hdcBuffer, &selectedRect, brush);
+            
+            selectedOption += 4;
         }
-
-        graphics.DrawImage(images[i], 10, 7 + ((i - 1) * 120), 80, 107);
+        
+        graphics.DrawImage(images[selectedOption], 10, 7 + ((i - 1) * 95), 80, 80);
     }
 
     BitBlt(hdc, 0, 0, panelWidth, panelHeight, hdcBuffer, 0, 0, SRCCOPY);
+    
     DeleteObject(hbm);
     DeleteObject(brush);
 

@@ -23,13 +23,13 @@ HWND PlayersPanel::Init(HWND parentWindow, HINSTANCE newInstance)
     
     for(int i = 0; i < statuses.size(); i++)
     {
-        string path = basePath.substr(0, basePath.length() - 11) + "resources\\images\\" + statuses[i] + ".jpg";
+        string path = basePath.substr(0, basePath.length() - 11) + "resources\\images\\" + statuses[i] + "_large.png";
         
         wstring wImagePath = wstring(path.begin(), path.end());
         const wchar_t* wcImagePath = wImagePath.c_str();
         Image image(wcImagePath);
         
-        images.push_back(image.GetThumbnailImage(715, 953, NULL, NULL));
+        images.push_back(image.GetThumbnailImage(200, 200, NULL, NULL));
     }
     
     vector<Player> players = PlayerHandler::GetPlayers();
@@ -37,10 +37,10 @@ HWND PlayersPanel::Init(HWND parentWindow, HINSTANCE newInstance)
     for(int i = 0; i < players.size(); i++)
     {
         int xPos = 40;
-        int yPos = 240;
+        int yPos = 177;
         
         if(i == 1 || i == 3) xPos = panelWidth - 130;
-        if(i == 2 || i == 3) yPos = panelHeight - 240;
+        if(i == 2 || i == 3) yPos = panelHeight - yPos - 18;
         
         players[i].CreateLabel(thisPanel, instance, LBL_ONE + i, xPos, yPos);
     }
@@ -103,10 +103,10 @@ void PlayersPanel::WMPaint(HWND thisPanel)
         int xPos = -14;
         int yPos = -15;
 
-        if(i == 1 || i == 3) xPos = panelWidth - 180;
-        if(i == 2 || i == 3) yPos = panelHeight - 230;
+        if(i == 1 || i == 3) xPos = panelWidth - 186;
+        if(i == 2 || i == 3) yPos = panelHeight - 185;
 
-        graphics.DrawImage(thumbnail, xPos, yPos, 200, 266);
+        graphics.DrawImage(thumbnail, xPos, yPos, 200, 200);
     }
 
     BitBlt(hdc, 0, 0, panelWidth, panelHeight, hdcBuffer, 0, 0, SRCCOPY);

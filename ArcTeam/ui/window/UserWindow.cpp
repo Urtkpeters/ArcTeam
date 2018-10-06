@@ -47,6 +47,7 @@ MSG UserWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
     TCHAR szPath[MAX_PATH];
     GetModuleFileName(instance, szPath, MAX_PATH);
     string basePath = string(szPath);
+    string baseDirectory = basePath.substr(0, basePath.length() - 11);
     
     for(int i = 0; i < imageNames.size(); i++)
     {
@@ -58,18 +59,13 @@ MSG UserWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
             imgX = 100;
             imgY = 18;
         }
-        
-        string path = basePath.substr(0, basePath.length() - 11) + "resources\\images\\" + imageNames[i] + ".png";
-        
-        DWORD ftyp = GetFileAttributesA(path.c_str());
-    
-        if(ftyp == INVALID_FILE_ATTRIBUTES)
+        else if(i > 4)
         {
-            path = basePath.substr(0, basePath.length() - 11) + "resources\\images\\" + imageNames[i] + ".jpg";
             imgX = 50;
             imgY = 50;
         }
-        
+    
+        string path = baseDirectory + "resources\\images\\" + imageNames[i] + ".png";
         wstring wImagePath = wstring(path.begin(), path.end());
         const wchar_t* wcImagePath = wImagePath.c_str();
         
