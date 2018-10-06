@@ -38,7 +38,6 @@ class MainWindow: public GenericWindow
         void CreateComponents();
         
         static HWND errorLabel;
-        static HWND titleLabel;
         static RECT background;
         static vector<Image*> images;
         static RECT closeButton;

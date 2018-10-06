@@ -3,7 +3,6 @@
 RECT MainWindow::background;
 HWND MainWindow::mainWindow;
 HWND MainWindow::errorLabel;
-HWND MainWindow::titleLabel;
 vector<Image*> MainWindow::images;
 RECT MainWindow::closeButton;
 RECT MainWindow::minimizeButton;
@@ -12,7 +11,7 @@ int MainWindow::buttonHover;
 int MainWindow::currentButtonHover;
 
 
-const vector<string> MainWindow::imageNames {"close", "close_hover", "minimize", "minimize_hover"};
+const vector<string> MainWindow::imageNames {"logo", "close", "close_hover", "minimize", "minimize_hover"};
 const int MainWindow::mainWindowWidth = 1000;
 const int MainWindow::mainWindowHeight = 570;
 
@@ -39,6 +38,15 @@ MSG MainWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
     
     for(int i = 0; i < imageNames.size(); i++)
     {
+        int imgX = 20;
+        int imgY = 20;
+        
+        if(imageNames[i] == "logo")
+        {
+            imgX = 100;
+            imgY = 18;
+        }
+        
         string path = basePath.substr(0, basePath.length() - 11) + "resources\\images\\" + imageNames[i] + ".png";
         
         wstring wImagePath = wstring(path.begin(), path.end());
@@ -46,8 +54,8 @@ MSG MainWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
         
         Image image(wcImagePath);
         
-        image.GetThumbnailImage(20, 20, NULL, NULL);
-        images.push_back(image.GetThumbnailImage(20, 20, NULL, NULL));
+        image.GetThumbnailImage(imgX, imgY, NULL, NULL);
+        images.push_back(image.GetThumbnailImage(imgX, imgY, NULL, NULL));
     }
     
     return GenericWindow::CreateNewWindow(Msg, hInstance, nCmdShow);
@@ -87,16 +95,16 @@ void MainWindow::WMPaint(HWND thisWindow)
     HDC mainHDC;
     HDC bufferHDC;
     HBITMAP hbm;
-    int closeImage = 0;
-    int minimizeImage = 2;
+    int closeImage = 1;
+    int minimizeImage = 3;
     
     if(buttonHover == 1)
     {
-        closeImage = 1;
+        closeImage = 2;
     }
     else if(buttonHover == 2)
     {
-        minimizeImage = 3;
+        minimizeImage = 4;
     }
     
     mainHDC = BeginPaint(thisWindow, &ps);
@@ -112,6 +120,7 @@ void MainWindow::WMPaint(HWND thisWindow)
     
     Graphics graphics(bufferHDC);
     
+    graphics.DrawImage(images[0], 2, 0, 100, 18);
     graphics.DrawImage(images[closeImage], mainWindowWidth-30, 0, 20, 20);
     graphics.DrawImage(images[minimizeImage], mainWindowWidth-70, 0, 20, 20);
     
@@ -238,7 +247,6 @@ void MainWindow::CreateComponents()
     SetWindowSubclass(PlayersPanel::Init(thisWindow, instance), (SUBCLASSPROC) PlayersPanel::WindowProc, 0, 1);
     SetWindowSubclass(SwapPanel::Init(thisWindow, instance), (SUBCLASSPROC) SwapPanel::WindowProc, 0, 1);
     
-    titleLabel = CreateChildLabel("ArcTeam", 5, 3, thisWindow, LBL_TITLE);
     errorLabel = CreateChildLabel("", 10, 685, thisWindow, LBL_ERROR);
     
     MainWindow::mainWindow = thisWindow;

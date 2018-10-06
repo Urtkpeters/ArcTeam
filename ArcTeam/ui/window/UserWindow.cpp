@@ -17,7 +17,7 @@ int UserWindow::currentButtonHover;
 int UserWindow::playerButtonHover = 0;
 int UserWindow::currentPlayerHover = 0;
 
-const vector<string> UserWindow::imageNames {"close", "close_hover", "minimize", "minimize_hover", "avatar1", "avatar2", "avatar3", "avatar4", "avatar5"};
+const vector<string> UserWindow::imageNames {"logo", "close", "close_hover", "minimize", "minimize_hover", "avatar1", "avatar2", "avatar3", "avatar4", "avatar5"};
 const int UserWindow::userWindowWidth = 600;
 const int UserWindow::userWindowHeight = 300;
 
@@ -50,7 +50,15 @@ MSG UserWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
     
     for(int i = 0; i < imageNames.size(); i++)
     {
-        int imgSize = 20;
+        int imgX = 20;
+        int imgY = 20;
+        
+        if(imageNames[i] == "logo")
+        {
+            imgX = 100;
+            imgY = 18;
+        }
+        
         string path = basePath.substr(0, basePath.length() - 11) + "resources\\images\\" + imageNames[i] + ".png";
         
         DWORD ftyp = GetFileAttributesA(path.c_str());
@@ -58,7 +66,8 @@ MSG UserWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
         if(ftyp == INVALID_FILE_ATTRIBUTES)
         {
             path = basePath.substr(0, basePath.length() - 11) + "resources\\images\\" + imageNames[i] + ".jpg";
-            imgSize = 50;
+            imgX = 50;
+            imgY = 50;
         }
         
         wstring wImagePath = wstring(path.begin(), path.end());
@@ -66,8 +75,8 @@ MSG UserWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
         
         Image image(wcImagePath);
         
-        image.GetThumbnailImage(imgSize, imgSize, NULL, NULL);
-        images.push_back(image.GetThumbnailImage(imgSize, imgSize, NULL, NULL));
+        image.GetThumbnailImage(imgX, imgY, NULL, NULL);
+        images.push_back(image.GetThumbnailImage(imgX, imgY, NULL, NULL));
     }
     
     return GenericWindow::CreateNewWindow(Msg, hInstance, nCmdShow);
@@ -107,16 +116,16 @@ void UserWindow::WMPaint(HWND thisWindow)
     HDC mainHDC;
     HDC bufferHDC;
     HBITMAP hbm;
-    int closeImage = 0;
-    int minimizeImage = 2;
+    int closeImage = 1;
+    int minimizeImage = 3;
     
     if(buttonHover == 1)
     {
-        closeImage = 1;
+        closeImage = 2;
     }
     else if(buttonHover == 2)
     {
-        minimizeImage = 3;
+        minimizeImage = 4;
     }
     
     mainHDC = BeginPaint(thisWindow, &ps);
@@ -155,12 +164,13 @@ void UserWindow::WMPaint(HWND thisWindow)
     
     Graphics graphics(bufferHDC);
     
+    graphics.DrawImage(images[0], 2, 0, 100, 18);
     graphics.DrawImage(images[closeImage], userWindowWidth-30, 0, 20, 20);
     graphics.DrawImage(images[minimizeImage], userWindowWidth-70, 0, 20, 20);
     
-    for(int i = 4; i < images.size(); i++)
+    for(int i = 5; i < images.size(); i++)
     {
-        graphics.DrawImage(images[i], 30 + ((i - 4) * 122), 120, 50, 50);
+        graphics.DrawImage(images[i], 30 + ((i - 5) * 122), 120, 50, 50);
     }
     
     BitBlt(mainHDC, 0, 0, userWindowWidth, userWindowHeight, bufferHDC, 0, 0, SRCCOPY);
@@ -390,7 +400,6 @@ LRESULT UserWindow::NCHitTest(HWND thisWindow, LPARAM lParam)
 
 void UserWindow::CreateComponents()
 {
-    CreateChildLabel("ArcTeam", 5, 3, thisWindow, LBL_TITLE);
     CreateWindow("static", "Choose User", WS_CHILD | WS_VISIBLE | SS_CENTER, (userWindowWidth / 2) - 50, 75, 100, 25, thisWindow, (HMENU)LBL_USR, instance, NULL);
     
     vector<string> usernames = UserHandler::GetUsers();
