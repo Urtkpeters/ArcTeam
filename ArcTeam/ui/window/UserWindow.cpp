@@ -51,7 +51,7 @@ MSG UserWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
     
     for(int i = 0; i < imageNames.size(); i++)
     {
-        int imgX = 20;
+        int imgX = 40;
         int imgY = 20;
         
         if(imageNames[i] == "logo")
@@ -161,8 +161,8 @@ void UserWindow::WMPaint(HWND thisWindow)
     Graphics graphics(bufferHDC);
     
     graphics.DrawImage(images[0], 2, 0, 100, 18);
-    graphics.DrawImage(images[closeImage], userWindowWidth-30, 0, 20, 20);
-    graphics.DrawImage(images[minimizeImage], userWindowWidth-70, 0, 20, 20);
+    graphics.DrawImage(images[closeImage], userWindowWidth-40, 0, 40, 20);
+    graphics.DrawImage(images[minimizeImage], userWindowWidth-80, 0, 40, 20);
     
     for(int i = 5; i < images.size(); i++)
     {

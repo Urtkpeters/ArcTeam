@@ -38,7 +38,7 @@ MSG MainWindow::CreateNewWindow(MSG Msg, HINSTANCE hInstance, int nCmdShow)
     
     for(int i = 0; i < imageNames.size(); i++)
     {
-        int imgX = 20;
+        int imgX = 40;
         int imgY = 20;
         
         if(imageNames[i] == "logo")
@@ -121,8 +121,8 @@ void MainWindow::WMPaint(HWND thisWindow)
     Graphics graphics(bufferHDC);
     
     graphics.DrawImage(images[0], 2, 0, 100, 18);
-    graphics.DrawImage(images[closeImage], mainWindowWidth-30, 0, 20, 20);
-    graphics.DrawImage(images[minimizeImage], mainWindowWidth-70, 0, 20, 20);
+    graphics.DrawImage(images[closeImage], mainWindowWidth-40, 0, 40, 20);
+    graphics.DrawImage(images[minimizeImage], mainWindowWidth-80, 0, 40, 20);
     
     BitBlt(mainHDC, 0, 0, mainWindowWidth, mainWindowHeight, bufferHDC, 0, 0, SRCCOPY);
     
