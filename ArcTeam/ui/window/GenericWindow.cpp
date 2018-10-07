@@ -76,7 +76,7 @@ MSG GenericWindow::DisplayWindow(MSG Msg)
     char windowClassName[strLength+1];
     strcpy(windowClassName,strClassName.c_str());
     
-    thisWindow = CreateWindowEx(WS_EX_CLIENTEDGE, windowClassName, windowTitle.c_str(), WS_OVERLAPPEDWINDOW | WS_CLIPCHILDREN, windowStartX, windowStartY, windowWidth, windowHeight, NULL, NULL, instance, NULL);
+    thisWindow = CreateWindowEx(WS_EX_APPWINDOW, windowClassName, NULL, WS_VISIBLE | WS_SYSMENU | WS_POPUP, windowStartX, windowStartY, windowWidth, windowHeight, NULL, NULL, instance, NULL);
     
     CreateComponents();
     

@@ -1,7 +1,7 @@
 #include "UserHandler.h"
 
 string UserHandler::username;
-int UserHandler::state = 1;
+int UserHandler::state = 0;
 int UserHandler::lastState = 0;
 bool UserHandler::stateChange = true;
 const vector<string> UserHandler::users {"[ARC]Odonen", "the[ARC]hitect", "[ARC]haedious", "An[ARC]hy", "[ARC]Nnemis"};

@@ -28,10 +28,15 @@ void PeriodicHandler::CheckStatus()
     
     for(int i = 0; i < players.size(); i++)
     {
-        string newStatus = jsonResponse["aryStatus"][players[i].GetUsername()];
+        string username = players[i].GetUsername();
+        string newStatus = jsonResponse["aryStatus"][username];
         
-        players[i].SetStatus(stoi(newStatus));
-        PlayerHandler::SetPlayerStatus(players[i].GetUsername(), stoi(newStatus));
+        PlayerHandler::SetPlayerStatus(username, stoi(newStatus));
+    }
+    
+    if(PlayerHandler::GetStatusChange())
+    {
+        PlayersPanel::RefreshPanel();
     }
     
     // This should be made a setting

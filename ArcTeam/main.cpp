@@ -3,7 +3,7 @@
 #include <gdiplus.h>
 #include <string>
 
-#include "ui/WindowManager.h"
+#include "ui/window/WindowManager.h"
 
 using namespace std;
 using namespace Gdiplus;

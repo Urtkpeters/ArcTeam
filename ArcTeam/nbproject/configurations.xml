@@ -5,15 +5,21 @@
                    displayName="Header Files"
                    projectFiles="true">
       <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.h</itemPath>
-      <itemPath>ui/GenericWindow.h</itemPath>
-      <itemPath>ui/MainWindow.h</itemPath>
+      <itemPath>ui/window/GenericWindow.h</itemPath>
+      <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/HeroesPanel.h</itemPath>
+      <itemPath>ui/window/MainWindow.h</itemPath>
+      <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/ModesPanel.h</itemPath>
       <itemPath>handler/PeriodicHandler.h</itemPath>
       <itemPath>handler/Player/Player.h</itemPath>
       <itemPath>handler/PlayerHandler.h</itemPath>
+      <itemPath>ui/panel/PlayersPanel.h</itemPath>
+      <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PositionsPanel.h</itemPath>
+      <itemPath>ui/panel/StatusPanel.h</itemPath>
+      <itemPath>ui/panel/SwapPanel.h</itemPath>
       <itemPath>handler/UserHandler.h</itemPath>
-      <itemPath>ui/UserWindow.h</itemPath>
+      <itemPath>ui/window/UserWindow.h</itemPath>
       <itemPath>handler/WebHandler.h</itemPath>
-      <itemPath>ui/WindowManager.h</itemPath>
+      <itemPath>ui/window/WindowManager.h</itemPath>
       <itemPath>resources/resources.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ResourceFiles"
@@ -24,15 +30,21 @@
                    displayName="Source Files"
                    projectFiles="true">
       <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.cpp</itemPath>
-      <itemPath>ui/GenericWindow.cpp</itemPath>
-      <itemPath>ui/MainWindow.cpp</itemPath>
+      <itemPath>ui/window/GenericWindow.cpp</itemPath>
+      <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/HeroesPanel.cpp</itemPath>
+      <itemPath>ui/window/MainWindow.cpp</itemPath>
+      <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/ModesPanel.cpp</itemPath>
       <itemPath>handler/PeriodicHandler.cpp</itemPath>
       <itemPath>handler/Player/Player.cpp</itemPath>
       <itemPath>handler/PlayerHandler.cpp</itemPath>
+      <itemPath>ui/panel/PlayersPanel.cpp</itemPath>
+      <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PositionsPanel.cpp</itemPath>
+      <itemPath>ui/panel/StatusPanel.cpp</itemPath>
+      <itemPath>ui/panel/SwapPanel.cpp</itemPath>
       <itemPath>handler/UserHandler.cpp</itemPath>
-      <itemPath>ui/UserWindow.cpp</itemPath>
+      <itemPath>ui/window/UserWindow.cpp</itemPath>
       <itemPath>handler/WebHandler.cpp</itemPath>
-      <itemPath>ui/WindowManager.cpp</itemPath>
+      <itemPath>ui/window/WindowManager.cpp</itemPath>
       <itemPath>main.cpp</itemPath>
       <itemPath>resources/resources.rc</itemPath>
     </logicalFolder>
@@ -46,6 +58,17 @@
                    projectFiles="false"
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/Makefile</itemPath>
     </logicalFolder>
     <itemPath>ChangeLog</itemPath>
   </logicalFolder>
@@ -71,6 +94,8 @@
             <linkerLibLibItem>shlwapi</linkerLibLibItem>
             <linkerLibLibItem>GdiPlus</linkerLibLibItem>
             <linkerOptionItem>resources/resources.o</linkerOptionItem>
+            <linkerLibLibItem>comctl32</linkerLibLibItem>
+            <linkerLibLibItem>msimg32</linkerLibLibItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>
@@ -80,6 +105,36 @@
             flavor2="0">
       </item>
       <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/HeroesPanel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/HeroesPanel.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/ModesPanel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/ModesPanel.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PositionsPanel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PositionsPanel.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -118,21 +173,33 @@
           <customToolAdditionalDep>resources/resources.h</customToolAdditionalDep>
         </customTool>
       </item>
-      <item path="ui/GenericWindow.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ui/panel/PlayersPanel.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ui/GenericWindow.h" ex="false" tool="3" flavor2="0">
+      <item path="ui/panel/PlayersPanel.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ui/MainWindow.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ui/panel/StatusPanel.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ui/MainWindow.h" ex="false" tool="3" flavor2="0">
+      <item path="ui/panel/StatusPanel.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ui/UserWindow.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ui/panel/SwapPanel.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ui/UserWindow.h" ex="false" tool="3" flavor2="0">
+      <item path="ui/panel/SwapPanel.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ui/WindowManager.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ui/window/GenericWindow.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ui/WindowManager.h" ex="false" tool="3" flavor2="0">
+      <item path="ui/window/GenericWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/window/MainWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/window/MainWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/window/UserWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/window/UserWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/window/WindowManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/window/WindowManager.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -170,6 +237,8 @@
             <linkerLibLibItem>shlwapi</linkerLibLibItem>
             <linkerLibLibItem>GdiPlus</linkerLibLibItem>
             <linkerOptionItem>resources/resources.o</linkerOptionItem>
+            <linkerLibLibItem>comctl32</linkerLibLibItem>
+            <linkerLibLibItem>msimg32</linkerLibLibItem>
           </linkerLibItems>
           <commandLine>-Wl,-subsystem,windows</commandLine>
         </linkerTool>
@@ -180,6 +249,36 @@
             flavor2="0">
       </item>
       <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/HeroesPanel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/HeroesPanel.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/ModesPanel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/ModesPanel.h"
+            ex="false"
+            tool="3"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PositionsPanel.cpp"
+            ex="false"
+            tool="1"
+            flavor2="0">
+      </item>
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PositionsPanel.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -218,21 +317,33 @@
           <customToolAdditionalDep>resources/resources.h</customToolAdditionalDep>
         </customTool>
       </item>
-      <item path="ui/GenericWindow.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ui/panel/PlayersPanel.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ui/GenericWindow.h" ex="false" tool="3" flavor2="0">
+      <item path="ui/panel/PlayersPanel.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ui/MainWindow.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ui/panel/StatusPanel.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ui/MainWindow.h" ex="false" tool="3" flavor2="0">
+      <item path="ui/panel/StatusPanel.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ui/UserWindow.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ui/panel/SwapPanel.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ui/UserWindow.h" ex="false" tool="3" flavor2="0">
+      <item path="ui/panel/SwapPanel.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="ui/WindowManager.cpp" ex="false" tool="1" flavor2="0">
+      <item path="ui/window/GenericWindow.cpp" ex="false" tool="1" flavor2="0">
       </item>
-      <item path="ui/WindowManager.h" ex="false" tool="3" flavor2="0">
+      <item path="ui/window/GenericWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/window/MainWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/window/MainWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/window/UserWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/window/UserWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/window/WindowManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/window/WindowManager.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

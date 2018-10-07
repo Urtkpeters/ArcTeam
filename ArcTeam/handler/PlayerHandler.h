@@ -5,7 +5,7 @@
 #include <string>
 
 #include "Player/Player.h"
-#include "../ui/MainWindow.h"
+#include "../ui/window/MainWindow.h"
 #include "UserHandler.h"
 
 using namespace std;
@@ -18,8 +18,10 @@ class PlayerHandler
         static vector<string> GetUsernames();
         static void SetPlayerStatus(string username, int newStatusId);
         static vector<string> GetStatuses();
+        static bool GetStatusChange();
     private:
         static vector<Player> players;
+        static bool statusChange;
         
         static const vector<string> statuses;
 };

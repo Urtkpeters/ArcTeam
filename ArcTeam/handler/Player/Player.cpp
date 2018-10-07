@@ -3,12 +3,13 @@
 Player::Player(string newUsername, vector<string> newStatuses)
 {
     username = newUsername;
-    statusChanged = true;
     statuses = newStatuses;
 }
 
-void Player::SetStatus(int newStatusId)
+bool Player::SetStatus(int newStatusId)
 {
+    bool statusChanged = false;
+    
     if(newStatusId != statusId)
     {
         statusId = newStatusId;
@@ -17,20 +18,13 @@ void Player::SetStatus(int newStatusId)
         
         statusChanged = true;
     }
-    else
-    {
-        statusChanged = false;
-    }
+    
+    return statusChanged;
 }
 
 void Player::CreateLabel(HWND mainWindow, HINSTANCE hInstance, int labelId, int startX, int startY)
 {
-    label = CreateWindow("static", username.c_str(), WS_CHILD | WS_VISIBLE, startX, startY, 100, 25, mainWindow, (HMENU)labelId, hInstance, NULL);
-}
-
-bool Player::HasChange()
-{
-    return statusChanged;
+    label = CreateWindow("static", username.c_str(), WS_CHILD | WS_VISIBLE | SS_CENTER, startX, startY, 100, 25, mainWindow, (HMENU)labelId, hInstance, NULL);
 }
 
 string Player::GetUsername()
