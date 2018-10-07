@@ -6,6 +6,12 @@
 #include <gdiplus.h>
 #include <iostream>
 
+#include "StatusPanel.h"
+#include "PlayersPanel.h"
+#include "HeroesPanel.h"
+#include "PositionsPanel.h"
+#include "ModesPanel.h"
+
 using namespace std;
 using namespace Gdiplus;
 

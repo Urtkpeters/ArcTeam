@@ -129,22 +129,48 @@ void SwapPanel::WMLeftMouseButtonUp(LPARAM lParam)
     mousePoint.x = LOWORD(lParam);
     mousePoint.y = HIWORD(lParam);
     
-    if(PtInRect(&statusButton, mousePoint))
+    if(PtInRect(&statusButton, mousePoint) && selectedButton != 0)
     {
         selectedButton = 0;
+        
+        StatusPanel::ShowPanel();
+        PlayersPanel::ShowPanel();
+        
+        HeroesPanel::HidePanel();
+        PositionsPanel::HidePanel();
+        ModesPanel::HidePanel();
     }
-    else if(PtInRect(&heroesButton, mousePoint))
+    else if(PtInRect(&heroesButton, mousePoint) && selectedButton != 1)
     {
         selectedButton = 1;
-        MainWindow::DisplayError();
+        HeroesPanel::ShowPanel();
+        
+        StatusPanel::HidePanel();
+        PlayersPanel::HidePanel();
+        PositionsPanel::HidePanel();
+        ModesPanel::HidePanel();
     }
-    else if(PtInRect(&positionsButton, mousePoint))
+    else if(PtInRect(&positionsButton, mousePoint) && selectedButton != 2)
     {
         selectedButton = 2;
+        
+        PositionsPanel::ShowPanel();
+        
+        StatusPanel::HidePanel();
+        PlayersPanel::HidePanel();
+        HeroesPanel::HidePanel();
+        ModesPanel::HidePanel();
     }
-    else if(PtInRect(&modesButton, mousePoint))
+    else if(PtInRect(&modesButton, mousePoint) && selectedButton != 3)
     {
         selectedButton = 3;
+        
+        ModesPanel::ShowPanel();
+        
+        StatusPanel::HidePanel();
+        PlayersPanel::HidePanel();
+        HeroesPanel::HidePanel();
+        PositionsPanel::HidePanel();
     }
 }
 

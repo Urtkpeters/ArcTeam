@@ -266,6 +266,16 @@ void StatusPanel::HoverCheck()
     }
 }
 
+void StatusPanel::HidePanel()
+{
+    ShowWindow(thisPanel, SW_HIDE);
+}
+
+void StatusPanel::ShowPanel()
+{
+    ShowWindow(thisPanel, SW_SHOW);
+}
+
 void StatusPanel::ChangeState(HWND thisPanel, int state)
 {
     selectedButton = state;

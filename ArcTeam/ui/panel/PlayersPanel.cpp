@@ -122,3 +122,13 @@ void PlayersPanel::RefreshPanel()
 {
     RedrawWindow(thisPanel, NULL, NULL, RDW_INVALIDATE);
 }
+
+void PlayersPanel::HidePanel()
+{
+    ShowWindow(thisPanel, SW_HIDE);
+}
+
+void PlayersPanel::ShowPanel()
+{
+    ShowWindow(thisPanel, SW_SHOW);
+}

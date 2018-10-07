@@ -283,6 +283,9 @@ void MainWindow::CreateComponents()
     SetWindowSubclass(StatusPanel::Init(thisWindow, instance), (SUBCLASSPROC) StatusPanel::WindowProc, 0, 1);
     SetWindowSubclass(PlayersPanel::Init(thisWindow, instance), (SUBCLASSPROC) PlayersPanel::WindowProc, 0, 1);
     SetWindowSubclass(SwapPanel::Init(thisWindow, instance), (SUBCLASSPROC) SwapPanel::WindowProc, 0, 1);
+    SetWindowSubclass(HeroesPanel::Init(thisWindow, instance), (SUBCLASSPROC) HeroesPanel::WindowProc, 0, 1);
+    SetWindowSubclass(PositionsPanel::Init(thisWindow, instance), (SUBCLASSPROC) PositionsPanel::WindowProc, 0, 1);
+    SetWindowSubclass(ModesPanel::Init(thisWindow, instance), (SUBCLASSPROC) ModesPanel::WindowProc, 0, 1);
     
     MainWindow::mainWindow = thisWindow;
 }

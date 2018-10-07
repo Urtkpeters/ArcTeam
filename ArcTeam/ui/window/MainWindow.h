@@ -12,6 +12,9 @@
 #include "../../handler/UserHandler.h"
 #include "../panel/PlayersPanel.h"
 #include "../panel/SwapPanel.h"
+#include "../panel/HeroesPanel.h"
+#include "../panel/PositionsPanel.h"
+#include "../panel/ModesPanel.h"
 
 using namespace std;
 using namespace Gdiplus;

@@ -36,6 +36,9 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 # Object Files
 OBJECTFILES= \
 	${OBJECTDIR}/_ext/4ccc2a23/ErrorHandler.o \
+	${OBJECTDIR}/_ext/cf7d2710/HeroesPanel.o \
+	${OBJECTDIR}/_ext/cf7d2710/ModesPanel.o \
+	${OBJECTDIR}/_ext/cf7d2710/PositionsPanel.o \
 	${OBJECTDIR}/handler/PeriodicHandler.o \
 	${OBJECTDIR}/handler/Player/Player.o \
 	${OBJECTDIR}/handler/PlayerHandler.o \
@@ -81,6 +84,21 @@ ${OBJECTDIR}/_ext/4ccc2a23/ErrorHandler.o: /cygdrive/C/Users/Urt/Documents/Proje
 	${MKDIR} -p ${OBJECTDIR}/_ext/4ccc2a23
 	${RM} "$@.d"
 	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/4ccc2a23/ErrorHandler.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.cpp
+
+${OBJECTDIR}/_ext/cf7d2710/HeroesPanel.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/HeroesPanel.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/cf7d2710
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/cf7d2710/HeroesPanel.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/HeroesPanel.cpp
+
+${OBJECTDIR}/_ext/cf7d2710/ModesPanel.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/ModesPanel.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/cf7d2710
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/cf7d2710/ModesPanel.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/ModesPanel.cpp
+
+${OBJECTDIR}/_ext/cf7d2710/PositionsPanel.o: /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PositionsPanel.cpp
+	${MKDIR} -p ${OBJECTDIR}/_ext/cf7d2710
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -Iinclude -std=c++11 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/_ext/cf7d2710/PositionsPanel.o /cygdrive/C/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PositionsPanel.cpp
 
 ${OBJECTDIR}/handler/PeriodicHandler.o: handler/PeriodicHandler.cpp
 	${MKDIR} -p ${OBJECTDIR}/handler

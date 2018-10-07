@@ -6,11 +6,14 @@
                    projectFiles="true">
       <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.h</itemPath>
       <itemPath>ui/window/GenericWindow.h</itemPath>
+      <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/HeroesPanel.h</itemPath>
       <itemPath>ui/window/MainWindow.h</itemPath>
+      <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/ModesPanel.h</itemPath>
       <itemPath>handler/PeriodicHandler.h</itemPath>
       <itemPath>handler/Player/Player.h</itemPath>
       <itemPath>handler/PlayerHandler.h</itemPath>
       <itemPath>ui/panel/PlayersPanel.h</itemPath>
+      <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PositionsPanel.h</itemPath>
       <itemPath>ui/panel/StatusPanel.h</itemPath>
       <itemPath>ui/panel/SwapPanel.h</itemPath>
       <itemPath>handler/UserHandler.h</itemPath>
@@ -28,11 +31,14 @@
                    projectFiles="true">
       <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/handler/ErrorHandler.cpp</itemPath>
       <itemPath>ui/window/GenericWindow.cpp</itemPath>
+      <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/HeroesPanel.cpp</itemPath>
       <itemPath>ui/window/MainWindow.cpp</itemPath>
+      <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/ModesPanel.cpp</itemPath>
       <itemPath>handler/PeriodicHandler.cpp</itemPath>
       <itemPath>handler/Player/Player.cpp</itemPath>
       <itemPath>handler/PlayerHandler.cpp</itemPath>
       <itemPath>ui/panel/PlayersPanel.cpp</itemPath>
+      <itemPath>C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PositionsPanel.cpp</itemPath>
       <itemPath>ui/panel/StatusPanel.cpp</itemPath>
       <itemPath>ui/panel/SwapPanel.cpp</itemPath>
       <itemPath>handler/UserHandler.cpp</itemPath>
@@ -103,72 +109,32 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PlayersPanel.cpp"
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/HeroesPanel.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PlayersPanel.h"
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/HeroesPanel.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/StatusPanel.cpp"
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/ModesPanel.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/StatusPanel.h"
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/ModesPanel.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/SwapPanel.cpp"
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PositionsPanel.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/SwapPanel.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/GenericWindow.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/GenericWindow.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/MainWindow.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/MainWindow.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/UserWindow.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/UserWindow.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/WindowManager.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/WindowManager.h"
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PositionsPanel.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -206,6 +172,34 @@
           <customToolOutputs>resources/resources.o</customToolOutputs>
           <customToolAdditionalDep>resources/resources.h</customToolAdditionalDep>
         </customTool>
+      </item>
+      <item path="ui/panel/PlayersPanel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/panel/PlayersPanel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/panel/StatusPanel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/panel/StatusPanel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/panel/SwapPanel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/panel/SwapPanel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/window/GenericWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/window/GenericWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/window/MainWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/window/MainWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/window/UserWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/window/UserWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/window/WindowManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/window/WindowManager.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
     <conf name="Release" type="1">
@@ -259,72 +253,32 @@
             tool="3"
             flavor2="0">
       </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PlayersPanel.cpp"
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/HeroesPanel.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PlayersPanel.h"
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/HeroesPanel.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/StatusPanel.cpp"
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/ModesPanel.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/StatusPanel.h"
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/ModesPanel.h"
             ex="false"
             tool="3"
             flavor2="0">
       </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/SwapPanel.cpp"
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PositionsPanel.cpp"
             ex="false"
             tool="1"
             flavor2="0">
       </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/SwapPanel.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/GenericWindow.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/GenericWindow.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/MainWindow.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/MainWindow.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/UserWindow.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/UserWindow.h"
-            ex="false"
-            tool="3"
-            flavor2="0">
-      </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/WindowManager.cpp"
-            ex="false"
-            tool="1"
-            flavor2="0">
-      </item>
-      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/window/WindowManager.h"
+      <item path="C:/Users/Urt/Documents/Projects/ArcTeam/ArcTeam/ui/panel/PositionsPanel.h"
             ex="false"
             tool="3"
             flavor2="0">
@@ -362,6 +316,34 @@
           <customToolOutputs>resources/resources.o</customToolOutputs>
           <customToolAdditionalDep>resources/resources.h</customToolAdditionalDep>
         </customTool>
+      </item>
+      <item path="ui/panel/PlayersPanel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/panel/PlayersPanel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/panel/StatusPanel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/panel/StatusPanel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/panel/SwapPanel.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/panel/SwapPanel.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/window/GenericWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/window/GenericWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/window/MainWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/window/MainWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/window/UserWindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/window/UserWindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="ui/window/WindowManager.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="ui/window/WindowManager.h" ex="false" tool="3" flavor2="0">
       </item>
     </conf>
   </confs>

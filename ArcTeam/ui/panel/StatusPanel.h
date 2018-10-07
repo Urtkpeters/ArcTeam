@@ -25,6 +25,8 @@ class StatusPanel
         static void WMMouseHover(LPARAM lParam);
         static void WMTimer(HWND thisPanel);
         static void HoverCheck();
+        static void HidePanel();
+        static void ShowPanel();
     private:
         static HWND thisPanel;
         static HINSTANCE instance;
