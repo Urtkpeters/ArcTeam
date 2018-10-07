@@ -12,9 +12,12 @@ class ErrorHandler
 {
     public:
         static void Init(HINSTANCE instance);
-        static void WriteError(string errorMessage);
+        static void WriteError(string errorMessage, bool fatalError);
+        static bool CheckErrors();
+        static void ClearErrors();
     private:
         static string path;
+        static bool encErr;
 };
 
 #endif
