@@ -1,7 +1,7 @@
 #include "WebHandler.h"
 
-string WebHandler::getUrl = "http://www.odinary.net/event/arcGetVersion";
-string WebHandler::dlUrl = "http://www.odinary.net/ArcTeam/";
+string WebHandler::getUrl = "https://www.odinary.net/event/arcGetVersion";
+string WebHandler::dlUrl = "https://www.odinary.net/ArcTeam/";
 
 size_t WebHandler::curlWriteResponse(void *contents, size_t size, size_t nmemb, string *s)
 {
@@ -38,6 +38,7 @@ json WebHandler::SendRequest(string url)
         string response;
         
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
         curl_easy_setopt(curl, CURLOPT_POST, 1);
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, "");
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &WebHandler::curlWriteResponse);
@@ -129,6 +130,7 @@ void WebHandler::DownloadFile(string File)
         fp = fopen(downloadPath.c_str(), "wb");
 
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
+        curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteData);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, fp);
         
