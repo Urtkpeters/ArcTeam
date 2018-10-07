@@ -1,6 +1,7 @@
 #include "ErrorHandler.h"
 
 string ErrorHandler::path;
+bool ErrorHandler::encErr = false;;
 
 void ErrorHandler::Init(HINSTANCE instance)
 {
@@ -8,11 +9,16 @@ void ErrorHandler::Init(HINSTANCE instance)
     GetModuleFileName(instance, szPath, MAX_PATH);
 
     path = string(szPath);
-    path = path.substr(0, path.length() - 11) + "errorLog.txt";
+    path = path.substr(0, path.length() - 14) + "errorLog.txt";
 }
 
-void ErrorHandler::WriteError(string errorMessage)
+void ErrorHandler::WriteError(string errorMessage, bool fatalError)
 {
+    if(!encErr)
+    {
+        encErr = fatalError;
+    }
+    
     string errorLine = errorMessage + "\r\n";
     
     ofstream outputFile;
@@ -20,3 +26,7 @@ void ErrorHandler::WriteError(string errorMessage)
     outputFile << errorLine.c_str();
     outputFile.close();
 }
+
+bool ErrorHandler::CheckErrors() { return encErr; }
+
+void ErrorHandler::ClearErrors() { encErr = false; }

@@ -16,48 +16,56 @@ void DownloadHandler::CheckVersion()
     bool pushFile;
     int counter = 0;
     
-    while(!hasVersions)
+    if(versionJSON.at("blnSuccess"))
     {
-        try
+        while(!hasVersions)
         {
-            json versionObj = versionJSON.at(to_string(counter));
-            
-            vector<string> tempFiles = FileHandler::Split(versionObj.at("files"), '|');
-            
-            for(int i = 0; i < tempFiles.size(); i++)
+            try
             {
-                pushFile = true;
-                
-                for(int j = 0; j < files.size(); j++)
+                json versionObj = versionJSON.at(to_string(counter));
+
+                vector<string> tempFiles = FileHandler::Split(versionObj.at("files"), '|');
+
+                for(int i = 0; i < tempFiles.size(); i++)
                 {
-                    if(tempFiles[i] == files[j])
+                    pushFile = true;
+
+                    for(int j = 0; j < files.size(); j++)
                     {
+                        if(tempFiles[i] == files[j])
+                        {
+                            pushFile = false;
+                            break;
+                        }
+                    }
+
+                    if(pushFile)
+                    {
+                        files.push_back(tempFiles[i]);
                         pushFile = false;
-                        break;
                     }
                 }
-                
-                if(pushFile)
+
+                counter++;
+            }
+            catch(json::exception &e)
+            {
+                if(e.id == 403)
                 {
-                    files.push_back(tempFiles[i]);
-                    pushFile = false;
+                    break;
                 }
-            }
-            
-            counter++;
-        }
-        catch(json::exception &e)
-        {
-            if(e.id == 403)
-            {
-                break;
-            }
-            else
-            {
-                // Throw error
+                else
+                {
+                    ErrorHandler::WriteError("Problem occurred when parsing the JSON.", true);
+                }
             }
         }
     }
+    else
+    {
+        ErrorHandler::WriteError("The web request returned unsuccessful.", true);
+    }
+    
     
     if(counter > 0)
     {

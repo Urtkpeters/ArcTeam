@@ -2,6 +2,7 @@
 #include <cstdlib>
 
 #include "ui/UpdaterWindow.h"
+#include "handler/ErrorHandler.h"
 #include "handler/DownloadHandler.h"
 #include "handler/FileHandler.h"
 
@@ -12,6 +13,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
     MSG Msg;
     ULONG_PTR token;
     
+    ErrorHandler::Init(hInstance);
     DownloadHandler::Init();
     
     UpdaterWindow upWin;

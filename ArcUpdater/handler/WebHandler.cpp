@@ -14,6 +14,8 @@ size_t WebHandler::curlWriteResponse(void *contents, size_t size, size_t nmemb, 
     }
     catch(bad_alloc &e)
     {
+        ErrorHandler::WriteError("Unwritable response.", true);
+        
         return 0;
     }
 
@@ -46,9 +48,16 @@ json WebHandler::SendRequest(string url)
         curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &responseCode);
         
         curl_easy_cleanup(curl);
+        
         if(responseCode != 200 || curlResponse == CURLE_ABORTED_BY_CALLBACK)
         {
-            ErrorHandler::WriteError("Unable to connect to web server.");
+            ErrorHandler::WriteError("Unable to connect to web server to get versions.\r\n" + url, true);
+            
+            string failResponse = "{\"blnSuccess\":false,\"strMessage\":\"Unable to connect to web server.\"}";
+            char failArray[74];
+            strcpy(failArray, failResponse.c_str());
+            
+            jsonResponse = json::parse(failArray);
         }
         else
         {
@@ -60,7 +69,13 @@ json WebHandler::SendRequest(string url)
     }
     else
     {
-        ErrorHandler::WriteError("Unable to connect to the internet.");
+        ErrorHandler::WriteError("Unable to connect to the internet to get versions.", true);
+            
+        string failResponse = "{\"blnSuccess\":false,\"strMessage\":\"Unable to connect to the internet.\"}";
+        char failArray[76];
+        strcpy(failArray, failResponse.c_str());
+
+        jsonResponse = json::parse(failArray);
     }
     
     return jsonResponse;
@@ -68,11 +83,12 @@ json WebHandler::SendRequest(string url)
 
 json WebHandler::GetVersions(string currentVersion)
 {
-    json jsonResponse = SendRequest(WebHandler::getUrl + "?currentVersion=" + currentVersion);
+    string url = WebHandler::getUrl + "?currentVersion=" + currentVersion;
+    json jsonResponse = SendRequest(url);
     
     if(jsonResponse.at("blnSuccess") != true)
     {
-        ErrorHandler::WriteError("Web server response not valid.");
+        ErrorHandler::WriteError("Web server response not valid.\r\n" + url, true);
     }
     
     return jsonResponse;
@@ -109,7 +125,7 @@ void WebHandler::DownloadFile(string File)
         string downloadPath = FileHandler::GetAppPath() + "download\\" + File;
         
         string url = WebHandler::dlUrl + WebHandler::replace(File, "\\", "/");
-        cout << url << endl;
+        
         fp = fopen(downloadPath.c_str(), "wb");
 
         curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
@@ -125,12 +141,12 @@ void WebHandler::DownloadFile(string File)
         
         if(responseCode != 200 || response == CURLE_ABORTED_BY_CALLBACK)
         {
-            // Throw error
+            ErrorHandler::WriteError("Unable to connect to web server to download file.\r\n" + url, true);
         }
     }
     else
     {
-        // Throw error
+        ErrorHandler::WriteError("Unable to connect to the internet to download file.", true);
     }
 }
 

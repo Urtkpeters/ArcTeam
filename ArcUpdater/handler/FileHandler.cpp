@@ -1,4 +1,5 @@
 #include "FileHandler.h"
+#include "ErrorHandler.h"
 
 void FileHandler::CheckDownloadDirectory()
 {
@@ -26,6 +27,10 @@ void FileHandler::UnpackDownload()
     {
         MoveFiles(basePath, downloadPath);
     }
+    else
+    {
+        ErrorHandler::WriteError("Problem occurred when moving downloaded files.\r\n" + downloadPath, true);
+    }
 }
 
 string FileHandler::GetCurrentVersion()
@@ -46,6 +51,8 @@ vector<string> FileHandler::ReadVersionFile()
         
     if(settingFileAttributes == INVALID_FILE_ATTRIBUTES || (settingFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
     {
+        ErrorHandler::WriteError("Couldn't read version file.", false);
+        
         return {"0.0.0", "0.0.0"};
     }
     
@@ -92,9 +99,9 @@ void FileHandler::DeleteDirectory(string filePath)
         if(info.dwFileAttributes == FILE_ATTRIBUTE_DIRECTORY)
         {
             sprintf(fileFound,"%s\\%s", filePath.c_str(), info.cFileName);
-            
+
             string path = (string) fileFound;
-            
+
             if(path.find("..") == string::npos)
             {
                 DeleteDirectory((string) fileFound);
@@ -103,7 +110,7 @@ void FileHandler::DeleteDirectory(string filePath)
         else
         {
             sprintf(fileFound,"%s\\%s", filePath.c_str(), info.cFileName);
-            
+
             DeleteFile(fileFound);
         }
     }
